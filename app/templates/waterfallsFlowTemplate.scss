@@ -1,0 +1,71 @@
+.flow-item {
+  width: 100%;
+  border-radius: 12rpx 12rpx 0 0;
+  margin-bottom: 16rpx;
+  overflow: hidden;
+  .item-image {
+    width: 100%;
+    height: 345rpx;
+    position: relative;
+    .topping {
+      position: absolute;
+      left: 16rpx;
+      top: 16rpx;
+      z-index: 5;
+      padding: 0 10rpx;
+      height: 32rpx;
+      display: table;
+      background-image: linear-gradient(to right, #56CCFF, #499AFF);
+      border-radius: 6rpx;
+      text {
+        display: table-cell;
+        vertical-align: middle;
+        color: #FFFFFF;
+        font-weight: 600;
+        font-size: 20rpx;
+      }
+    }
+    .isVideo {
+      position: absolute;
+      right: 16rpx;
+      top: 16rpx;
+      z-index: 5;
+      width: 36rpx;
+      height: 36rpx;
+      background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABKCAMAAAAv++J+AAAAPFBMVEUAAABzc3PPz8/Q0NDz8/MXFxfv7+9HcEz////g4ODe3t7Q0NCjo6M4ODhQUFD6+vqdnZ3e3t7Dw8P///8LD8v2AAAAE3RSTlNNTUYkBE1NAE1LEzBNU1DxhsKk59BkmwAAAgRJREFUWMOtmOtigyAMhcPVAEK38f7vuuBsJ1UQbc7Pln49SQRDYOrIqyCds4jWORmU762F1hdaSSLUslLpayCilB+6WaRoDIAxMYnZlc9arCOQDsXLLIhQy4i5+Ap6CLRg5J7yZMlj1A7kKQCZoKNEKOdPQDrQoi5mQdGfvZuqQFrTCgHnMmJnqgJ5iy7CkKJD61sgRaUyMChDBVTHoMKBC6pJsOUIuCSxJb1A/jJnIfl3EOV5hsua/zO+gqjuNziF5HQFCujMHZBxGLYgSlCEW4rPNMEamICbEmtwsAZ2l/MKroC0xXQbBAmtXkEBJXwguViCrqEUhy1B2RstQz85f8cRS2oByWbJHjnnx9dA4WQBacTWirzo1JRB1ARS7c3xBzo3NVNs0InsCTo1VWKDyaI5BZ2YMmgn8J2nOm/UNeXQQydFFahripIEobNfc622KYGBnqY0CmqbSvRMu85JlHdqmIqUaNcu2gGoYcoQyF4Dkanj+kN7gzRA+cgTUdhAbKGxJZut/GwPJNsWYdu0bMcI28HGd9SyHf70OjIsryO2FyTfK7vXRIy0O68mgq2t4Wu0Pmr9YNP6TRNXM8rWHvM17HxXiFI5lkvNpLmuWXwXP76rKN/lmO+6/jfPEIPp6Q0Q2EYajEOWZbv0xj4wPPbhG0QxjsYYh3UFxDU+vCo20C9ykE9T3/CPhAAAAABJRU5ErkJggg==");
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+  }
+  .item-content {
+    padding: 14rpx 16rpx 0;
+    .item-title {
+      width: 100%;
+      color: #333333;
+      font-size: 28rpx;
+      font-weight: 600;
+      line-height: 40rpx;
+      vertical-align: middle;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+    }
+    .item-info {
+      width: 100%;
+      padding: 20rpx 0 24rpx;
+      display: flex;
+      align-items: center;
+      .avator {
+        width: 40rpx;
+        height: 40rpx;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+      .name {
+        color: #666666;
+        font-size: 24rpx;
+      }
+    }
+  }
+}
