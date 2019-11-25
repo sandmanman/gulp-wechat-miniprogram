@@ -1,12 +1,21 @@
 <view class="create-product-box">
       <view class="picture-cover">
           <view class="photo-box">
-              <image src="/assets/img/icon/add.png"></image>
-              <view>宝物封面</view>
+            <view class="no-photo" bind:tap ="uploadimagebtn" wx:if="{{!coverimg}}">
+              <view class="addpicture">
+                <image src="/assets/img/icon/add.png"></image>
+              </view>
+              <view class="addtxt">宝物封面</view>
+            </view>
+            <view class="has-photo" wx:else>
+                <image class="cover-img" mode="aspectFill" src="{{coverimg}}"></image>
+                <image class="close-img" bind:tap="deleteImg" src="/assets/img/icon/close@2x.png"></image>
+            </view>
           </view>
 
           <view class="input-box">
               <input  type="text"
+                      class="importbox"
                       name="titleName"
                       maxlength="{{maxtxt}}"
                       bindinput="limitbtn"
@@ -14,12 +23,47 @@
                       placeholder="填写宝物名称"
                       placeholder-style="color:#999999;"
               ></input>
-              <view>{{maxtxt-titletxt.length}}</view>
+              <view class="maxtitle">{{maxtxt-titletxt.length}}</view>
           </view>
 
-          <!-- <view class="treasure-type-box">
-
-          </view> -->
+          <view class="treasure-type-box">
+              <view class="treasure-title">
+                <view class="imgs">
+                  <image src="/assets/img/icon/treasure@2x.png"></image>
+                </view>
+                <view class="title">宝物类型</view>
+              </view>
+              <view class="treasure-chose-txt" bind:tap="showActionSheetHander">
+                <view class="has-txt" wx:if="{{tagname}}">{{tagname}}</view>
+                <view class="no-txt" wx:else>添加合适的类型会有更多赞哦~</view>
+                <view class="imgs">
+                    <image src="/assets/img/icon/fill@2x.png"></image>
+                </view>
+              </view>
+          </view>
           <view class="btn-box">确认创建</view>
       </view>
+
+      <vant-popup show="{{showActionSheet}}"
+                    position="bottom"
+                    round
+                    custom-style="opacity: 0.85;"
+                    bind:close="hideActionSheetHander"
+        >
+          <view class="actionSheet">
+            <view class="actionSheet-head">
+              <text>选择标签</text>
+            </view>
+            <view class="actionSheet-list">
+              <view class="actionSheet-item"
+                    wx:for="{{tagList}}"
+                    wx:key="{{index}}"
+                    data-tag="{{item}}"
+                    bind:tap="selectTagHander"
+              >
+                <text>{{item}}</text>
+              </view>
+            </view>
+          </view>
+      </vant-popup>
 </view>
