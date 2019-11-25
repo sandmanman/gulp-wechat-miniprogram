@@ -1,6 +1,8 @@
 <template name="waterfallsFlowItem">
   <view class="flow-item">
     <view class="item-image">
+      <view class="topping"><text>精华</text></view>
+      <view class="isVideo"></view>
       <image src="https://pic1.zhimg.com/80/v2-b9df16458b36df7a3c8c71a46f278378_hd.jpg"></image>
     </view>
     <view class="item-content">
