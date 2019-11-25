@@ -19,14 +19,14 @@ import colors = require('colors')
 import yargs = require('yargs')
 
 const appPath = 'app/**'
-const whitelist: string[] = [`!${appPath}/_template/*`, `!${appPath}/_component/*`, `!${appPath}/vant/*`]
+const whitelist: string[] = [`!${appPath}/_template/**/*`, `!${appPath}/_component/**/*`, `!${appPath}/services/**/*`]
 const distPath = 'dist'
-const wxssFiles = [`${appPath}/*.wxss`]
+const wxssFiles = [`${appPath}/*.wxss`, ...whitelist.map(s => `${s}.wxss`)]
 const jsFiles = [`${appPath}/*.js`, `${appPath}/*.wxs`]
-const wxmlFiles = [`${appPath}/*.wxml`, ...whitelist.map(s => s + '.wxml')]
-const sassFiles = [`${appPath}/*.+(sass|scss)`, `!${appPath}/assets/css/*.+(sass|scss)`, ...whitelist.map(s => s + '.(sass|scss)')]
-const jsonFiles = [`${appPath}/*.json`, ...whitelist.map(s => s + '.json')]
-const tsFiles = [`${appPath}/*.ts`, `!${appPath}/_template/*ts`, `!${appPath}/_component/*ts`, `!${appPath}/*.d.ts`]
+const wxmlFiles = [`${appPath}/*.wxml`, ...whitelist.map(s => `${s}.wxml`)]
+const sassFiles = [`${appPath}/*.+(sass|scss)`, ...whitelist.map(s => `${s}.+(sass|scss)`)]
+const jsonFiles = [`${appPath}/*.json`, ...whitelist.map(s => `${s}.json`)]
+const tsFiles = [`${appPath}/*.ts`, ...whitelist.map(s => `${s}.ts`), `!${appPath}/*.d.ts`]
 const imgFiles = [`${appPath}/assets/img/**/*.{png, jpg, gif, ico}`]
 const tsProject = ts.createProject('tsconfig.json')
 const root = path.join(__dirname, 'app/pages')

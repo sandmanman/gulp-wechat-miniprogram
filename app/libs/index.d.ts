@@ -2,6 +2,7 @@
 /// <reference path="./publish.d.ts" />
 
 interface IAppOption {
+  name: string
   globalData: {
     userInfo?: WechatMiniprogram.UserInfo | {}
     globalSystemInfo?: {
@@ -16,3 +17,5 @@ interface IAppOption {
   WXGetSettingHander(): void
   getSystemInfoHander(): void
 }
+
+type IWechatRequestMethods = 'OPTIONS' | 'GET' | 'HEAD' | 'POST' | 'PUT' | 'DELETE' | 'TRACE' | 'CONNECT'
