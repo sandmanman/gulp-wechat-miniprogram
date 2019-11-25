@@ -1,6 +1,6 @@
 {
-  "navigationBarTitleText": "page title",
+  "navigationBarTitleText": "创建宝物",
   "usingComponents": {
-
+    "vant-popup": "/vant/popup/index"
   }
 }
