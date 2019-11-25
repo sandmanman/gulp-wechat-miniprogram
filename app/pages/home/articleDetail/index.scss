@@ -1,85 +1,109 @@
-.auctionDetail-box{
-  .auctionInformation{
+.auctionDetail-box {
+  .auctionInformation {
     width:702rpx;
     height:562rpx;
     border-radius:24rpx;
-    background:#fff;
-    box-shadow:0px 16px 34px 0px rgba(0,0,0,0.15);
+    background:#FFFFFF;
+    box-shadow:0 16px 34px 0 rgba(0,0,0,0.15);
     margin:24rpx;
-    .productMessage{
+    .productMessage {
       padding:32rpx 32rpx 24rpx;
       display:flex;
       justify-content: space-between;
-      .productTxtBox{
-        .productTitle{
+      .productTxtBox {
+        .productTitle {
           font-size:36rpx;
           font-weight:600;
-          text{
+          .txt {
             font-size:26rpx;
             font-weight:400;
           }
         }
-        .anothername{
+        .anothername {
           font-size:24rpx;
         }
       }
-      .share-icon{
-        width:38rpx;
-        height:38rpx;
+      .share-icon {
+        width:44rpx;
+        height:44rpx;
         margin-top:6rpx;
       }
     }
-    .videoAndPhotoBox{
+    .videoAndPhotoBox {
       padding:0 32rpx;
-      .videoBox{
+      .videoBox {
         height:296rpx;
         display:flex;
         justify-content: space-between;
-        video{
+        .videoplaybox {
           width:484rpx;
           height:296rpx;
           border-radius:6rpx;
+          overflow: hidden;
         }
-        .pictures{
-          .photoBox{
+        .pictures {
+          .photoBox {
             width:144rpx;
-            image{
+            position: relative;
+            .pictus {
               width:144rpx;
               height:144rpx;
               border-radius:10rpx;
+            }
+            .mask {
+              width:144rpx;
+              height:144rpx;
+              line-height: 144rpx;
+              border-radius:10rpx;
+              position: absolute;
+              top:0rpx;
+              background:rgba(0,0,0, .3);
+              text-align: center;
+              .allnum {
+                color:#FFFFFF;
+                font-size:24rpx;
+              }
             }
           }
         }
       }
     }
-    .productExplain{
+    .productExplain {
       font-size:24rpx;
       color:#888888;
       padding:0 32rpx;
       margin-top:24rpx;
     }
   }
-  .image-Icon-Box{
-    display:flex;
+  .image-Icon-Box {
+    display: flex;
     justify-content:space-around;
-    .icon-Message{
+    margin-bottom:16rpx;
+    .icon-Message {
       width:140rpx;
       text-align: center;
-      .imgs{
-        width:132rpx;
-        height:140rpx;
+      .imgs {
+        width: 100%;
+        height:146rpx;
+        border-radius:50%;
+        overflow: hidden;
       }
-      view{
+      .icontxt {
         color:#666666;
         font-size:24rpx;
       }
     }
   }
-  .sendpost-Btn{
+  .treasureLog-List {
+    padding:36rpx 0;
+    border-top:16rpx solid #F8F8F8;
+    margin-top:50rpx;
+  }
+  .sendpost-Btn {
     position:fixed;
     bottom:30rpx;
     left:297rpx;
-    image{
+    .fiximg {
       width:156rpx;
       height:156rpx;
     }

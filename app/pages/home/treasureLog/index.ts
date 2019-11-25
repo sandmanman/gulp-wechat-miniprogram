@@ -21,7 +21,8 @@ Page({
       { username: '小唐马' }
     ],
     index: 0,
-    selected: 0
+    selected: 0,
+    showlabel: true
   },
   onLoad() {
     console.log(111)
@@ -36,6 +37,16 @@ Page({
     const { index } = dataset
     this.setData({
       selected: index
+    })
+  },
+  openbtn() {
+    this.setData({
+      showlabel: false
+    })
+  },
+  closebtn() {
+    this.setData({
+      showlabel: true
     })
   }
 })
