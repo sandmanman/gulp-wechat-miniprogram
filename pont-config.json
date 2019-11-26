@@ -1,5 +1,5 @@
 {
-  "originUrl": "https://petstore.swagger.io/v2/swagger.json",
+  "originUrl": "http://zzbw.test.z.vip/swagger/swagger.json",
   "outDir": "./app/services",
   "templatePath": "./pontTemplate"
 }

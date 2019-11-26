@@ -1,9 +1,10 @@
+<import src="/templates/waterfallsFlowTemplate.wxml"></import>
 <view class="my-center-box">
   <view class="user-center-box">
     <image class="bg" src="https://lvcui-image.oss-cn-shanghai.aliyuncs.com/background/bg-circle.png"></image>
     <view class="user-box">
           <view class="userhead-box">
-            <view class="photo-box" hover-class="none" hover-stop-propagation="false">
+            <view class="photo-box">
                 <image src="/assets/img/icon/default-head.png"></image>
             </view>
             <view class="username">点击登录</view>
@@ -27,11 +28,21 @@
     </view>
     <view class="divider"></view>
   </view>
+  <view class="comment-list" wx:if="{{!selsectIndex}}">
+    <waterfalls-flow></waterfalls-flow>
+  </view>
+  <view class="balancelayout-list" wx:else>
+    <balancelayout-list></balancelayout-list>
+  </view>
   <!-- <view class="detail-Box">
-    <image src="/assets/img/icon/no-detail-icon.png"></image>
-    <view>暂无动态</view>
+    <view class="icon-img">
+      <image src="/assets/img/icon/no-detail-icon.png"></image>
+    </view>
+    <view class="notxt">暂无动态</view>
   </view>
   <view class="send-icon">
-    <image src="/assets/img/icon/tip-red.png"></image>
+    <view class="sendimg">
+      <image src="/assets/img/icon/tip-red.png"></image>
+    </view>
   </view> -->
 </view>

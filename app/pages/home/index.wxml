@@ -1,3 +1,4 @@
+<import src="/templates/waterfallsFlowTemplate.wxml"></import>
 <view class="home-container">
   <view class="title">推荐宝物</view>
   <view class="treasure-list">

@@ -16,3 +16,39 @@
     </view>
   </view>
 </template>
+<template name="refresh">
+    <view class="refresh-box">
+        <view class="refreshimage">
+            <image src="/assets/img/other/refresh.png"></image>
+        </view>
+        <view class="refresh-txt">加载失败，点击重新加载</view>
+        <view class="refresh-btn-box">点击刷新</view>
+    </view>
+</template>
+<template name="nonedata">
+  <view class="no-data-box">
+      <view class="dataimg">
+          <image src="/assets/img/icon/no-detail-icon.png"></image>
+      </view>
+      <view class="no-txt">暂无数据</view>
+  </view>
+</template>
+<template name="nonetwork">
+    <view class="refresh-box">
+        <view class="refreshimage">
+            <image src="/assets/img/other/wifi.png"></image>
+        </view>
+        <view class="refresh-txt">当前网络不可用 </view>
+        <view class="refresh-txt">请检查您的网络设置</view>
+        <view class="refresh-btn-box">重新加载</view>
+    </view>
+</template>
+<template name="noexist">
+    <view class="refresh-box">
+        <view class="refreshimage">
+            <image src="/assets/img/other/wifi.png"></image>
+        </view>
+        <view class="refresh-txt">很抱歉，您访问的页面不存在</view>
+        <view class="refresh-btn-box">返回首页</view>
+    </view>
+</template>
