@@ -79,6 +79,7 @@
     "import/no-unresolved": "off",
     "no-plusplus": "off",
     "no-shadow": "off",
+    "no-restricted-syntax": "off",
     "@typescript-eslint/class-name-casing": ["error", {
       "allowUnderscorePrefix": false
     }],
@@ -105,6 +106,7 @@
       "allowedNames": ["self"]
     }],
     "@typescript-eslint/triple-slash-reference": 0,
-    "import/no-extraneous-dependencies": 0
+    "import/no-extraneous-dependencies": 0,
+    "@typescript-eslint/camelcase": "off"
   }
 }

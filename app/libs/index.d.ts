@@ -2,7 +2,6 @@
 /// <reference path="./publish.d.ts" />
 
 interface IAppOption {
-  name: string
   globalData: {
     userInfo?: WechatMiniprogram.UserInfo | {}
     globalSystemInfo?: {

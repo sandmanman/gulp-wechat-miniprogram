@@ -1,4 +1,6 @@
 import api from '../../api/index'
+import { WXLogin, getSignature } from '../../utils'
+import config from '../../config/index'
 
 Page({
   data: {
@@ -16,9 +18,11 @@ Page({
     }
   },
   async userLogin() {
-    const data = await api.userLogin({
-
-    })
+    const params = getSignature({
+      c_p: config.cp,
+      code: await WXLogin()
+    }, 'POST')
+    const data = await api.userLogin(params)
     console.log(data)
   },
   selectBtn({

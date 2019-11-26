@@ -1,4 +1,4 @@
-import { WXGetImageInfoAsync } from '../../../utils/util'
+import { WXGetImageInfoAsync } from '../../../utils'
 
 Page({
   data: {
