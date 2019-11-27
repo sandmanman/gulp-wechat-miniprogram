@@ -1,8 +1,9 @@
 import httpRequest from './wxRequest'
-import PublishAPI from './PublishAPI'
 import HomeApi from './home'
+import PublishAPI from './PublishAPI'
+import { applyMixins } from '../utils/index'
 
-class API extends HomeApi {
+class API implements HomeApi, PublishAPI {
   // 用户登陆
   userLogin = (params: {
     c_p: string
@@ -25,5 +26,7 @@ class API extends HomeApi {
     avatar_url: string
   }> => httpRequest('/api/user/update', 'POST', params)
 }
+
+applyMixins(API, [HomeApi, PublishAPI])
 
 export default new API()
