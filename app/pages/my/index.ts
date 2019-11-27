@@ -23,7 +23,6 @@ Page({
       code: await WXLogin()
     }, 'POST')
     const data = await api.userLogin(params)
-    console.log(data)
   },
   selectBtn({
     currentTarget: {
