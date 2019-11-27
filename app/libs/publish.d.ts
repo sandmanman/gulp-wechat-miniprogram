@@ -4,6 +4,7 @@ type ISelectedSourceItem = (
   tag: string
   fileType: 'image' | 'video'
   url?: string
+  uploadProgess: number
 }
 
 type ISelectedSourceList = ISelectedSourceItem[]

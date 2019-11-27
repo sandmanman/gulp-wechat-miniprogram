@@ -43,10 +43,11 @@ export const WXGetImageInfoAsync = (
           ...res,
           showActionSheet: false,
           tag: '',
-          type: 'image',
+          fileType: 'image',
           tempFilePath: '',
           size: 0,
-          duration: 0
+          duration: 0,
+          uploadProgess: 0
         })
       },
       fail(error) {

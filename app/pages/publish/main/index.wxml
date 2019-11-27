@@ -14,11 +14,14 @@
             data-swipercurrentindex="{{index}}"
             bind:tap="gotoEditPage"
       >
-        <block wx:if="{{item.type === 'image'}}">
+        <block wx:if="{{item.fileType === 'image'}}">
           <image src="{{item.path}}" mode="aspectFill"></image>
-          <view class="tag-icon" wx:if="{{item.tag}}"></view>
+	        <view class="upload-progress" wx:if="{{item.uploadProgess}}">
+		        <text>{{item.uploadProgess}}%</text>
+	        </view>
+          <view class="tag-icon" wx:elif="{{item.tag}}"></view>
         </block>
-        <block wx:elif="{{item.type === 'video'}}">
+        <block wx:elif="{{item.fileType === 'video'}}">
           <cover-image class="play-icon"
                        src="/assets/img/publish/vedio-play@2x.png"
           ></cover-image>

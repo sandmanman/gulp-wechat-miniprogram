@@ -3,6 +3,7 @@ import config from '../../../config/index'
 import api from '../../../api/index'
 
 const app = getApp<IAppOption>()
+let uploadTask: WechatMiniprogram.UploadTask | null = null
 
 export default Page({
   data: {
@@ -21,6 +22,14 @@ export default Page({
     maxTextLength: 1000,
     title: '',
     text: ''
+  },
+  async onLoad() {
+    await app.userLogin()
+  },
+  onUnload() {
+    console.log('onUnload')
+    uploadTask.abort()
+    uploadTask.offProgressUpdate(() => {})
   },
   selectLocalPhotoHander(actionOption: IChooseSourceOption) {
     const self = this
@@ -67,7 +76,8 @@ export default Page({
             type: '',
             fileType: 'video',
             path: '',
-            orientation: 'up'
+            orientation: 'up',
+            uploadProgess: 0
           }
         ]
         self.preEditHander(selectedSourceList, 0)
@@ -180,7 +190,32 @@ export default Page({
     file: string
     url_oss: string
   }> {
-    return await api.uploadFile(filePath, formData)
+    const self = this
+    return new Promise((resolve, reject) => {
+      uploadTask = wx.uploadFile({
+        filePath,
+        name: 'file',
+        url: `${config.urlPrefix}/file/upload`,
+        formData,
+        header: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        success(res: WechatMiniprogram.UploadFileSuccessCallbackResult) {
+          uploadTask.abort()
+          uploadTask.offProgressUpdate(() => {})
+          resolve(JSON.parse(res.data))
+        },
+        fail(error) {
+          reject(error.errMsg)
+        }
+      })
+      uploadTask.onProgressUpdate((res: WechatMiniprogram.UploadTaskOnProgressUpdateCallbackResult) => {
+        console.log('监听上传进度：', res.progress)
+        const { selectedSourceList } = this.data as { selectedSourceList: ISelectedSourceList }
+        selectedSourceList[self.data.uploadedSourceCount].uploadProgess = res.progress
+        self.setData({ selectedSourceList })
+      })
+    })
   },
   async save() {
     const c_p = Object.assign(config.cp, {
@@ -212,8 +247,6 @@ export default Page({
     if (this.data.uploadedSourceCount < sourceLangth) {
       await this.save()
     }
-    wx.showToast({
-      title: this.data.uploadedSourceCount < sourceLangth ? `正在上传第${this.data.uploadedSourceCount + 1}张图片` : '上传完成'
-    })
+    wx.showToast({ title: '上传完成' })
   }
 })

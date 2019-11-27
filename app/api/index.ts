@@ -33,9 +33,10 @@ class API {
   }): Promise<{
     file: string
     url_oss: string
+    uploadProgress: number
   }> => {
     return new Promise((resolve, reject) => {
-      wx.uploadFile({
+      const uploadTash = wx.uploadFile({
         filePath,
         name: 'file',
         url: `${config.urlPrefix}/file/upload`,
@@ -44,16 +45,24 @@ class API {
           'content-type': 'application/x-www-form-urlencoded'
         },
         success(res: WechatMiniprogram.UploadFileSuccessCallbackResult) {
+          uploadTash.abort()
           const data: {
             file: string
             url_oss: string
-          } = JSON.parse(res.data)
-          console.log(data)
+            uploadProgress: number
+          } = Object.assign(JSON.parse(res.data), { uploadProgress: 100 })
           resolve(data)
         },
         fail(error) {
           reject(error.errMsg)
         }
+      })
+      uploadTash.onProgressUpdate((res: WechatMiniprogram.UploadTaskOnProgressUpdateCallbackResult) => {
+        resolve({
+          file: '',
+          url_oss: '',
+          uploadProgress: res.progress
+        })
       })
     })
   }
