@@ -1,4 +1,4 @@
-interface IResponseTypeD<T> {
+interface IResponseType<T> {
   code: number
   msg: string
   obj: T

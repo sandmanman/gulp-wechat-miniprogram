@@ -9,7 +9,7 @@ export default class PublishAPI {
     name: string
     wiki_id?: string
     id?: string
-  }): Promise<IResponseTypeD<{
+  }): Promise<IResponseType<{
     name: string
   }>> => httpRequest('/api/wikiuser/save', 'POST', params)
 }

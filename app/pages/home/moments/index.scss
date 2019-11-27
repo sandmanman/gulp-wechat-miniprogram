@@ -61,4 +61,18 @@
       }
     }
   }
+  .user-box {
+    .user-head {
+      display: flex;
+      .user-img {
+        width:72rpx;
+        height:72rpx;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+      .user-name {
+        font-size:30rpx;
+      }
+    }
+  }
 }
