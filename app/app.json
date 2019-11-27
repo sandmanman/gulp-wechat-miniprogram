@@ -11,7 +11,8 @@
     "pages/publish/main/index",
     "pages/publish/edit/index",
     "pages/home/moments/index",
-    "pages/home/guide/index"
+    "pages/home/guide/index",
+    "pages/common/webview/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -12,80 +12,26 @@
     <view class="title">翡翠玩法指南</view>
   </view>
   <view class="category">
-    <view class="first-level-node">
-      <view class="first-level-node-head">
-        <view class="first-level-node-index">01</view>
-        <view class="first-level-node-name">入门知识</view>
-      </view>
-      <view class="second-level-node">
-        <view class="second-level-node-head">按颜色区分</view>
-        <view class="third-level-node">
-          <view class="third-level-node-item"><text>绿色翡翠</text></view>
-          <view class="third-level-node-item"><text>紫色翡翠</text></view>
-          <view class="third-level-node-item"><text>黑色翡翠</text></view>
-          <view class="third-level-node-item"><text>黄色翡翠</text></view>
+    <block wx:for="{{ 5 }}" wx:key="{{item}}">
+      <view class="first-level-node">
+        <view class="first-level-node-head">
+          <view class="first-level-node-index">0{{item}}</view>
+          <view class="first-level-node-name">入门知识</view>
+        </view>
+        <view class="second-level-node">
+          <view class="second-level-node-head">按颜色区分</view>
+          <view class="third-level-node">
+            <block wx:for="{{ 5 }}" wx:key="{{item}}">
+              <view class="third-level-node-item"
+                    data-url="/pages/common/webview/index?url=http://zzbw.test.z.vip/static/wiki/1/3.html"
+                    bind:tap="navigateToHander"
+              >
+                <text>绿色翡翠{{item}}</text>
+              </view>
+            </block>
+          </view>
         </view>
       </view>
-    </view>
-    <view class="first-level-node">
-      <view class="first-level-node-head">
-        <view class="first-level-node-index">01</view>
-        <view class="first-level-node-name">入门知识</view>
-      </view>
-      <view class="second-level-node">
-        <view class="second-level-node-head">按颜色区分</view>
-        <view class="third-level-node">
-          <view class="third-level-node-item"><text>绿色翡翠</text></view>
-          <view class="third-level-node-item"><text>紫色翡翠</text></view>
-          <view class="third-level-node-item"><text>黑色翡翠</text></view>
-          <view class="third-level-node-item"><text>黄色翡翠</text></view>
-        </view>
-      </view>
-    </view>
-    <view class="first-level-node">
-      <view class="first-level-node-head">
-        <view class="first-level-node-index">01</view>
-        <view class="first-level-node-name">入门知识</view>
-      </view>
-      <view class="second-level-node">
-        <view class="second-level-node-head">按颜色区分</view>
-        <view class="third-level-node">
-          <view class="third-level-node-item"><text>绿色翡翠</text></view>
-          <view class="third-level-node-item"><text>紫色翡翠</text></view>
-          <view class="third-level-node-item"><text>黑色翡翠</text></view>
-          <view class="third-level-node-item"><text>黄色翡翠</text></view>
-        </view>
-      </view>
-    </view>
-    <view class="first-level-node">
-      <view class="first-level-node-head">
-        <view class="first-level-node-index">01</view>
-        <view class="first-level-node-name">入门知识</view>
-      </view>
-      <view class="second-level-node">
-        <view class="second-level-node-head">按颜色区分</view>
-        <view class="third-level-node">
-          <view class="third-level-node-item"><text>绿色翡翠</text></view>
-          <view class="third-level-node-item"><text>紫色翡翠</text></view>
-          <view class="third-level-node-item"><text>黑色翡翠</text></view>
-          <view class="third-level-node-item"><text>黄色翡翠</text></view>
-        </view>
-      </view>
-    </view>
-    <view class="first-level-node">
-      <view class="first-level-node-head">
-        <view class="first-level-node-index">01</view>
-        <view class="first-level-node-name">入门知识</view>
-      </view>
-      <view class="second-level-node">
-        <view class="second-level-node-head">按颜色区分</view>
-        <view class="third-level-node">
-          <view class="third-level-node-item"><text>绿色翡翠</text></view>
-          <view class="third-level-node-item"><text>紫色翡翠</text></view>
-          <view class="third-level-node-item"><text>黑色翡翠</text></view>
-          <view class="third-level-node-item"><text>黄色翡翠</text></view>
-        </view>
-      </view>
-    </view>
+    </block>
   </view>
 </view>
