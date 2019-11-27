@@ -15,7 +15,7 @@ page {
      top:46rpx;
      left:24rpx;
      width: 702rpx;
-     height:204rpx;
+     height: 204rpx;
      border-radius:16rpx;
      box-shadow:0 4px 30px 0 rgba(111,191,231,0.22);
      background: #FFFFFF;
@@ -29,7 +29,9 @@ page {
         height:142rpx;
         background:#FFFFFF;
         border-radius:50%;
-        border:3rpx solid #FFFFFF;
+        border: 3rpx solid #FFFFFF;
+        box-sizing: border-box;
+        overflow: hidden;
        }
        .username {
          font-size:36rpx;

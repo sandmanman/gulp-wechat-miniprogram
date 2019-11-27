@@ -12,7 +12,7 @@ App<IAppOption>({
   },
   onLaunch() {
     this.getSystemInfoHander()
-    this.userLogin()
+    this.WXCheckSession()
     this.WXGetSettingHander()
   },
   async userLogin() {
@@ -24,17 +24,21 @@ App<IAppOption>({
     }, 'POST')
     try {
       const data = await api.userLogin(params)
-      this.globalData.userInfo = data
+      wx.setStorageSync('userInfo', JSON.stringify(data.obj))
+      this.globalData.userInfo = data.obj
     } catch (e) {
       console.error(e.message)
     }
   },
-  WXLoginHander() {
-    // 登录
-    wx.login({
-      success: (res) => {
-        console.log(res.code)
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+  WXCheckSession() {
+    const self = this
+    wx.checkSession({
+      success() {
+        const userInfo = wx.getStorageSync('userInfo')
+        self.globalData.userInfo = JSON.parse(userInfo)
+      },
+      fail() {
+        self.userLogin()
       }
     })
   },

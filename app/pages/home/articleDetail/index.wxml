@@ -40,10 +40,11 @@
         <view class="icon-Message"
               wx:for="{{iconList}}"
               wx:key="{{idx}}"
-              data-url="{{item.path}}"
-              bind:tap="navigateToHander"
         >
-          <view class="imgs">
+          <view class="imgs"
+                data-url="{{item.path}}"
+                bind:tap="navigateToHander"
+          >
             <image src="{{item.icomImg}}"></image>
           </view>
           <view class="icontxt">{{item.txtname}}</view>

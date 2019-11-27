@@ -21,7 +21,6 @@ export const WXLogin = (): Promise<string> => {
   return new Promise((resolve, reject) => {
     wx.login({
       success(res: WechatMiniprogram.LoginSuccessCallbackResult) {
-        console.log(res.code)
         resolve(res.code)
       },
       fail(error) {
