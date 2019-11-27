@@ -1,3 +1,7 @@
+import api from '../../api/index'
+import { getSignature } from '../../utils/index'
+import config from '../../config/index'
+
 const app = getApp<IAppOption>()
 
 export default Page({
@@ -5,7 +9,7 @@ export default Page({
     titleList: [{ txtname: '动态' }, { txtname: '玩物日志' }],
     selsectIndex: 0,
     userInfo: {
-      nickname: '- -',
+      nickname: '',
       avatar_url: '/assets/img/icon/default-head.png'
     }
   },
@@ -19,6 +23,20 @@ export default Page({
         selected: 2
       })
     }
+  },
+  async getUerInfo(e: {
+    detail: WechatMiniprogram.GetUserInfoSuccessCallbackResult
+  }) {
+    console.log(e)
+    const params = getSignature({
+      c_p: Object.assign(config.cp, {
+        user_code: app.globalData.userInfo.user_code
+      }),
+      encryptedData: e.detail.encryptedData,
+      iv: e.detail.iv
+    }, 'POST')
+    const userInfo = await api.userUpdate(params)
+    this.setData({ userInfo })
   },
   selectBtn({
     currentTarget: {

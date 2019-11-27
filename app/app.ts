@@ -6,7 +6,9 @@ import api from './api/index'
 
 App<IAppOption>({
   globalData: {
-    userInfo: {}
+    userInfo: {
+      user_code: ''
+    }
   },
   onLaunch() {
     this.getSystemInfoHander()

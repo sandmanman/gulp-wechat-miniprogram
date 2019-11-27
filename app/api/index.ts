@@ -1,6 +1,7 @@
 import httpRequest from './wxRequest'
+import PublishAPI from './PublishAPI'
 
-class API {
+class API extends PublishAPI {
   // 用户登陆
   userLogin = (params: {
     c_p: string
@@ -16,7 +17,6 @@ class API {
   userUpdate = (params: {
     c_p: string
     signature: string
-    user_code: string
     encryptedData: string
     iv: string
   }): Promise<{

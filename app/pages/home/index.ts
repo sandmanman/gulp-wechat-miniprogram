@@ -17,26 +17,12 @@ Page({
       { categoryName: '书画' }
     ]
   },
-  onLoad() {
-    console.log(111)
-  },
   onShow(): void {
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({
         selected: 0
       })
     }
-  },
-  getUserInfo({
-    detail = {
-      userInfo: {}
-    }
-  }) {
-    app.globalData.userInfo = detail.userInfo
-    this.setData({
-      userInfo: detail.userInfo,
-      hasUserInfo: true
-    })
   },
   navigateToHander({
     currentTarget: {

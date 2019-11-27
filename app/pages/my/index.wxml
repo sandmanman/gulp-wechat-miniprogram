@@ -6,7 +6,14 @@
             <view class="photo-box" hover-class="none" hover-stop-propagation="false">
                 <image src="{{userInfo.avatar_url}}"></image>
             </view>
-            <view class="username">{{userInfo.nickname}}</view>
+            <view class="username" wx:if="{{userInfo.nickname}}">{{userInfo.nickname}}</view>
+            <button class="username"
+                    open-type="getUserInfo"
+                    plain
+                    lang="zh_CN"
+                    bind:getuserinfo="getUerInfo"
+                    wx:else
+            >点我登陆</button>
           </view>
           <view class="mytreasure">
               <text space="nbsp">我的宝物  <text class="treasure">256</text></text>
@@ -20,7 +27,7 @@
               wx:key="{{idx}}"
         >
               <view class="txtname"
-                    style="{{selsectIndex == index && 'color:#333333;font-weight:600;'}}"
+                    style="{{selsectIndex === index && 'color:#333333;font-weight:600;'}}"
               >{{item.txtname}}</view>
               <text class="line" wx:if="{{selsectIndex == index}}"></text>
         </view>
