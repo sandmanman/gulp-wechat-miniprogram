@@ -1,9 +1,14 @@
-import { WXGetImageInfoAsync } from '../../../utils/index'
+import { getSignature, WXGetImageInfoAsync } from '../../../utils/index'
+import config from '../../../config/index'
+import api from '../../../api/index'
 
-Page({
+const app = getApp<IAppOption>()
+
+export default Page({
   data: {
     maximumImageCount: 9, // 可选择最多图片数量
     maximumVideoCount: 1, // 可选择最多视频数量
+    uploadedSourceCount: 0,
     selectedSourceList: [],
     selectedVideo: '',
     actionSheetItemList: [
@@ -59,7 +64,9 @@ Page({
             ...res,
             showActionSheet: false,
             tag: '',
-            type: 'video'
+            type: 'video',
+            path: '',
+            orientation: 'up'
           }
         ]
         self.preEditHander(selectedSourceList, 0)
@@ -163,6 +170,28 @@ Page({
     detail: { value = '' }
   }) {
     this.setData({ text: value })
+  },
+  async upLoadFile(filePath: string): Promise<boolean> {
+    const result: boolean = await api.uploadFile(filePath, getSignature({
+      c_p: Object.assign(config.cp, {
+        user_code: app.globalData.userInfo.user_code
+      })
+    }, 'POST'))
+    return result
+  },
+  async save() {
+    const { selectedSourceList } = this.data as { selectedSourceList: ISelectedSourceList }
+    const currentSource = selectedSourceList[this.data.uploadedSourceCount]
+    const sourceLangth = this.data.selectedSourceList.length
+    const filePath = currentSource.type === 'video' ? currentSource.tempFilePath : currentSource.path
+    if (this.data.uploadedSourceCount < sourceLangth) {
+      await this.upLoadFile(filePath)
+      this.setData({ uploadedSourceCount: this.data.uploadedSourceCount + 1 })
+      await this.save()
+    } else {
+      wx.showToast({
+        title: '上传完成'
+      })
+    }
   }
-
 })
