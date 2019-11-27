@@ -11,12 +11,12 @@ Page({
         photos:
           'https://lvcui-image.oss-cn-shanghai.aliyuncs.com/background/bg.png'
       }
-      // {photos:'https://lvcui-image.oss-cn-shanghai.aliyuncs.com/background/bg.png'},
     ],
     iconList: [
-      { icomImg: '/assets/img/icon/guide.png' },
-      { icomImg: '/assets/img/icon/pic.png' },
-      { icomImg: '/assets/img/icon/diary.png' }
-    ]
+      { icomImg: '/assets/img/my/guide.png', txtname: '玩法指南' },
+      { icomImg: '/assets/img/my/pic.png', txtname: '宝物图集' },
+      { icomImg: '/assets/img/my/diary.png', txtname: '玩物日志' }
+    ],
+    novideoimg: 'https://lvcui-image.oss-cn-shanghai.aliyuncs.com/background/bg.png'
   }
 })

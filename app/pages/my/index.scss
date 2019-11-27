@@ -1,8 +1,8 @@
+@import "../../templates/waterfallsFlowTemplate.scss";
 page {
   background:#F8F8F8;
 }
 .my-center-box {
-  width: 100%;
  .user-center-box {
    background:#FFFFFF;
    position:relative;
@@ -30,11 +30,6 @@ page {
         background:#FFFFFF;
         border-radius:50%;
         border:3rpx solid #FFFFFF;
-        image {
-          width: 142rpx;
-          height:142rpx;
-          border-radius:50%;
-        }
        }
        .username {
          font-size:36rpx;
@@ -82,11 +77,11 @@ page {
  .detail-Box {
    margin-top:82rpx;
    text-align: center;
-    image {
+    .icon-img {
       width:240rpx;
       height:216rpx;
     }
-    view {
+    .notxt {
       font-size:28rpx;
       color:#888888;
     }
@@ -95,9 +90,12 @@ page {
    position:fixed;
    left:195rpx;
    bottom:8rpx;
-   image {
+   .sendimg {
      width:360rpx;
      height:114rpx;
    }
+ }
+ .comment-list {
+  padding: 20rpx 24rpx 0;
  }
 }

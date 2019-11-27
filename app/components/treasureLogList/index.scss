@@ -27,12 +27,13 @@
         margin:24rpx 16rpx 0 0;
         .img-box {
           width:294rpx;
-          height:207rpx;
+          height:294rpx;
           border-radius:16rpx;
+          overflow: hidden;
         }
         .txt-box {
           position:absolute;
-          top:118rpx;
+          top:200rpx;
           left:16rpx;
           color:#FFFFFF;
           .title {

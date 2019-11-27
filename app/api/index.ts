@@ -1,6 +1,7 @@
 import httpRequest from './wxRequest'
+import HomeApi from './home'
 
-class API {
+class API extends HomeApi {
   // 用户登陆
   userLogin = (params: {
     c_p: string

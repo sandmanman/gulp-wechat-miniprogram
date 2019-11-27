@@ -1,16 +1,45 @@
 <view class="treasureLogBox">
-  <view class="titleChoiseBox">
-    <scroll-view class="scrolls" scroll-x>
-      <view class="txt-box"
-            bind:tap="titleClick"
-            style="{{selected == index ? 'color:#333333;font-weight:600;' : ''}}"
-            data-index="{{index}}"
-            wx:key="index"
-            wx:for="{{titleList}}"
-    >
-        {{item.txtname}}
+  <view class="titleChoiseBox"
+        style="{{showlabel && 'height:72rpx;line-height:72rpx;'}}"
+  >
+    <view class="scrolllabel" wx:if="{{showlabel}}">
+      <scroll-view class="scrolls" scroll-x>
+        <view class="txt-box"
+              bind:tap="titleClick"
+              style="{{selected == index ? 'color:#333333;font-weight:600;' : ''}}"
+              data-index="{{index}}"
+              wx:key="index"
+              wx:for="{{titleList}}"
+      >
+          {{item.txtname}}
+        </view>
+      </scroll-view>
+      <view class="open-more-box" bind:tap="openbtn">
+          <view class="opentxt">展开</view>
+          <view class="down-img-icon">
+            <image src="/assets/img/home/down-arrow@2x.png"></image>
+          </view>
       </view>
-    </scroll-view>
+    </view>
+    <view class="selsctlabel" wx:else>
+        <view class="select-title">
+            <view class="txt">选择标签</view>
+            <view class="close-icon" bind:tap="closebtn">
+              <image src="/assets/img/home/close@2x.png"></image>
+            </view>
+        </view>
+        <view class="selectlistbox">
+            <view class="lebellist"
+                  style="{{selected == index && 'color:#FFF;background:#14B0EE;'}}"
+                  data-index="{{index}}"
+                  wx:key="index"
+                  wx:for="{{titleList}}"
+                  bind:tap="titleClick"
+            >
+              {{item.txtname}}
+            </view>
+        </view>
+    </view>
   </view>
   <view class="articleBox">
     <view class="margin-box">
@@ -35,4 +64,5 @@
       </view>
     </view>
   </view>
+  <view class="model-box" wx:if="{{showlabel === false}}"></view>
 </view>

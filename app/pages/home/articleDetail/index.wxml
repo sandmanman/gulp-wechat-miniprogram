@@ -2,20 +2,32 @@
     <view class="auctionInformation">
         <view class="productMessage">
               <view class="productTxtBox">
-                  <view class="productTitle">翡翠<text> /jadeite</text></view>
+                  <view class="productTitle">翡翠<text class="txt"> /jadeite</text></view>
                   <view class="anothername">别称：翡翠玉、翠玉、缅甸玉</view>
               </view>
-              <image class="share-icon" src="https://lvcui-image.oss-cn-shanghai.aliyuncs.com/background/bg.png"></image>
+              <view class="share-icon">
+                <image src="/assets/img/icon/share@2x.png"></image>
+              </view>
         </view>
         <view class="videoAndPhotoBox">
             <view class="videoBox">
-                  <video id="myVideo" src="{{videos}}" enable-danmu danmu-btn controls></video>
+                  <view class="videoplaybox" wx:if="{{videos}}">
+                    <video id="myVideo" src="{{videos}}" enable-danmu danmu-btn controls></video>
+                  </view>
+                  <view class="videoplaybox" wx:else>
+                    <image src="{{novideoimg}}"></image>
+                  </view>
                   <view class="pictures">
                     <view class="photoBox"
                           wx:for="{{imgList}}"
                           wx:key="{{idx}}"
                     >
-                        <image src="{{item.photos}}"></image>
+                        <view class="pictus">
+                          <image src="{{item.photos}}"></image>
+                        </view>
+                        <!-- <view class="mask">
+                          <view class="allnum">+12</view>
+                        </view> -->
                     </view>
                   </view>
             </view>
@@ -29,11 +41,18 @@
               wx:for="{{iconList}}"
               wx:key="{{idx}}"
         >
-            <image class="imgs" src="{{item.icomImg}}"></image>
-            <view>玩法指南</view>
+          <view class="imgs">
+            <image src="{{item.icomImg}}"></image>
+          </view>
+          <view class="icontxt">{{item.txtname}}</view>
         </view>
     </view>
+    <view class="treasureLog-List">
+        <treasureLog-List></treasureLog-List>
+    </view>
     <view class="sendpost-Btn">
+      <view class="fiximg">
         <image src="/assets/img/icon/sendpost.png"></image>
+      </view>
     </view>
 </view>
