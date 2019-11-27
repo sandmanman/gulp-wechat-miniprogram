@@ -12,7 +12,8 @@
     "pages/publish/edit/index",
     "pages/home/moments/index",
     "pages/home/guide/index",
-    "pages/common/webview/index"
+    "pages/common/webview/index",
+    "pages/home/dynamicLog/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
