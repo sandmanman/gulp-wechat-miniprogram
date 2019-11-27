@@ -82,3 +82,12 @@ export const getSignature = <T, K extends keyof T>(target: T & {
     c_p: JSON.stringify(target.c_p)
   }
 }
+
+export const applyMixins = (derivedCtor: any, baseCtors: any[]) => {
+  baseCtors.forEach((baseCtor) => {
+    Object.getOwnPropertyNames(baseCtor.prototype).forEach((name) => {
+      // eslint-disable-next-line no-param-reassign
+      derivedCtor.prototype[name] = baseCtor.prototype[name]
+    })
+  })
+}
