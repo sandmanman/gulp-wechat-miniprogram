@@ -50,7 +50,7 @@
             background:rgba(0,0,0,0.5);
             border-radius:20px;
             font-size:22rpx;
-            color:#fff;
+            color:#FFFFFF;
             text-align: center;
             z-index: 10;
             position: absolute;
@@ -58,6 +58,19 @@
             bottom:24rpx;
           }
         }
+      }
+    }
+  }
+  .user-box {
+    .user-head {
+      .user-img {
+        width:72rpx;
+        height:72rpx;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+      .user-name{
+        font-size:30rpx;
       }
     }
   }

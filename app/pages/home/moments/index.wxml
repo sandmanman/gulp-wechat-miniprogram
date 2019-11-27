@@ -30,6 +30,7 @@
           <view class="user-img">
              <image src="https://lvcui-image.oss-cn-shanghai.aliyuncs.com/background/bg.png"></image>
           </view>
+          <view class="user-name">琼脂天下</view>
     </view>
   </view>
 </view>
