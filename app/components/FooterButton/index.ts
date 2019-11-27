@@ -1,4 +1,8 @@
 Component({
   properties: {},
-  methods: {}
+  methods: {
+    submit() {
+      this.triggerEvent('submit')
+    }
+  }
 })

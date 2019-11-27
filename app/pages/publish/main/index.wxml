@@ -63,5 +63,5 @@
       <view class="icon"></view>
     </view>
   </view>
-  <footer-button>发布</footer-button>
+  <footer-button bind:submit="save">发布</footer-button>
 </view>
