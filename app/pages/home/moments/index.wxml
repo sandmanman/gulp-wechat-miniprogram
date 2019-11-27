@@ -7,4 +7,24 @@
   ></navigation-bar>
   <!-- 上遮罩 -->
   <view class="top-mark"></view>
+  <view class="banner-image-box">
+        <view class="imagelist-box">
+            <swiper class="swiper-box" interval="5000" duration="1000"  bindchange="">
+                <swiper-item class="swiperlist" wx:for="{{imageList}}" wx:key="{{idx}}">
+                    <view class="img">
+                        <image src="{{item.photo}}"></image>
+                    </view>
+                    <view class="label-box">
+                        <view class="label-img">
+                            <image src="/assets/img/publish/tag_white@2x.png"></image>
+                        </view>
+                        <view class="laber-txt">翡翠</view>
+                    </view>
+                    <view class="page-num-box">
+
+                    </view>
+                </swiper-item>
+            </swiper>
+        </view>
+  </view>
 </view>
