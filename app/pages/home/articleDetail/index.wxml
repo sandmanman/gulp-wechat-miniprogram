@@ -40,7 +40,7 @@
         <view class="icon-Message"
               wx:for="{{iconList}}"
               wx:key="{{idx}}"
-              data-url="/pages/home/guide/index"
+              data-url="{{item.path}}"
               bind:tap="navigateToHander"
         >
           <view class="imgs">
@@ -52,7 +52,10 @@
     <view class="treasureLog-List">
         <treasureLog-List></treasureLog-List>
     </view>
-    <view class="sendpost-Btn">
+    <view class="sendpost-Btn"
+          bind:tap="sendBtn"
+          data-url="/pages/publish/main/index"
+    >
       <view class="fiximg">
         <image src="/assets/img/icon/sendpost.png"></image>
       </view>
