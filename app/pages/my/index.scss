@@ -1,46 +1,48 @@
 @import "../../templates/waterfallsFlowTemplate.scss";
 page {
-  background:#F8F8F8;
+  background: #F8F8F8;
 }
 .my-center-box {
  .user-center-box {
-   background:#FFFFFF;
-   position:relative;
+   background: #FFFFFF;
+   position: relative;
    .bg {
-     width:100%;
-     height:170rpx;
+     width: 100%;
+     height: 170rpx;
    }
    .user-box {
-     position:absolute;
-     top:46rpx;
-     left:24rpx;
+     position: absolute;
+     top: 46rpx;
+     left: 24rpx;
      width: 702rpx;
-     height:204rpx;
-     border-radius:16rpx;
-     box-shadow:0 4px 30px 0 rgba(111,191,231,0.22);
+     height: 204rpx;
+     border-radius: 16rpx;
+     box-shadow: 0 4px 30px 0 rgba(111,191,231,0.22);
      background: #FFFFFF;
      .userhead-box {
-       display:flex;
+       display: flex;
        position: absolute;
-       top:-26rpx;
-       left:24rpx;
+       top: -26rpx;
+       left: 24rpx;
        .photo-box {
         width: 142rpx;
-        height:142rpx;
-        background:#FFFFFF;
-        border-radius:50%;
-        border:3rpx solid #FFFFFF;
+        height: 142rpx;
+        background: #FFFFFF;
+        border-radius: 50%;
+        border: 3rpx solid #FFFFFF;
+        box-sizing: border-box;
+        overflow: hidden;
        }
        .username {
-         font-size:36rpx;
-         font-weight:500;
-         margin:57rpx 0 0 16rpx;
+         font-size: 36rpx;
+         font-weight: 500;
+         margin: 57rpx 0 0 16rpx;
        }
      }
      .mytreasure {
-       font-size:30rpx;
+       font-size: 30rpx;
        color: #333333;
-       margin:136rpx 0 0 24rpx;
+       margin: 136rpx 0 0 24rpx;
        .treasure {
          font-weight: 600;
          font-size: 30rpx;
@@ -48,51 +50,51 @@ page {
      }
    }
    .title-txt {
-     display:flex;
-     padding:20rpx 243rpx 0;
+     display: flex;
+     padding: 20rpx 243rpx 0;
      justify-content: space-around;
-     margin-top:98rpx;
+     margin-top: 98rpx;
      .titleName {
        text-align: center;
        .txtname {
-         font-size:36rpx;
-         color:#666666;
+         font-size: 36rpx;
+         color: #666666;
        }
        .line {
-        display:inline-block;
-        width:48rpx;
-        height:6rpx;
-        background:rgba(20,176,238,1);
-        border-radius:8rpx;
+        display: inline-block;
+        width: 48rpx;
+        height: 6rpx;
+        background: rgba(20,176,238,1);
+        border-radius: 8rpx;
        }
      }
    }
    .divider {
-     width:750rpx;
-     height:1rpx;
-     background:#E6E6E6;
-     margin-top:-7rpx;
+     width: 750rpx;
+     height: 1rpx;
+     background: #E6E6E6;
+     margin-top: -7rpx;
    }
  }
  .detail-Box {
-   margin-top:82rpx;
+   margin-top: 82rpx;
    text-align: center;
     .icon-img {
-      width:240rpx;
-      height:216rpx;
+      width: 240rpx;
+      height: 216rpx;
     }
     .notxt {
-      font-size:28rpx;
-      color:#888888;
+      font-size: 28rpx;
+      color: #888888;
     }
  }
  .send-icon {
-   position:fixed;
-   left:195rpx;
-   bottom:8rpx;
+   position: fixed;
+   left: 195rpx;
+   bottom: 8rpx;
    .sendimg {
-     width:360rpx;
-     height:114rpx;
+     width: 360rpx;
+     height: 114rpx;
    }
  }
  .comment-list {

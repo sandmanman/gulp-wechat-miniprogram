@@ -1,3 +1,5 @@
+/// /// <reference path="../libs/index.d.ts" />
+
 import httpRequest from './wxRequest'
 import HomeApi from './home'
 import PublishAPI from './PublishAPI'
@@ -9,11 +11,11 @@ class API implements HomeApi, PublishAPI {
     c_p: string
     signature: string
     code: string
-  }): Promise<{
+  }): Promise<IResponseType<{
     user_code: string
     nickname: string
     avatar_url: string
-  }> => httpRequest('/api/user/login', 'POST', params)
+  }>> => httpRequest('/usercenter/login', 'POST', params)
 
   //  用户授权信息更新
   userUpdate = (params: {
@@ -21,10 +23,10 @@ class API implements HomeApi, PublishAPI {
     signature: string
     encryptedData: string
     iv: string
-  }): Promise<{
+  }): Promise<IResponseType<{
     nickname: string
     avatar_url: string
-  }> => httpRequest('/api/user/update', 'POST', params)
+  }>> => httpRequest('/user/update', 'POST', params)
 }
 
 applyMixins(API, [HomeApi, PublishAPI])
