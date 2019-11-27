@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "个人中心",
   "usingComponents": {
-
+    "balancelayout-list": "/components/balanceLayout/index",
+    "waterfalls-flow": "/components/WaterfallsFlow/index"
   }
 }

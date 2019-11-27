@@ -13,7 +13,9 @@
                 wx:key="index"
                 bind:tap="jumpGoodsDetail"
           >
-              <image class="img-box" src="https://lvcui-image.oss-cn-shanghai.aliyuncs.com/background/freeBootBg.png"></image>
+              <view class="img-box">
+                  <image src="https://lvcui-image.oss-cn-shanghai.aliyuncs.com/background/freeBootBg.png"></image>
+              </view>
               <view class="txt-box">
                   <view class="title">纪念日老婆送的</view>
                   <view class="time">已玩245天,34次</view>

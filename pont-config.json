@@ -1,4 +1,5 @@
 {
-  "originUrl": "https://zzbw.test.z.vip/swagger/swagger.json",
-  "outDir": "./app/services"
+  "originUrl": "http://zzbw.test.z.vip/swagger/swagger.json",
+  "outDir": "./app/services",
+  "templatePath": "./pontTemplate"
 }
