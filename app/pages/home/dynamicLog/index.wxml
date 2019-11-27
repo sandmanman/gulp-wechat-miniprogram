@@ -5,8 +5,78 @@
         </view>
         <view class="detail-box">
             <view class="label-box">
-
+                <view class="label-detail">
+                      <view class="label-icon">
+                          <image src="/assets/img/home/treasure-white@2x.png"></image>
+                      </view>
+                      <view class="label-txt">翡翠</view>
+                </view>
+                <view class="share-img-box">
+                  <view class="share-img">
+                     <image src="/assets/img/home/share@2x.png"></image>
+                  </view>
+                  <view class="more-img">
+                     <image src="/assets/img/home/set-white@2x.png"></image>
+                  </view>
+                </view>
+            </view>
+            <view class="banner-txt-box">
+                <view class="banner-txt-title">纪念日老婆送的</view>
+                <view class="banner-txt-time">已玩483天 | 192次</view>
             </view>
         </view>
+    </view>
+    <view class="content-box">
+      <view class="all-content">
+        <view class="user-box">
+          <view class="user-head-box">
+                <image src="https://lvcui-image.oss-cn-shanghai.aliyuncs.com/background/bg.png"></image>
+            </view>
+            <view class="username">琼脂天下</view>
+        </view>
+        <view class="dynamic-content-box">
+          <view class="treasure-content-box"
+                wx:for="{{dynamicList}}"
+                wx:key="{{idx}}"
+          >
+              <view class="time-record-box">
+                    <view class="timelist">
+                        <view class="upstairs">{{item.upstairsnum}}</view>
+                        <view class="upstairs-time">2019-11-09 12:23</view>
+                    </view>
+                    <view class="day-time">第483天</view>
+              </view>
+            <view class="logcontentbox">
+              <view class="logdetail">
+                  <view class="logtitle">我是遗传标题字符</view>
+                  <view class="logtxt-box">
+                      <view class="detailtxt">刚刚的，整圈一致的种水，难得51的小圈口还是宽版厚装的，不是小窄条也不是贵妃。唯一缺点，我胖了，有点卡住了，呃。咔咔卡整圈一致的种水，难得51的小圈口还是宽版厚装的，不是小窄条也不是贵妃。唯一缺点</view>
+                      <view class="alltxt">全部</view>
+                  </view>
+                  <block wx:if="{{!item.videos}}">
+                    <view class="logimage-box">
+                        <view class="imagelist-box"
+                              wx:for="{{item.imgList}}"
+                              wx:key="{{idx}}"
+                        >
+                            <image src="{{item.photos}}"></image>
+                        </view>
+                    </view>
+                  </block>
+                  <block wx:else>
+                    <view class="videolog-box">
+                      <video id="myVideo" src="{{item.videos}}" enable-danmu danmu-btn controls></video>
+                    </view>
+                  </block>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="footbanner-box">
+          <view class="footimg">
+              <image src="/assets/img/home/zhizunbao_tec@2x.png"></image>
+          </view>
+      </view>
     </view>
 </view>
