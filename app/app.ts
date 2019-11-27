@@ -8,7 +8,8 @@ App<IAppOption>({
   globalData: {
     userInfo: {
       user_code: ''
-    }
+    },
+    c_p: Object.assign(config.cp)
   },
   onLaunch() {
     // 获取设备信息
@@ -22,11 +23,12 @@ App<IAppOption>({
         user_code: ''
       }),
       code: await WXLogin()
-    }, 'POST')
+    })
     try {
       const data = await api.userLogin(params)
       wx.setStorageSync('userInfo', JSON.stringify(data.obj))
       this.globalData.userInfo = data.obj
+      this.globalData.c_p.user_code = data.obj.user_code
     } catch (e) {
       console.error(e.message)
     }
@@ -38,6 +40,7 @@ App<IAppOption>({
         const userInfo = wx.getStorageSync('userInfo')
         if (userInfo) {
           self.globalData.userInfo = JSON.parse(userInfo)
+          self.globalData.c_p.user_code = self.globalData.userInfo.user_code
         } else {
           self.userLogin()
         }

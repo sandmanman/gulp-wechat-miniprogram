@@ -8,6 +8,11 @@ interface IResponseType<T> {
 
 interface IAppOption {
   globalData: {
+    c_p: {
+      request_name: string
+      request_base: string
+      user_code: string
+    }
     userInfo?: (WechatMiniprogram.UserInfo & {
       user_code: string
     }) | {

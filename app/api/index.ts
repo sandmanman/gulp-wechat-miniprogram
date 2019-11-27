@@ -29,7 +29,11 @@ class API {
   uploadFile = (filePath: string, formData: {
     c_p: string
     signature: string
-  }): Promise<boolean> => {
+    file_info: string
+  }): Promise<{
+    file: string
+    url_oss: string
+  }> => {
     return new Promise((resolve, reject) => {
       wx.uploadFile({
         filePath,
@@ -40,12 +44,15 @@ class API {
           'content-type': 'application/x-www-form-urlencoded'
         },
         success(res: WechatMiniprogram.UploadFileSuccessCallbackResult) {
-          console.log(res)
-          resolve(true)
+          const data: {
+            file: string
+            url_oss: string
+          } = JSON.parse(res.data)
+          console.log(data)
+          resolve(data)
         },
         fail(error) {
-          console.log(error)
-          resolve(false)
+          reject(error.errMsg)
         }
       })
     })
@@ -62,6 +69,16 @@ class API {
   }): Promise<IResponseType<{
     name: string
   }>> => httpRequest('/api/wikiuser/save', 'POST', params)
+
+  // 玩法指南节点
+  getGuide = (params: {
+    c_p: string
+    signature: string
+    id: number
+  }): Promise<IResponseType<{
+    cover: string
+    node: any
+  }>> => httpRequest('/wiki/guide', 'GET', params)
 }
 
 export default new API()

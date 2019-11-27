@@ -1,8 +1,9 @@
 export default {
   urlPrefix: 'http://zzbw.test.z.vip/v1',
-  appKey: '7de68229f23b1715cb6509e72273bcab',
+  aeskey: '0074b3a8e362264c04879eaadc86fb52',
   cp: {
-    'request_name': 'zzbw_app',
-    'request_base': 'wx'
+    request_name: 'zzbw_app',
+    request_base: 'wx',
+    user_code: ''
   }
 }
