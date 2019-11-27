@@ -163,6 +163,6 @@ Page({
     detail: { value = '' }
   }) {
     this.setData({ text: value })
-  },
+  }
 
 })
