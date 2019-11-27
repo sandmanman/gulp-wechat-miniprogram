@@ -1,11 +1,6 @@
 import config from '../config/index'
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const HmacSha1 = require('hmac_sha1')
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const base64js = require('base64-js')
-
-const hmacSha1 = new HmacSha1()
+import * as CryptoJS from './crypto'
 
 const formatNumber = (n: number) => {
   const str = n.toString()
@@ -26,6 +21,7 @@ export const WXLogin = (): Promise<string> => {
   return new Promise((resolve, reject) => {
     wx.login({
       success(res: WechatMiniprogram.LoginSuccessCallbackResult) {
+        console.log(res.code)
         resolve(res.code)
       },
       fail(error) {
@@ -82,7 +78,7 @@ export const getSignature = <T, K extends keyof T>(target: T & {
   }
   return {
     ...target,
-    signature: base64js.base64decode(hmacSha1(`${reqMethod}&${param}`, `${config.appKey}&`)),
+    signature: CryptoJS.HmacSHA1(`${reqMethod}&${param}`, `${config.appKey}&`).toString(CryptoJS.enc.Base64),
     c_p: JSON.stringify(target.c_p)
   }
 }

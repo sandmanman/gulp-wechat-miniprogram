@@ -11,6 +11,7 @@ interface IAppOption {
       navBarExtendHeight: number
     } & WechatMiniprogram.GetSystemInfoSyncResult
   }
+  userLogin(): void
   userInfoReadyCallback?: WechatMiniprogram.GetUserInfoSuccessCallback
   WXLoginHander(): void
   WXGetSettingHander(): void

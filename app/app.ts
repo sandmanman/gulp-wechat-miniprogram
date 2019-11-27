@@ -1,11 +1,31 @@
 /// <reference path="./libs/index.d.ts" />
 
+import { getSignature, WXLogin } from './utils/index'
+import config from './config/index'
+import api from './api/index'
+
 App<IAppOption>({
-  globalData: {},
+  globalData: {
+    userInfo: {}
+  },
   onLaunch() {
     this.getSystemInfoHander()
-    this.WXLoginHander()
+    this.userLogin()
     this.WXGetSettingHander()
+  },
+  async userLogin() {
+    const params = getSignature({
+      c_p: Object.assign(config.cp, {
+        user_code: ''
+      }),
+      code: await WXLogin()
+    }, 'POST')
+    try {
+      const data = await api.userLogin(params)
+      this.globalData.userInfo = data
+    } catch (e) {
+      console.error(e.message)
+    }
   },
   WXLoginHander() {
     // 登录

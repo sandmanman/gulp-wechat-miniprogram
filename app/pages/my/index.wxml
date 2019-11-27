@@ -4,12 +4,12 @@
     <view class="user-box">
           <view class="userhead-box">
             <view class="photo-box" hover-class="none" hover-stop-propagation="false">
-                <image src="/assets/img/icon/default-head.png"></image>
+                <image src="{{userInfo.avatar_url}}"></image>
             </view>
-            <view class="username">点击登录</view>
+            <view class="username">{{userInfo.nickname}}</view>
           </view>
           <view class="mytreasure">
-              我的宝物
+              <text space="nbsp">我的宝物  <text class="treasure">256</text></text>
           </view>
     </view>
     <view class="title-txt">

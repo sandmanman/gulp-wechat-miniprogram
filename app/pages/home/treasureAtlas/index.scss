@@ -1,28 +1,28 @@
-.tearsureAtlasBox{
-  .auction-box{
+.tearsureAtlasBox {
+  .auction-box {
     padding:0 36rpx;
     display:flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    .auctionListBox{
+    .auctionListBox {
       width:324rpx;
       margin-bottom:36rpx;
-      .imgs{
+      .imgs {
         width:324rpx;
         height:324rpx;
         border-radius:16rpx;
       }
-      .Txt-box{
+      .Txt-box {
         color:#333333;
         display:flex;
-        .title{
+        .title {
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
           font-size:32rpx;
           font-weight:600;
         }
-        .numTxt{
+        .numTxt {
           margin-top:10rpx;
           font-size:24rpx;
           width:100rpx;
