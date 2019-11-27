@@ -64,7 +64,8 @@ export default Page({
             ...res,
             showActionSheet: false,
             tag: '',
-            type: 'video',
+            type: '',
+            fileType: 'video',
             path: '',
             orientation: 'up'
           }
@@ -75,7 +76,7 @@ export default Page({
   },
   showActionSheet() {
     const selectedImageSourceLength = this.data.selectedSourceList.filter(
-      (i: ISelectedSourceItem) => i.type === 'image'
+      (i: ISelectedSourceItem) => i.fileType === 'image'
     ).length
     if (selectedImageSourceLength === this.data.maximumImageCount) {
       wx.showModal({
@@ -86,7 +87,7 @@ export default Page({
       return
     }
     const selectedVideoSourceLength = this.data.selectedSourceList.filter(
-      (i: ISelectedSourceItem) => i.type === 'video'
+      (i: ISelectedSourceItem) => i.fileType === 'video'
     ).length
     if (selectedVideoSourceLength === this.data.maximumVideoCount) {
       wx.showModal({
@@ -171,27 +172,48 @@ export default Page({
   }) {
     this.setData({ text: value })
   },
-  async upLoadFile(filePath: string): Promise<boolean> {
-    const result: boolean = await api.uploadFile(filePath, getSignature({
-      c_p: Object.assign(config.cp, {
-        user_code: app.globalData.userInfo.user_code
-      })
-    }, 'POST'))
-    return result
+  async upLoadFile(filePath: string, formData: {
+    c_p: string
+    signature: string
+    file_info: string
+  }): Promise<{
+    file: string
+    url_oss: string
+  }> {
+    return await api.uploadFile(filePath, formData)
   },
   async save() {
+    const c_p = Object.assign(config.cp, {
+      user_code: app.globalData.userInfo.user_code
+    })
     const { selectedSourceList } = this.data as { selectedSourceList: ISelectedSourceList }
     const currentSource = selectedSourceList[this.data.uploadedSourceCount]
     const sourceLangth = this.data.selectedSourceList.length
-    const filePath = currentSource.type === 'video' ? currentSource.tempFilePath : currentSource.path
-    if (this.data.uploadedSourceCount < sourceLangth) {
-      await this.upLoadFile(filePath)
-      this.setData({ uploadedSourceCount: this.data.uploadedSourceCount + 1 })
-      await this.save()
-    } else {
-      wx.showToast({
-        title: '上传完成'
-      })
+    const filePath = currentSource.fileType === 'video' ? currentSource.tempFilePath : currentSource.path
+    const fileBaseInfo = {
+      width: currentSource.width,
+      height: currentSource.height
     }
+    const imageFileInfo = Object.assign(fileBaseInfo, {
+      orientation: currentSource.orientation
+    })
+    const videoFileInfo = Object.assign(fileBaseInfo, {
+      duration: currentSource.duration,
+      size: currentSource.size
+    })
+    const params = getSignature({
+      c_p,
+      file_info: JSON.stringify(currentSource.fileType === 'image' ? imageFileInfo : videoFileInfo)
+    })
+    const uploadResult = await this.upLoadFile(filePath, params)
+    selectedSourceList[this.data.uploadedSourceCount].url = uploadResult.url_oss
+    this.setData({ selectedSourceList })
+    this.setData({ uploadedSourceCount: this.data.uploadedSourceCount + 1 })
+    if (this.data.uploadedSourceCount < sourceLangth) {
+      await this.save()
+    }
+    wx.showToast({
+      title: this.data.uploadedSourceCount < sourceLangth ? `正在上传第${this.data.uploadedSourceCount + 1}张图片` : '上传完成'
+    })
   }
 })

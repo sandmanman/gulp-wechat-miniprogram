@@ -6,30 +6,62 @@
                   bind:back="navigationBackHander"
   ></navigation-bar>
   <view class="cover-image"
-        style="background-image: url('https://visualhunt.com/photos/2/cappuccino-cup-drink-coffee-drink-cup-of-coffee.jpg?s=l')"
+        style="background-image: url({{cover}})"
   >
     <view class="mark"></view>
     <view class="title">翡翠玩法指南</view>
   </view>
   <view class="category">
-    <block wx:for="{{ 5 }}" wx:key="{{item}}">
+    <block wx:for="{{ nodeList }}" wx:key="{{index}}">
       <view class="first-level-node">
         <view class="first-level-node-head">
-          <view class="first-level-node-index">0{{item}}</view>
-          <view class="first-level-node-name">入门知识</view>
+          <view class="first-level-node-index">{{index}}</view>
+          <view class="first-level-node-name">{{item.name}}</view>
         </view>
         <view class="second-level-node">
-          <view class="second-level-node-head">按颜色区分</view>
-          <view class="third-level-node">
-            <block wx:for="{{ 5 }}" wx:key="{{item}}">
-              <view class="third-level-node-item"
-                    data-url="/pages/common/webview/index?url=http://zzbw.test.z.vip/static/wiki/1/3.html"
-                    bind:tap="navigateToHander"
-              >
-                <text>绿色翡翠{{item}}</text>
+          <block wx:if="{{item.children[0].children.length}}">
+            <block wx:for="{{item.children}}"
+                   wx:for-item="secondItem"
+                   wx:for-index="secondIndex"
+                   wx:key="{{secondIndex}}"
+            >
+              <view class="second-level-node-head">{{secondItem.name}}</view>
+              <view class="third-level-node">
+                <block wx:for="{{ secondItem.children }}"
+                       wx:for-item="thirdItem"
+                       wx:for-index="thirdIndex"
+                       wx:key="{{thirdIndex}}"
+                >
+                  <view class="third-level-node-item"
+                        data-url="/pages/common/webview/index?url=http://zzbw.test.z.vip/static/wiki/1/3.html"
+                        bind:tap="navigateToHander"
+                  >
+                    <text>{{thirdItem.name}}</text>
+                  </view>
+                </block>
               </view>
             </block>
-          </view>
+            <block wx:for="{{item.children}}"
+                   wx:for-item="secondItem"
+                   wx:for-index="secondIndex"
+                   wx:key="{{secondIndex}}"
+            >
+              <view class="third-level-node">
+                <block wx:for="{{ secondItem.children }}"
+                       wx:for-item="thirdItem"
+                       wx:for-index="thirdIndex"
+                       wx:key="{{thirdIndex}}"
+                >
+                  <view class="third-level-node-item"
+                        data-url="/pages/common/webview/index?url=http://zzbw.test.z.vip/static/wiki/1/3.html"
+                        bind:tap="navigateToHander"
+                  >
+                    <text>{{thirdItem.name}}</text>
+                  </view>
+                </block>
+              </view>
+            </block>
+          </block>
         </view>
       </view>
     </block>

@@ -1,6 +1,7 @@
 import config from '../config/index'
 
-import * as CryptoJS from './crypto'
+// import * as CryptoJS from './crypto'
+import * as MD5JS from './MD5'
 
 const formatNumber = (n: number) => {
   const str = n.toString()
@@ -41,7 +42,10 @@ export const WXGetImageInfoAsync = (
           ...res,
           showActionSheet: false,
           tag: '',
-          type: 'image'
+          type: 'image',
+          tempFilePath: '',
+          size: 0,
+          duration: 0
         })
       },
       fail(error) {
@@ -53,7 +57,7 @@ export const WXGetImageInfoAsync = (
 
 export const getSignature = <T, K extends keyof T>(target: T & {
   c_p: object
-}, reqMethod: 'GET' | 'POST'): T & {
+}): T & {
   signature: string
   c_p: string
 } => {
@@ -77,7 +81,7 @@ export const getSignature = <T, K extends keyof T>(target: T & {
   }
   return {
     ...target,
-    signature: CryptoJS.HmacSHA1(`${reqMethod}&${param}`, `${config.appKey}&`).toString(CryptoJS.enc.Base64),
+    signature: MD5JS(`${param}&${config.aeskey}`),
     c_p: JSON.stringify(target.c_p)
   }
 }

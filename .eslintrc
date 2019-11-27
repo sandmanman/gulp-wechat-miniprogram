@@ -80,6 +80,7 @@
     "no-plusplus": "off",
     "no-shadow": "off",
     "no-restricted-syntax": "off",
+    "no-return-await": "off",
     "@typescript-eslint/class-name-casing": ["error", {
       "allowUnderscorePrefix": false
     }],
