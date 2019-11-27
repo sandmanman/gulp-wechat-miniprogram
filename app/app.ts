@@ -11,9 +11,10 @@ App<IAppOption>({
     }
   },
   onLaunch() {
+    // 获取设备信息
     this.getSystemInfoHander()
+    // 检查登陆态
     this.WXCheckSession()
-    this.WXGetSettingHander()
   },
   async userLogin() {
     const params = getSignature({
@@ -30,12 +31,16 @@ App<IAppOption>({
       console.error(e.message)
     }
   },
-  WXCheckSession() {
+  async WXCheckSession() {
     const self = this
     wx.checkSession({
       success() {
         const userInfo = wx.getStorageSync('userInfo')
-        self.globalData.userInfo = JSON.parse(userInfo)
+        if (userInfo) {
+          self.globalData.userInfo = JSON.parse(userInfo)
+        } else {
+          self.userLogin()
+        }
       },
       fail() {
         self.userLogin()
