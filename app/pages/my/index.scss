@@ -39,7 +39,12 @@ page {
      }
      .mytreasure {
        font-size:30rpx;
+       color: #333333;
        margin:136rpx 0 0 24rpx;
+       .treasure {
+         font-weight: 600;
+         font-size: 30rpx;
+       }
      }
    }
    .title-txt {

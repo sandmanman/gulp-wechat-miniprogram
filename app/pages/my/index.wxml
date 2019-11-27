@@ -4,13 +4,18 @@
     <image class="bg" src="https://lvcui-image.oss-cn-shanghai.aliyuncs.com/background/bg-circle.png"></image>
     <view class="user-box">
           <view class="userhead-box">
+<<<<<<< HEAD
             <view class="photo-box">
                 <image src="/assets/img/icon/default-head.png"></image>
+=======
+            <view class="photo-box" hover-class="none" hover-stop-propagation="false">
+                <image src="{{userInfo.avatar_url}}"></image>
+>>>>>>> f42475abc7166bd63598fcfc885f8e7708d601a9
             </view>
-            <view class="username">点击登录</view>
+            <view class="username">{{userInfo.nickname}}</view>
           </view>
           <view class="mytreasure">
-              我的宝物
+              <text space="nbsp">我的宝物  <text class="treasure">256</text></text>
           </view>
     </view>
     <view class="title-txt">

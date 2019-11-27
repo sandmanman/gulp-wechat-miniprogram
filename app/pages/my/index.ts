@@ -1,14 +1,17 @@
-import api from '../../api/index'
-import { WXLogin, getSignature } from '../../utils'
-import config from '../../config/index'
+const app = getApp<IAppOption>()
 
-Page({
+export default Page({
   data: {
     titleList: [{ txtname: '动态' }, { txtname: '玩物日志' }],
-    selsectIndex: 0
+    selsectIndex: 0,
+    userInfo: {
+      nickname: '- -',
+      avatar_url: '/assets/img/icon/default-head.png'
+    }
   },
-  onLoad(query: Record<string, string | undefined>): void {
-    this.userLogin()
+  async onLoad() {
+    await app.userLogin()
+    this.setData({ userInfo: app.globalData.userInfo })
   },
   onShow(): void {
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
@@ -16,14 +19,6 @@ Page({
         selected: 2
       })
     }
-  },
-  async userLogin() {
-    const params = getSignature({
-      c_p: config.cp,
-      code: await WXLogin()
-    }, 'POST')
-    const data = await api.userLogin(params)
-    console.log(data)
   },
   selectBtn({
     currentTarget: {
