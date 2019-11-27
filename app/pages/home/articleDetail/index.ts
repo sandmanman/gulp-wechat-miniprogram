@@ -18,12 +18,28 @@ Page({
         txtname: '玩法指南',
         path: '/pages/home/guide/index'
       },
-      { icomImg: '/assets/img/my/pic.png', txtname: '宝物图集' },
-      { icomImg: '/assets/img/my/diary.png', txtname: '玩物日志' }
+      {
+        icomImg: '/assets/img/my/pic.png',
+        txtname: '宝物图集',
+        path: '/pages/home/atlas/index'
+      },
+      {
+        icomImg: '/assets/img/my/diary.png',
+        txtname: '玩物日志',
+        path: '/pages/home/treasureLog/index'
+      }
     ],
     novideoimg: 'https://lvcui-image.oss-cn-shanghai.aliyuncs.com/background/bg.png'
   },
   navigateToHander({
+    currentTarget: {
+      dataset = { url: '' }
+    }
+  }) {
+    const { url } = dataset
+    wx.navigateTo({ url })
+  },
+  sendBtn({
     currentTarget: {
       dataset = { url: '' }
     }

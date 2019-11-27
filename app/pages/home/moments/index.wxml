@@ -32,5 +32,17 @@
           </view>
           <view class="user-name">琼脂天下</view>
     </view>
+    <view class="share-box">
+        <view class="share-cion">
+          <image src="">
+
+          </image>
+        </view>
+        <view class="share-cion">
+          <image src="">
+
+          </image>
+        </view>
+    </view>
   </view>
 </view>
