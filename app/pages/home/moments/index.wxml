@@ -20,11 +20,16 @@
                         </view>
                         <view class="laber-txt">翡翠</view>
                     </view>
-                    <view class="page-num-box">
-
-                    </view>
+                    <view class="page-num-box">1/8</view>
                 </swiper-item>
             </swiper>
         </view>
+  </view>
+  <view class="user-box">
+    <view class="user-head">
+          <view class="user-img">
+             <image src="https://lvcui-image.oss-cn-shanghai.aliyuncs.com/background/bg.png"></image>
+          </view>
+    </view>
   </view>
 </view>
