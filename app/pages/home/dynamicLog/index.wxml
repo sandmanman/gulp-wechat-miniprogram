@@ -1,0 +1,12 @@
+<view class="dynamiclog-box">
+    <view class="banner-box">
+        <view class="banner-photo-box">
+            <image src="/assets/img/home/bg-circle@2x.png"></image>
+        </view>
+        <view class="detail-box">
+            <view class="label-box">
+
+            </view>
+        </view>
+    </view>
+</view>
