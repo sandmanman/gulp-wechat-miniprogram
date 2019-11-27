@@ -40,6 +40,8 @@
         <view class="icon-Message"
               wx:for="{{iconList}}"
               wx:key="{{idx}}"
+              data-url="/pages/home/guide/index"
+              bind:tap="navigateToHander"
         >
           <view class="imgs">
             <image src="{{item.icomImg}}"></image>

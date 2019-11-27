@@ -5,7 +5,7 @@
     <view class="category"
           wx:for="{{treasureList}}"
           wx:key="index"
-          data-url="/pages/home/guide/index"
+          data-url="/pages/home/articleDetail/index"
           bind:tap="navigateToHander"
     >
       <image class="category-img" src="https://lvcui-image.oss-cn-shanghai.aliyuncs.com/background/bg.png"></image>
