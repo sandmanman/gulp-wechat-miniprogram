@@ -23,13 +23,13 @@ App<IAppOption>({
       }),
       code: await WXLogin()
     }, 'POST')
-    // try {
-    //   const data = await api.userLogin(params)
-    //   wx.setStorageSync('userInfo', JSON.stringify(data.obj))
-    //   this.globalData.userInfo = data.obj
-    // } catch (e) {
-    //   console.error(e.message)
-    // }
+    try {
+      const data = await api.userLogin(params)
+      wx.setStorageSync('userInfo', JSON.stringify(data.obj))
+      this.globalData.userInfo = data.obj
+    } catch (e) {
+      console.error(e.message)
+    }
   },
   async WXCheckSession() {
     const self = this
