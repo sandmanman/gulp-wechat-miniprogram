@@ -1,4 +1,5 @@
-// 获取应用实例
+import api from '../../api/index'
+import { getSignature } from '../../utils/index'
 const app = getApp<IAppOption>()
 
 Page({
@@ -6,16 +7,10 @@ Page({
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    treasureList: [
-      { categoryName: '翡翠' },
-      { categoryName: '和田玉' },
-      { categoryName: '玛瑙' },
-      { categoryName: '南红' },
-      { categoryName: '宝典' },
-      { categoryName: '钻石' },
-      { categoryName: '黄金' },
-      { categoryName: '书画' }
-    ]
+    guideList: []
+  },
+  async onLoad() {
+    await this.getGuideList()
   },
   onShow(): void {
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
@@ -31,5 +26,18 @@ Page({
   }) {
     const { url } = dataset
     wx.navigateTo({ url })
+  },
+  async getGuideList() {
+    const params = getSignature({
+      c_p: app.globalData.c_p
+    })
+    try {
+      const data = await api.getGuideList(params)
+      this.setData({
+        guideList: data.obj
+      })
+    } catch (error) {
+      console.error(error)
+    }
   }
 })

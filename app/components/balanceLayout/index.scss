@@ -1,32 +1,32 @@
 .balance-box {
   .layotlistbox {
-    display:flex;
+    display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    padding:0 24rpx;
+    padding: 0 24rpx;
     .treasurelist-box {
       width: 342rpx;
-      height:342rpx;
-      border-radius:10rpx;
+      height: 342rpx;
+      border-radius: 10rpx;
       overflow: hidden;
       position: relative;
-      margin-top:24rpx;
+      margin-top: 24rpx;
       .image-box {
-        width:342rpx;
-        height:342rpx;
+        width: 342rpx;
+        height: 342rpx;
         border-radius: 10rpx;
       }
       .txt-box {
         position: absolute;
-        top:239rpx;
-        left:20rpx;
+        top: 239rpx;
+        left: 20rpx;
         color: #FFFFFF;
         .name {
           font-size: 34rpx;
           font-weight: 500;
         }
         .time {
-          font-size:28rpx;
+          font-size: 28rpx;
         }
       }
     }

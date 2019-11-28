@@ -8,10 +8,9 @@
   .treasure-list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     padding: 0 20rpx;
     .category {
-      width: 169.5rpx;
+      width: 25%;
       text-align: center;
       margin-bottom: 28rpx;
       .category-img {
@@ -20,8 +19,12 @@
         border-radius: 50%;
       }
       .category-name {
+        width: 100%;
         color: #4A4A4A;
         font-size: 26rpx;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
     }
   }

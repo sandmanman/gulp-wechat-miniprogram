@@ -8,22 +8,24 @@
     </view>
     <view class="playGoodsBox">
         <scroll-view class="scrolls" scroll-x>
-          <view class="auction_box"
-                wx:for="{{auctionList}}"
-                wx:key="index"
-                bind:tap="jumpGoodsDetail"
-          >
+          <view class="auction-list">
+            <view class="auction_box"
+                  wx:for="{{auctionList}}"
+                  wx:key="index"
+                  bind:tap="jumpGoodsDetail"
+            >
               <view class="img-box">
-                  <image src="https://lvcui-image.oss-cn-shanghai.aliyuncs.com/background/freeBootBg.png"></image>
+                <image src="https://lvcui-image.oss-cn-shanghai.aliyuncs.com/background/freeBootBg.png"></image>
               </view>
               <view class="txt-box">
-                  <view class="title">纪念日老婆送的</view>
-                  <view class="time">已玩245天,34次</view>
+                <view class="title">纪念日老婆送的</view>
+                <view class="time">已玩245天,34次</view>
               </view>
               <view class="userbox">
                 <image src="https://lvcui-image.oss-cn-shanghai.aliyuncs.com/background/luckybagpng.png"></image>
                 <view>{{item.username}}</view>
               </view>
+            </view>
           </view>
         </scroll-view>
     </view>

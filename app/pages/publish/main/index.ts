@@ -27,9 +27,7 @@ export default Page({
     await app.userLogin()
   },
   onUnload() {
-    console.log('onUnload')
-    uploadTask.abort()
-    uploadTask.offProgressUpdate(() => {})
+    this.offUploadTaskListener()
   },
   selectLocalPhotoHander(actionOption: IChooseSourceOption) {
     const self = this
@@ -201,8 +199,7 @@ export default Page({
           'content-type': 'application/x-www-form-urlencoded'
         },
         success(res: WechatMiniprogram.UploadFileSuccessCallbackResult) {
-          uploadTask.abort()
-          uploadTask.offProgressUpdate(() => {})
+          self.offUploadTaskListener()
           resolve(JSON.parse(res.data))
         },
         fail(error) {
@@ -248,5 +245,11 @@ export default Page({
       await this.save()
     }
     wx.showToast({ title: '上传完成' })
+  },
+  offUploadTaskListener() {
+    if (typeof uploadTask === 'object') {
+      uploadTask.abort()
+      uploadTask.offProgressUpdate(() => void 0)
+    }
   }
 })

@@ -8,9 +8,10 @@ export default Page({
     cover: '',
     nodeList: []
   },
-  async onLoad() {
+  async onLoad(query: Record<string, string | undefined>) {
+    const { id = '1' } = query
     await app.userLogin()
-    await this.getGuide()
+    await this.getGuide(parseInt(id))
   },
   navigationBackHander() {
     wx.navigateBack()
@@ -20,14 +21,13 @@ export default Page({
       dataset = { url: '' }
     }
   }) {
-    console.log(dataset)
     const { url } = dataset
     wx.navigateTo({ url })
   },
-  async getGuide() {
+  async getGuide(id: number) {
     const params = getSignature({
       c_p: app.globalData.c_p,
-      id: 1
+      id
     })
     const data = await api.getGuide(params)
     this.setData({

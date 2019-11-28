@@ -64,11 +64,8 @@ export const getSignature = <T, K extends keyof T>(target: T & {
   c_p: string
 } => {
   let param = ''
+  const c_p = encodeURIComponent(JSON.stringify(target.c_p))
   try {
-    const c_p = JSON.stringify(target.c_p)
-      .split('')
-      .sort((a, b) => a.charCodeAt(0) - b.charCodeAt(0))
-      .join('')
     const tmpObj: T & { c_p: string } = { ...target, c_p }
     // 排序进行签名
     const objAsArray = Object.keys(tmpObj).sort() as K[]
@@ -84,15 +81,6 @@ export const getSignature = <T, K extends keyof T>(target: T & {
   return {
     ...target,
     signature: MD5JS(`${param}&${config.aeskey}`),
-    c_p: JSON.stringify(target.c_p)
+    c_p
   }
-}
-
-export const applyMixins = (derivedCtor: any, baseCtors: any[]) => {
-  baseCtors.forEach((baseCtor) => {
-    Object.getOwnPropertyNames(baseCtor.prototype).forEach((name) => {
-      // eslint-disable-next-line no-param-reassign
-      derivedCtor.prototype[name] = baseCtor.prototype[name]
-    })
-  })
 }

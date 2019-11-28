@@ -90,6 +90,16 @@ class API {
     cover: string
     node: any
   }>> => httpRequest('/wiki/guide', 'GET', params)
+
+  // 获取首页宝物词条推荐
+  getGuideList = (params: {
+    c_p: string
+    signature: string
+  }): Promise<IResponseType<{
+    user_code: string
+    nickname: string
+    avatar_url: string
+  }>> => httpRequest('/wiki/recommend', 'GET', params)
 }
 
 export default new API()

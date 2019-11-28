@@ -7,7 +7,7 @@
     "build": "gulp build",
     "watch": "gulp watch",
     "lint": "eslint --fix --ext .js,.ts app/",
-    "stylelint": "stylelint --fix --syntax scss app/",
+    "stylelint": "stylelint --fix --syntax scss app/**/*.scss",
     "test": "echo \"Error: 测试报错\" && exit 1"
   },
   "lint-staged": {
