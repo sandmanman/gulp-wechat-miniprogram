@@ -2,8 +2,8 @@
     <view class="auctionInformation">
         <view class="productMessage">
               <view class="productTxtBox">
-                  <view class="productTitle">翡翠<text class="txt"> /jadeite</text></view>
-                  <view class="anothername">别称：翡翠玉、翠玉、缅甸玉</view>
+                  <view class="productTitle">{{wiki_info.wiki_info.wiki.name}}<text class="txt"> /jadeite</text></view>
+                  <view class="anothername">别称：{{wiki_info.wiki_info.wiki.alias}}</view>
               </view>
               <view class="share-icon">
                 <image src="/assets/img/icon/share@2x.png"></image>
@@ -11,8 +11,8 @@
         </view>
         <view class="videoAndPhotoBox">
             <view class="videoBox">
-                  <view class="videoplaybox" wx:if="{{videos}}">
-                    <video id="myVideo" src="{{videos}}" enable-danmu danmu-btn controls></video>
+                  <view class="videoplaybox" wx:if="{{wiki_info.wiki_info.wiki.video}}">
+                    <video id="myVideo" src="{{wiki_info.wiki_info.wiki.video}}" enable-danmu danmu-btn controls></video>
                   </view>
                   <view class="videoplaybox" wx:else>
                     <image src="{{novideoimg}}"></image>
@@ -33,7 +33,7 @@
             </view>
         </view>
         <view class="productExplain">
-            翡翠的正确定义是以硬玉矿物为主的辉石类矿物组成的纤维状集合体。但是翡翠并不等于硬玉。
+            {{wiki_info.wiki_info.wiki.desc}}
         </view>
     </view>
     <view class="image-Icon-Box">

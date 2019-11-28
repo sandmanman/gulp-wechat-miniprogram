@@ -1,3 +1,8 @@
+import api from '../../../api/index'
+import { getSignature } from '../../../utils/index'
+
+const app = getApp<IAppOption>()
+
 Page({
   data: {
     videos:
@@ -30,6 +35,39 @@ Page({
       }
     ],
     novideoimg: 'https://lvcui-image.oss-cn-shanghai.aliyuncs.com/background/bg.png'
+  },
+  async onLoad(query: Record<string, string | undefined>): void {
+    const { id = '' } = query
+    await app.userLogin()
+    await this.getarticleDetailList(parseInt(id))
+  },
+  async getarticleDetailList(id: number) {
+    const params = getSignature({
+      c_p: app.globalData.c_p,
+      user_code: app.globalData.userInfo.user_code,
+      id
+    })
+    const data = await api.getarticleDetailList(params)
+    this.setData({
+      wiki_info: data.obj
+    })
+    console.log(data)
+  },
+  async getUerInfo(e: { detail: WechatMiniprogram.GetUserInfoSuccessCallbackResult }) {
+    const params = getSignature({
+      c_p: app.globalData.c_p,
+      encryptedData: e.detail.encryptedData,
+      iv: e.detail.iv
+    })
+    try {
+      const data = await api.userUpdate(params)
+      this.setData({ userInfo: data.obj }, () => {
+        app.globalData.userInfo = this.data.userInfo
+        wx.setStorageSync('userInfo', JSON.stringify(this.data.userInfo))
+      })
+    } catch (error) {
+      console.error(error)
+    }
   },
   navigateToHander({
     currentTarget: {
