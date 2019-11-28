@@ -39,18 +39,17 @@ Page({
   async onLoad(query: Record<string, string | undefined>): void {
     const { id = '' } = query
     await app.userLogin()
-    await this.getarticleDetailList()
-    this.setData({ userInfo: app.globalData.userInfo, id })
+    await this.getarticleDetailList(parseInt(id))
   },
-  async getarticleDetailList() {
+  async getarticleDetailList(id: number) {
     const params = getSignature({
       c_p: app.globalData.c_p,
       user_code: app.globalData.userInfo.user_code,
-      id: this.data.id
+      id
     })
     const data = await api.getarticleDetailList(params)
     this.setData({
-      wiki_info: data.obj.wiki_info
+      wiki_info: data.obj
     })
     console.log(data)
   },

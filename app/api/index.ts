@@ -136,7 +136,7 @@ class API {
   getarticleDetailList = (params: {
     c_p: string
     signature: string
-    id: string
+    id: number
   }): Promise<IResponseType<{
     cover: string
     node: any
