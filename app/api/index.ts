@@ -81,6 +81,25 @@ class API {
     name: string
   }>> => httpRequest('/api/wikiuser/save', 'POST', params)
 
+  // 动态详情页
+  getDynamicDetail = (params: {
+    c_p: string
+    signature: string
+    DynamicCode: string
+  }): Promise<IResponseType<{
+    avatar_url: string
+    code: string
+    content: string
+    create_time: string
+    images_list: any
+    nickname: string
+    praise_count: string
+    status: string
+    title: string
+    wiki_code: string
+    wiki_user_name: string
+  }>> => httpRequest('/dynamic/info', 'GET', params)
+
   // 玩法指南节点
   getGuide = (params: {
     c_p: string

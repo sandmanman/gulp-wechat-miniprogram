@@ -8,38 +8,42 @@
   <!-- 上遮罩 -->
   <view class="top-mark"></view>
   <view class="banner-image-box">
-        <!-- <view class="imagelist-box">
-            <swiper class="swiper-box" interval="5000" duration="1000"  bindchange="">
-                <swiper-item class="swiperlist" wx:for="{{imageList}}" wx:key="{{idx}}">
-                    <view class="img">
-                        <image src="{{item.photo}}"></image>
-                    </view>
-                    <view class="label-box">
-                        <view class="label-img">
-                            <image src="/assets/img/publish/tag_white@2x.png"></image>
-                        </view>
-                        <view class="laber-txt">翡翠</view>
-                    </view>
-                    <view class="page-num-box">1/8</view>
-                </swiper-item>
-            </swiper>
-        </view> -->
-        <view class="video-box">
-            <video id="myVideo"
-                   src="{{videos}}"
-                   enable-danmu
-                   danmu-btn
-                   controls
-            ></video>
-        </view>
+    <block wx:if="{{!videos}}">
+      <view class="imagelist-box">
+          <swiper class="swiper-box" interval="5000" duration="1000"  bindchange="">
+              <swiper-item class="swiperlist" wx:for="{{imageList}}" wx:key="{{idx}}">
+                  <view class="img">
+                      <image src="{{item.photo}}"></image>
+                  </view>
+                  <view class="label-box">
+                      <view class="label-img">
+                          <image src="/assets/img/publish/tag_white@2x.png"></image>
+                      </view>
+                      <view class="laber-txt">翡翠</view>
+                  </view>
+                  <view class="page-num-box">1/8</view>
+              </swiper-item>
+          </swiper>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="video-box">
+          <video id="myVideo"
+                  src="{{videos}}"
+                  enable-danmu
+                  danmu-btn
+                  controls
+          ></video>
+      </view>
+    </block>
   </view>
   <view class="detail-box">
     <view class="user-box">
       <view class="user-head">
             <view class="user-img">
-              <image src="https://lvcui-image.oss-cn-shanghai.aliyuncs.com/background/bg.png"></image>
+              <image src="{{avatar_url}}"></image>
             </view>
-            <view class="user-name">琼脂天下</view>
+            <view class="user-name">{{nickname}}</view>
       </view>
       <view class="share-box">
           <view class="share-cion">
