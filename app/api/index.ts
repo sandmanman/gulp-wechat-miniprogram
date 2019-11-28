@@ -24,7 +24,9 @@ class API {
   }): Promise<IResponseType<{
     nickname: string
     avatar_url: string
-  }>> => httpRequest('/user/update', 'POST', params)
+    is_updated: boolean
+    user_code: string
+  }>> => httpRequest('/usercenter/update', 'POST', params)
 
   uploadFile = (filePath: string, formData: {
     c_p: string

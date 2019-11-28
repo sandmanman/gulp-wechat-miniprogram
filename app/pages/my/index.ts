@@ -10,7 +10,8 @@ export default Page({
     selsectIndex: 0,
     userInfo: {
       nickname: '',
-      avatar_url: '/assets/img/icon/default-head.png'
+      avatar_url: '/assets/img/icon/default-head.png',
+      is_updated: false
     }
   },
   async onLoad() {
@@ -24,19 +25,17 @@ export default Page({
       })
     }
   },
-  async getUerInfo(e: {
-    detail: WechatMiniprogram.GetUserInfoSuccessCallbackResult
-  }) {
-    console.log(e)
+  async getUerInfo(e: { detail: WechatMiniprogram.GetUserInfoSuccessCallbackResult }) {
     const params = getSignature({
-      c_p: Object.assign(config.cp, {
-        user_code: app.globalData.userInfo.user_code
-      }),
+      c_p: app.globalData.c_p,
       encryptedData: e.detail.encryptedData,
       iv: e.detail.iv
-    }, 'POST')
-    const userInfo = await api.userUpdate(params)
-    this.setData({ userInfo })
+    })
+    const data = await api.userUpdate(params)
+    this.setData({ userInfo: data.obj }, () => {
+      app.globalData.userInfo = this.data.userInfo
+      wx.setStorageSync('userInfo', JSON.stringify(this.data.userInfo))
+    })
   },
   selectBtn({
     currentTarget: {

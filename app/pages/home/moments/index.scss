@@ -68,9 +68,9 @@
     padding: 0 32rpx;
     .user-box {
       height: 100rpx;
-      line-height: 100rpx;
       display: flex;
       justify-content: space-between;
+      position: relative;
       .user-head {
         display: flex;
         .user-img {
