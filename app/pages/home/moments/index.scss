@@ -30,7 +30,7 @@
             position: absolute;
             bottom: 24rpx;
             left: 32rpx;
-            color:#FFFFFF;
+            color: #FFFFFF;
             border: 1rpx solid #FFFFFF;
             display: flex;
             z-index: 10;
@@ -47,15 +47,15 @@
             width: 70rpx;
             height: 38rpx;
             line-height: 38rpx;
-            background:rgba(0,0,0,0.5);
-            border-radius:20px;
-            font-size:22rpx;
-            color:#FFFFFF;
+            background: rgba(0,0,0,0.5);
+            border-radius: 20px;
+            font-size: 22rpx;
+            color: #FFFFFF;
             text-align: center;
             z-index: 10;
             position: absolute;
-            right:32rpx;
-            bottom:24rpx;
+            right: 32rpx;
+            bottom: 24rpx;
           }
         }
       }
@@ -74,74 +74,74 @@
       .user-head {
         display: flex;
         .user-img {
-          width:72rpx;
-          height:72rpx;
+          width: 72rpx;
+          height: 72rpx;
           border-radius: 50%;
           margin: 14rpx 20rpx 14rpx 0;
           overflow: hidden;
         }
         .user-name {
-          font-size:30rpx;
+          font-size: 30rpx;
         }
       }
       .share-box {
-        display:flex;
+        display: flex;
         .share-cion {
-          margin-top:10rpx;
-          width:44rpx;
-          height:44rpx;
-          margin-left:24rpx;
+          margin-top: 10rpx;
+          width: 44rpx;
+          height: 44rpx;
+          margin-left: 24rpx;
         }
       }
     }
     .content-box {
       .title {
-        font-size:48rpx;
+        font-size: 48rpx;
         font-weight: 600;
-        color:#333333;
-        margin:20rpx 0;
+        color: #333333;
+        margin: 20rpx 0;
       }
       .txt {
-        font-size:32rpx;
+        font-size: 32rpx;
         line-height: 55rpx;
-        color:#666666;
+        color: #666666;
         letter-spacing: 3rpx;
       }
     }
     .footer-box {
-      padding:30rpx 0;
-      height:64rpx;
+      padding: 30rpx 0;
+      height: 64rpx;
       line-height: 64rpx;
-      display:flex;
+      display: flex;
       justify-content: space-between;
       .labeltxt-box {
         padding: 0 20rpx;
-        display:flex;
-        border-radius:10rpx;
-        background:#F2F8FF;
+        display: flex;
+        border-radius: 10rpx;
+        background: #F2F8FF;
         .imgsbox {
-          width:32rpx;
-          height:28rpx;
-          margin:3rpx 20rpx 0 0;
+          width: 32rpx;
+          height: 28rpx;
+          margin: 3rpx 20rpx 0 0;
         }
         .labelname {
-          color:#4A90E2;
-          font-size:28rpx;
+          color: #4A90E2;
+          font-size: 28rpx;
         }
       }
       .timetxt {
-        font-size:24rpx;
-        color:#999999;
+        font-size: 24rpx;
+        color: #999999;
       }
     }
   }
   .footbanner-box {
-    height:121rpx;
+    height: 121rpx;
     line-height: 121rpx;
     background: #F5F5F5;
     text-align: center;
     .footimg {
-      width:545rpx;
+      width: 545rpx;
       height: 37rpx;
       margin: 0 auto;
     }
