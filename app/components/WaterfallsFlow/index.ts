@@ -5,5 +5,11 @@ Component({
       value: 342
     }
   },
-  methods: {}
+  methods: {
+    nagivatorToDynamic() {
+      wx.navigateTo({
+        url: '/pages/home/moments/index'
+      })
+    }
+  }
 })

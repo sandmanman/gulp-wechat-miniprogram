@@ -81,6 +81,68 @@ class API {
     name: string
   }>> => httpRequest('/api/wikiuser/save', 'POST', params)
 
+  // 动态详情页
+  getDynamicDetail = (params: {
+    c_p: string
+    signature: string
+    Code: string
+  }): Promise<IResponseType<{
+    avatar_url: string
+    code: string
+    content: string
+    create_time: string
+    images_list: any
+    nickname: string
+    praise_count: string
+    status: string
+    title: string
+    wiki_code: string
+    wiki_user_name: string
+    video_url: string
+  }>> => httpRequest('/dynamic/info', 'GET', params)
+
+  // 动态玩物日志
+  getDynamicLog = (params: {
+    c_p: string
+    signature: string
+    Code: string
+  }): Promise<IResponseType<{
+    avatar_url: string
+    code: string
+    nick_name: string
+    play_count: string
+    play_number: string
+    tag_name: string
+    title: string
+  }>> => httpRequest('/dynamic/daily_info', 'GET', params)
+
+  // 动态玩物日志数组
+  getDynamicLogList = (params: {
+    c_p: string
+    signature: string
+    Code: string
+    UserWikiCode: string
+    Page: string
+  }): Promise<IResponseType<{
+    avatar_url: string
+    code: string
+    nick_name: string
+    play_count: string
+    play_number: string
+    tag_name: string
+    title: string
+  }>> => httpRequest('/dynamic/daily_list', 'GET', params)
+
+  // 宝物详情接口
+  getarticleDetailList = (params: {
+    c_p: string
+    signature: string
+    id: number
+  }): Promise<IResponseType<{
+    cover: string
+    node: any
+  }>> => httpRequest('/wiki/detail', 'GET', params)
+
   // 玩法指南节点
   getGuide = (params: {
     c_p: string

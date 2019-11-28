@@ -1,45 +1,56 @@
 <view class="moments-container">
-  <navigation-bar background="transparent"
+  <!-- <navigation-bar background="transparent"
                   backgroundColorTop="transparent"
                   iconTheme="white"
                   back
                   bind:back="navigationBackHander"
-  ></navigation-bar>
+  ></navigation-bar> -->
   <!-- 上遮罩 -->
-  <view class="top-mark"></view>
+  <view class="top-mark">
+      <navigation-bar background="transparent"
+                  backgroundColorTop="transparent"
+                  iconTheme="white"
+                  back
+                  bind:back="navigationBackHander"
+      ></navigation-bar>
+  </view>
   <view class="banner-image-box">
-        <!-- <view class="imagelist-box">
-            <swiper class="swiper-box" interval="5000" duration="1000"  bindchange="">
-                <swiper-item class="swiperlist" wx:for="{{imageList}}" wx:key="{{idx}}">
-                    <view class="img">
-                        <image src="{{item.photo}}"></image>
-                    </view>
-                    <view class="label-box">
-                        <view class="label-img">
-                            <image src="/assets/img/publish/tag_white@2x.png"></image>
-                        </view>
-                        <view class="laber-txt">翡翠</view>
-                    </view>
-                    <view class="page-num-box">1/8</view>
-                </swiper-item>
-            </swiper>
-        </view> -->
-        <view class="video-box">
-            <video id="myVideo"
-                   src="{{videos}}"
-                   enable-danmu
-                   danmu-btn
-                   controls
-            ></video>
-        </view>
+    <block wx:if="{{!video_url}}">
+      <view class="imagelist-box">
+          <swiper class="swiper-box" interval="5000" duration="1000"  bindchange="swiperChange">
+              <swiper-item class="swiperlist" wx:for="{{images_list}}" wx:key="{{idx}}">
+                  <view class="img">
+                      <image src="{{item.url_oss}}"></image>
+                  </view>
+                  <view class="label-box">
+                      <view class="label-img">
+                          <image src="/assets/img/publish/tag_white@2x.png"></image>
+                      </view>
+                      <view class="laber-txt">{{item.tag_name}}</view>
+                  </view>
+              </swiper-item>
+          </swiper>
+          <view class="page-num-box">{{swiperCurrent}}/{{images_list.length}}</view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="video-box">
+          <video id="myVideo"
+                  src="{{video_url}}"
+                  enable-danmu
+                  danmu-btn
+                  controls
+          ></video>
+      </view>
+    </block>
   </view>
   <view class="detail-box">
     <view class="user-box">
       <view class="user-head">
             <view class="user-img">
-              <image src="https://lvcui-image.oss-cn-shanghai.aliyuncs.com/background/bg.png"></image>
+              <image src="{{avatar_url}}"></image>
             </view>
-            <view class="user-name">琼脂天下</view>
+            <view class="user-name">{{nickname}}</view>
       </view>
       <view class="share-box">
           <view class="share-cion">
@@ -51,17 +62,17 @@
       </view>
     </view>
     <view class="content-box">
-        <view class="title">简说翡翠的工艺原理里</view>
-        <view class="txt">翡翠是由天然的玉料加工而成的，其最重要的一点就是“因材施料”，这是它和其它人工制造的古玩书画等艺术品的根本区别。翡翠价值的高低，更为重要的是这块原料的稀缺性，在高档翡翠中，原料本身的价值在翡翠成品中占到九成之多，上好的工艺相当于锦上添花，它展现出了翡翠本身最好的魅力，最好的工艺是扬长避短，具有自己独立的创作风格。</view>
+        <view class="title">{{title}}</view>
+        <view class="txt">{{content}}</view>
     </view>
     <view class="footer-box">
         <view class="labeltxt-box">
             <view class="imgsbox">
                 <image src="/assets/img/home/treasure-blue@2x.png"></image>
             </view>
-            <view class="labelname">大师雕山水牌</view>
+            <view class="labelname">{{wiki_user_name}}</view>
         </view>
-        <view class="timetxt">2019-11-09 12:34</view>
+        <view class="timetxt">{{create_time}}</view>
     </view>
   </view>
   <view class="footbanner-box">
