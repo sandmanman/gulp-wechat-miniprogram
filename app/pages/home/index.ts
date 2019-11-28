@@ -31,5 +31,13 @@ Page({
   }) {
     const { url } = dataset
     wx.navigateTo({ url })
+  },
+  navigatorToDynamicDetail({
+    currentTarget: {
+      dataset = { url: '' }
+    }
+  }) {
+    const { url } = dataset
+    wx.navigateTo({ url })
   }
 })

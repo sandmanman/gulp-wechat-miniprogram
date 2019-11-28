@@ -1,5 +1,5 @@
 <template name="waterfallsFlowItem">
-  <view class="flow-item">
+  <view class="flow-item" bind:tap="nagivatorToDynamic">
     <view class="item-image">
       <view class="topping"><text>精华</text></view>
       <view class="isVideo"></view>
