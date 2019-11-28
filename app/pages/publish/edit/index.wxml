@@ -22,13 +22,13 @@
         <view class="top-mark"></view>
         <!-- 下遮罩 -->
         <view class="bottom-mark"></view>
-        <block wx:if="{{item.type === 'image'}}">
+        <block wx:if="{{item.fileType === 'image'}}">
           <image class="source-preview-entity"
                  src="{{item.path}}"
                  style="height: {{750 * item.height / item.width}}rpx;"
           ></image>
         </block>
-        <block wx:elif="{{item.type === 'video'}}">
+        <block wx:elif="{{item.fileType === 'video'}}">
           <video class="source-preview-entity"
                  src="{{item.tempFilePath}}"
                  show-fullscreen-btn="{{false}}"
@@ -83,7 +83,8 @@
   <vant-popup show="{{showConfirmActionSheet}}"
               position="bottom"
               round
-              bind:close="hideActionSheetHander">
+              bind:close="hideActionSheetHander"
+  >
     <view class="confirm-actionSheet">
       <view class="actionSheet-head">
         <text>确定要删除吗？</text>

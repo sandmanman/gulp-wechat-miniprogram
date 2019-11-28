@@ -43,10 +43,11 @@ export const WXGetImageInfoAsync = (
           ...res,
           showActionSheet: false,
           tag: '',
-          type: 'image',
+          fileType: 'image',
           tempFilePath: '',
           size: 0,
-          duration: 0
+          duration: 0,
+          uploadProgess: 0
         })
       },
       fail(error) {
@@ -77,8 +78,8 @@ export const getSignature = <T, K extends keyof T>(target: T & {
       }
     }
     param = param.slice(0, -1)
-  } catch (e) {
-    console.error(e.message)
+  } catch (error) {
+    console.error(error)
   }
   return {
     ...target,

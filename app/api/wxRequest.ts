@@ -12,7 +12,12 @@ export default (url: string, method: IWechatRequestMethods, data: string | Wecha
       data,
       success(res: WechatMiniprogram.RequestSuccessCallbackResult) {
         console.warn('[HTTP状态码]: ', res.statusCode)
-        resolve(res.data)
+        const data = res.data as IResponseType<any>
+        if (data.code === 200) {
+          resolve(data)
+        } else {
+          reject(data.msg)
+        }
       },
       fail(error: WechatMiniprogram.GeneralCallbackResult) {
         reject(error.errMsg)

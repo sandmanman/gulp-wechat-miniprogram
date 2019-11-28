@@ -54,6 +54,23 @@
         transform: translate(-50%, -50%);
         z-index: 5;
       }
+      .upload-progress {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 5;
+        display: table;
+        text-align: center;
+        text {
+          display: table-cell;
+          vertical-align: middle;
+          color: #FFFFFF;
+          font-size: 26rpx;
+        }
+      }
       .tag-icon {
         width: 22rpx;
         height: 22rpx;

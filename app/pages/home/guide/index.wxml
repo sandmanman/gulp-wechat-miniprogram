@@ -41,27 +41,19 @@
                 </block>
               </view>
             </block>
-            <block wx:for="{{item.children}}"
-                   wx:for-item="secondItem"
-                   wx:for-index="secondIndex"
-                   wx:key="{{secondIndex}}"
-            >
-              <view class="third-level-node">
-                <block wx:for="{{ secondItem.children }}"
-                       wx:for-item="thirdItem"
-                       wx:for-index="thirdIndex"
-                       wx:key="{{thirdIndex}}"
-                >
-                  <view class="third-level-node-item"
-                        data-url="/pages/common/webview/index?url=http://zzbw.test.z.vip/static/wiki/1/3.html"
-                        bind:tap="navigateToHander"
-                  >
-                    <text>{{thirdItem.name}}</text>
-                  </view>
-                </block>
-              </view>
-            </block>
           </block>
+          <view class="third-level-node" wx:else>
+            <view class="third-level-node-item"
+                  wx:for="{{item.children}}"
+                  wx:for-item="secondItem"
+                  wx:for-index="secondIndex"
+                  wx:key="{{secondIndex}}"
+                  data-url="/pages/common/webview/index?url=http://zzbw.test.z.vip/static/wiki/1/3.html"
+                  bind:tap="navigateToHander"
+            >
+              <text>{{secondItem.name}}</text>
+            </view>
+          </view>
         </view>
       </view>
     </block>

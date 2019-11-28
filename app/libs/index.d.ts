@@ -13,9 +13,10 @@ interface IAppOption {
       request_base: string
       user_code: string
     }
-    userInfo?: (WechatMiniprogram.UserInfo & {
-      user_code: string
-    }) | {
+    userInfo?: {
+      nickname: string
+      avatar_url: string
+      is_updated: boolean
       user_code: string
     }
     globalSystemInfo?: {

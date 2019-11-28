@@ -7,6 +7,9 @@ import api from './api/index'
 App<IAppOption>({
   globalData: {
     userInfo: {
+      nickname: '',
+      avatar_url: '',
+      is_updated: false,
       user_code: ''
     },
     c_p: Object.assign(config.cp)
@@ -18,10 +21,9 @@ App<IAppOption>({
     this.WXCheckSession()
   },
   async userLogin() {
+    const self = this
     const params = getSignature({
-      c_p: Object.assign(config.cp, {
-        user_code: ''
-      }),
+      c_p: self.globalData.c_p,
       code: await WXLogin()
     })
     try {
@@ -29,8 +31,8 @@ App<IAppOption>({
       wx.setStorageSync('userInfo', JSON.stringify(data.obj))
       this.globalData.userInfo = data.obj
       this.globalData.c_p.user_code = data.obj.user_code
-    } catch (e) {
-      console.error(e.message)
+    } catch (error) {
+      console.error(error)
     }
   },
   async WXCheckSession() {
