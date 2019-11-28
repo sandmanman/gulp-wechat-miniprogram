@@ -1,6 +1,7 @@
+/// <reference path="../libs/index.d.ts" />
+
 import config from '../config/index'
 
-// import * as CryptoJS from './crypto'
 import * as MD5JS from './MD5'
 
 const formatNumber = (n: number) => {
@@ -57,30 +58,30 @@ export const WXGetImageInfoAsync = (
   })
 }
 
-export const getSignature = <T, K extends keyof T>(target: T & {
-  c_p: object
-}): T & {
+export const getSignature = <T extends { c_p: any }, K extends keyof T>(target: T): T & {
   signature: string
   c_p: string
 } => {
   let param = ''
-  const c_p = encodeURIComponent(JSON.stringify(target.c_p))
+  const c_p = JSON.stringify(target.c_p)
   try {
     const tmpObj: T & { c_p: string } = { ...target, c_p }
     // 排序进行签名
     const objAsArray = Object.keys(tmpObj).sort() as K[]
     for (const key of objAsArray) {
       if (tmpObj[key]) {
-        param += `${key}=${tmpObj[key]}&`
+        const value = tmpObj[key]
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
+        param += `${key}=${encodeURIComponent(value)}&`
       }
     }
-    param = param.slice(0, -1)
   } catch (error) {
-    console.error(error)
+    console.error('签名过程出错: ', error)
   }
   return {
     ...target,
-    signature: MD5JS(`${param}&${config.aeskey}`),
+    signature: MD5JS(`${param}${config.aeskey}`),
     c_p
   }
 }
