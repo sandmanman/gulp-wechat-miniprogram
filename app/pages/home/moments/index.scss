@@ -43,21 +43,21 @@
               font-size: 22rpx;
             }
           }
-          .page-num-box {
-            width: 70rpx;
-            height: 38rpx;
-            line-height: 38rpx;
-            background: rgba(0,0,0,0.5);
-            border-radius: 20px;
-            font-size: 22rpx;
-            color: #FFFFFF;
-            text-align: center;
-            z-index: 10;
-            position: absolute;
-            right: 32rpx;
-            bottom: 24rpx;
-          }
         }
+      }
+      .page-num-box {
+        width: 70rpx;
+        height: 38rpx;
+        line-height: 38rpx;
+        background: rgba(0,0,0,0.5);
+        border-radius: 20px;
+        font-size: 22rpx;
+        color: #FFFFFF;
+        text-align: center;
+        z-index: 10;
+        position: absolute;
+        right: 32rpx;
+        top: 51%;
       }
     }
     .video-box {
@@ -68,6 +68,7 @@
     padding: 0 32rpx;
     .user-box {
       height: 100rpx;
+      line-height: 100rpx;
       display: flex;
       justify-content: space-between;
       position: relative;
@@ -140,6 +141,7 @@
     line-height: 121rpx;
     background: #F5F5F5;
     text-align: center;
+    margin-top: 85rpx;
     .footimg {
       width: 545rpx;
       height: 37rpx;

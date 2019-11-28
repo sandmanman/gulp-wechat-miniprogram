@@ -1,3 +1,8 @@
+import api from '../../../api/index'
+import { getSignature } from '../../../utils/index'
+
+const app = getApp<IAppOption>()
+
 Page({
   data: {
     dynamicList: [
@@ -32,5 +37,72 @@ Page({
         ]
       }
     ]
+  },
+  async onLoad() {
+    await app.userLogin()
+    await this.getDynamicLog()
+    await this.getDynamicLogList()
+    this.setData({ userInfo: app.globalData.userInfo })
+  },
+  async getDynamicLog() {
+    const params = getSignature({
+      c_p: app.globalData.c_p,
+      UserCode: app.globalData.userInfo.user_code,
+      Code: 'f65ErrunbU7YUAkswduIeTikRKBzSyVR'
+    })
+    const data = await api.getDynamicLog(params)
+    // this.setData({
+    //   avatar_url: data.obj.avatar_url,
+    //   code: data.obj.code,
+    //   content: data.obj.content,
+    //   create_time: data.obj.create_time,
+    //   images_list: data.obj.images_list,
+    //   nickname: data.obj.nickname,
+    //   praise_count: data.obj.praise_count,
+    //   status: data.obj.status,
+    //   title: data.obj.title,
+    //   wiki_code: data.obj.wiki_code,
+    //   wiki_user_name: data.obj.wiki_user_name
+    // })
+    console.log(data)
+  },
+  async getDynamicLogList() {
+    const params = getSignature({
+      c_p: app.globalData.c_p,
+      UserCode: app.globalData.userInfo.user_code,
+      Code: 'f65ErrunbU7YUAkswduIeTikRKBzSyVR',
+      UserWikiCode: '5dKGgXZ0tkCsc3alfChfJPJ3cNjcJLsy'
+    })
+    const data = await api.getDynamicLogList(params)
+    // this.setData({
+    //   avatar_url: data.obj.avatar_url,
+    //   code: data.obj.code,
+    //   content: data.obj.content,
+    //   create_time: data.obj.create_time,
+    //   images_list: data.obj.images_list,
+    //   nickname: data.obj.nickname,
+    //   praise_count: data.obj.praise_count,
+    //   status: data.obj.status,
+    //   title: data.obj.title,
+    //   wiki_code: data.obj.wiki_code,
+    //   wiki_user_name: data.obj.wiki_user_name
+    // })
+    console.log(data)
+  },
+  async getUerInfo(e: { detail: WechatMiniprogram.GetUserInfoSuccessCallbackResult }) {
+    const params = getSignature({
+      c_p: app.globalData.c_p,
+      encryptedData: e.detail.encryptedData,
+      iv: e.detail.iv
+    })
+    try {
+      const data = await api.userUpdate(params)
+      this.setData({ userInfo: data.obj }, () => {
+        app.globalData.userInfo = this.data.userInfo
+        wx.setStorageSync('userInfo', JSON.stringify(this.data.userInfo))
+      })
+    } catch (error) {
+      console.error(error)
+    }
   }
 })
