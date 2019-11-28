@@ -235,7 +235,7 @@ export default Page({
     })
     const params = getSignature({
       c_p,
-      file_info: JSON.stringify(currentSource.fileType==='image' ? imageFileInfo:videoFileInfo)
+      file_info: JSON.stringify(currentSource.fileType === 'image' ? imageFileInfo : videoFileInfo)
     })
     const uploadResult = await this.upLoadFile(filePath, params)
     selectedSourceList[this.data.uploadedSourceCount].url = uploadResult.url_oss
