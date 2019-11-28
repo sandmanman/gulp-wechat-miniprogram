@@ -78,8 +78,8 @@ export const getSignature = <T, K extends keyof T>(target: T & {
       }
     }
     param = param.slice(0, -1)
-  } catch (e) {
-    console.error(e.message)
+  } catch (error) {
+    console.error(error)
   }
   return {
     ...target,

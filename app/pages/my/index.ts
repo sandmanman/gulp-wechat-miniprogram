@@ -1,6 +1,5 @@
 import api from '../../api/index'
 import { getSignature } from '../../utils/index'
-import config from '../../config/index'
 
 const app = getApp<IAppOption>()
 
@@ -31,11 +30,15 @@ export default Page({
       encryptedData: e.detail.encryptedData,
       iv: e.detail.iv
     })
-    const data = await api.userUpdate(params)
-    this.setData({ userInfo: data.obj }, () => {
-      app.globalData.userInfo = this.data.userInfo
-      wx.setStorageSync('userInfo', JSON.stringify(this.data.userInfo))
-    })
+    try {
+      const data = await api.userUpdate(params)
+      this.setData({ userInfo: data.obj }, () => {
+        app.globalData.userInfo = this.data.userInfo
+        wx.setStorageSync('userInfo', JSON.stringify(this.data.userInfo))
+      })
+    } catch (error) {
+      console.error(error)
+    }
   },
   selectBtn({
     currentTarget: {
