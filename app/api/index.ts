@@ -98,6 +98,7 @@ class API {
     title: string
     wiki_code: string
     wiki_user_name: string
+    video_url: string
   }>> => httpRequest('/dynamic/info', 'GET', params)
 
   // 动态玩物日志
