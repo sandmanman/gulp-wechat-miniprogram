@@ -1,6 +1,5 @@
 import api from '../../../api/index'
 import { getSignature } from '../../../utils/index'
-import config from '../../../config/index'
 
 const app = getApp<IAppOption>()
 
@@ -11,7 +10,8 @@ Page({
         photo: 'https://lvcui-image.oss-cn-shanghai.aliyuncs.com/static/temp/supremacy_buy/1911/06/2e043e8b0b3eee13ba184e550ab81801.jpg!750'
       }
     ],
-    videos: ''
+    videos: '',
+    swiperCurrent: 1
   },
   async onLoad() {
     await app.userLogin()
@@ -22,10 +22,9 @@ Page({
     const params = getSignature({
       c_p: app.globalData.c_p,
       UserCode: app.globalData.userInfo.user_code,
-      DynamicCode: 'f65ErrunbU7YUAkswduIeTikRKBzSyVR'
+      Code: 'f65ErrunbU7YUAkswduIeTikRKBzSyVR'
     })
     const data = await api.getDynamicDetail(params)
-    console.log(data)
     this.setData({
       avatar_url: data.obj.avatar_url,
       code: data.obj.code,
@@ -37,21 +36,35 @@ Page({
       status: data.obj.status,
       title: data.obj.title,
       wiki_code: data.obj.wiki_code,
+      video_url: data.obj.video_url,
       wiki_user_name: data.obj.wiki_user_name
     })
+    console.log(data)
   },
-  async getUerInfo(e: {
-    detail: WechatMiniprogram.GetUserInfoSuccessCallbackResult
-  }) {
-    console.log(e)
+  async getUerInfo(e: { detail: WechatMiniprogram.GetUserInfoSuccessCallbackResult }) {
     const params = getSignature({
-      c_p: Object.assign(config.cp, {
-        user_code: app.globalData.userInfo.user_code
-      }),
+      c_p: app.globalData.c_p,
       encryptedData: e.detail.encryptedData,
       iv: e.detail.iv
-    }, 'POST')
-    const userInfo = await api.userUpdate(params)
-    this.setData({ userInfo })
+    })
+    try {
+      const data = await api.userUpdate(params)
+      this.setData({ userInfo: data.obj }, () => {
+        app.globalData.userInfo = this.data.userInfo
+        wx.setStorageSync('userInfo', JSON.stringify(this.data.userInfo))
+      })
+    } catch (error) {
+      console.error(error)
+    }
+  },
+  navigationBackHander() {
+    wx.navigateBack()
+  },
+  swiperChange({
+    detail: {
+      current = 0
+    }
+  }) {
+    this.setData({ swiperCurrent: current + 1 })
   }
 })
