@@ -41,22 +41,6 @@ Page({
     })
     console.log(data)
   },
-  async getUerInfo(e: { detail: WechatMiniprogram.GetUserInfoSuccessCallbackResult }) {
-    const params = getSignature({
-      c_p: app.globalData.c_p,
-      encryptedData: e.detail.encryptedData,
-      iv: e.detail.iv
-    })
-    try {
-      const data = await api.userUpdate(params)
-      this.setData({ userInfo: data.obj }, () => {
-        app.globalData.userInfo = this.data.userInfo
-        wx.setStorageSync('userInfo', JSON.stringify(this.data.userInfo))
-      })
-    } catch (error) {
-      console.error(error)
-    }
-  },
   navigationBackHander() {
     wx.navigateBack()
   },

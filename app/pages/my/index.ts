@@ -14,7 +14,9 @@ export default Page({
     }
   },
   async onLoad() {
-    await app.userLogin()
+    if (!app.globalData.userInfo.user_code) {
+      await app.userLogin()
+    }
     this.setData({ userInfo: app.globalData.userInfo })
   },
   onShow(): void {
