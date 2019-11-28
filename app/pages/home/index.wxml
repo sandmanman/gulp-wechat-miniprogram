@@ -3,17 +3,17 @@
   <view class="title">推荐宝物</view>
   <view class="treasure-list">
     <view class="category"
-          wx:for="{{treasureList}}"
+          wx:for="{{guideList}}"
           wx:key="index"
-          data-url="/pages/home/articleDetail/index"
+          data-url="/pages/home/articleDetail/index?id={{item.id}}"
           bind:tap="navigateToHander"
     >
-      <image class="category-img" src="https://lvcui-image.oss-cn-shanghai.aliyuncs.com/background/bg.png"></image>
-      <view class="category-name">{{item.categoryName}}</view>
+      <image class="category-img" src="{{item.cover}}"></image>
+      <view class="category-name">{{item.name}}</view>
     </view>
   </view>
   <treasurelog-list></treasurelog-list>
-  <view class="title">推荐宝物</view>
+  <view class="title">全部动态</view>
   <view class="comment-list">
     <waterfalls-flow></waterfalls-flow>
   </view>

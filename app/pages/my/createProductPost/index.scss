@@ -1,58 +1,58 @@
 .create-product-box {
   .picture-cover {
     .photo-box {
-      width:183rpx;
-      height:183rpx;
+      width: 183rpx;
+      height: 183rpx;
       text-align: center;
-      background:#F8F8F8;
-      margin:86rpx 284rpx 0;
+      background: #F8F8F8;
+      margin: 86rpx 284rpx 0;
       .no-photo {
         .addpicture {
-          margin:0 auto;
-          width:69rpx;
-          height:68rpx;
-          padding-top:31rpx;
+          margin: 0 auto;
+          width: 69rpx;
+          height: 68rpx;
+          padding-top: 31rpx;
         }
         .addtxt {
-          color:#999999;
-          font-size:26rpx;
-          margin-top:15rpx;
+          color: #999999;
+          font-size: 26rpx;
+          margin-top: 15rpx;
         }
       }
       .has-photo {
         position: relative;
-        border-radius:10rpx;
+        border-radius: 10rpx;
         overflow: hidden;
         .cover-img {
-          width:183rpx;
-          height:183rpx;
-          border-radius:10rpx;
+          width: 183rpx;
+          height: 183rpx;
+          border-radius: 10rpx;
         }
         .close-img {
           position: absolute;
-          right:0;
-          width:54rpx;
-          height:55rpx;
+          right: 0;
+          width: 54rpx;
+          height: 55rpx;
         }
       }
     }
     .input-box {
-      display:flex;
-      width:654rpx;
-      height:64rpx;
+      display: flex;
+      width: 654rpx;
+      height: 64rpx;
       line-height: 64rpx;
-      background:#F8F8F8;
+      background: #F8F8F8;
       padding: 0 16rpx;
       justify-content: space-between;
-      margin:110rpx 32rpx 47rpx;
+      margin: 110rpx 32rpx 47rpx;
       .importbox {
-        height:64rpx;
+        height: 64rpx;
         line-height: 64rpx;
-        font-size:28rpx;
+        font-size: 28rpx;
       }
       .maxtitle {
-        font-size:24rpx;
-        color:#999999;
+        font-size: 24rpx;
+        color: #999999;
       }
     }
     .treasure-type-box {
@@ -83,12 +83,12 @@
         .no-txt {
           font-size: 28rpx;
           font-weight: 500;
-          color:#888888;
+          color: #888888;
         }
         .has-txt {
           font-size: 28rpx;
           font-weight: 500;
-          color:#333333;
+          color: #333333;
         }
       }
     }
@@ -96,15 +96,15 @@
       width: 690rpx;
       height: 90rpx;
       line-height: 90rpx;
-      color:#FFFFFF;
-      font-size:32rpx;
-      font-weight:500;
-      background-image:linear-gradient(to right,rgba(254,100,149,1) 0%,rgba(244,74,72,1) 100%);
-      border-radius:50px;
+      color: #FFFFFF;
+      font-size: 32rpx;
+      font-weight: 500;
+      background-image: linear-gradient(to right,rgba(254,100,149,1) 0%,rgba(244,74,72,1) 100%);
+      border-radius: 50px;
       text-align: center;
-      position:fixed;
+      position: fixed;
       bottom: 20rpx;
-      left:30rpx;
+      left: 30rpx;
     }
   }
   .actionSheet {

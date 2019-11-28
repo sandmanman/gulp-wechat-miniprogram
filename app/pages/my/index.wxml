@@ -29,8 +29,7 @@
       >
         <view class="txtname"
               style="{{selsectIndex === index && 'color:#333333;font-weight:600;'}}"
-        >{{item.txtname}}
-        </view>
+        >{{item.txtname}}</view>
         <text class="line" wx:if="{{selsectIndex == index}}"></text>
       </view>
     </view>
