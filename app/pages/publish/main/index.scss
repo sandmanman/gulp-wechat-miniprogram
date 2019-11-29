@@ -171,4 +171,33 @@
       }
     }
   }
+  .my-guide-list {
+    padding: 0 31rpx;
+    display: flex;
+    align-items: center;
+    .guide-item {
+      padding: 0 30rpx;
+      height: 72rpx;
+      border-radius: 10rpx;
+      background: #FFFFFF;
+      box-shadow:0 4rpx 35rpx 0 rgba(0,0,0,0.06);
+      display: flex;
+      align-items: center;
+      margin-right: 20rpx;
+      .search-icon {
+        width: 25rpx;
+        height: 23rpx;
+        margin-right: 11rpx;
+        background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAuBAMAAACYBVdiAAAALVBMVEVHcExMTExLS0tLS0tLS0tMTExKSkpMTExNTU1LS0tLS0tLS0tSUlJKSkpKSkqKypyeAAAADnRSTlMAQ+78qjjCWiVumoIM2Q7yDvUAAAFLSURBVDjLfVQ9S8NQFH0p1dTiUFToJhUcpGDAQcQlqEPHksmlIA7tGir9A8XZQXAX6Q9wcxVHZ3+AYJIWVDy/wSQ3zXu5ye1ZcsnJeTn36ymVYdD7OBy+qBKsGVJ0W4xY85Fh4RWIRh85oqnJbMVv9m/u3tsXcbBnEBsucE7hDhDea+YZGC3jS+BHS4BT/dkDkIu2ERheLQdHS2MODkw7twgye3WEhfQsF2cUXeG7mPYj5hT4uC4y61iQGPBYqYD0+CYiXt4+npJHDV+c2UWHDHQ4UyMLryQ10cQvHTrmjE2/9tEqNZhsf2LKmQb+koeDN85sIljNyKfJDmTXFZnWKVO5OnJF5S7InZO7vWJC5KkqT2I+vqXpxYk08QjH1VsSuVrENmuiRck2dpNtnKXbaGsR32BDxLY+Fh0LN8WEOlRxu9juXAkYeErGP1xD5Rbq1jJeAAAAAElFTkSuQmCC");
+        background-size: 100%;
+      }
+      text {
+        display: table-cell;
+        vertical-align: middle;
+        color: #4A4A4A;
+        font-size: 26rpx;
+        font-weight: 600;
+      }
+    }
+  }
 }

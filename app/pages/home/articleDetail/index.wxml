@@ -2,8 +2,8 @@
     <view class="auctionInformation">
         <view class="productMessage">
               <view class="productTxtBox">
-                  <view class="productTitle">{{wiki_info.wiki_info.wiki.name}}<text class="txt"> /jadeite</text></view>
-                  <view class="anothername">别称：{{wiki_info.wiki_info.wiki.alias}}</view>
+                  <view class="productTitle">{{wikiInfo.wiki.name}} <text class="txt">{{wikiInfo.wiki.foreign_name}}</text></view>
+                  <view class="anothername">别称：{{wikiInfo.wiki.alias}}</view>
               </view>
               <view class="share-icon">
                 <image src="/assets/img/icon/share@2x.png"></image>
@@ -11,35 +11,32 @@
         </view>
         <view class="videoAndPhotoBox">
             <view class="videoBox">
-                  <view class="videoplaybox" wx:if="{{wiki_info.wiki_info.wiki.video}}">
-                    <video id="myVideo" src="{{wiki_info.wiki_info.wiki.video}}" enable-danmu danmu-btn controls></video>
-                  </view>
-                  <view class="videoplaybox" wx:else>
-                    <image src="{{novideoimg}}"></image>
+                  <view class="videoplaybox">
+                    <video id="myVideo"
+                           src="{{wikiInfo.wiki.video}}"
+                           poster="{{wikiInfo.wiki.cover}}"
+                           object-fit="cover"
+                           controls
+                    ></video>
                   </view>
                   <view class="pictures">
                     <view class="photoBox"
-                          wx:for="{{imgList}}"
-                          wx:key="{{idx}}"
+                          wx:for="{{wikiInfo.article}}"
+                          wx:key="{{index}}"
                     >
                         <view class="pictus">
-                          <image src="{{item.photos}}"></image>
+                          <image src="{{item.cover}}"></image>
                         </view>
-                        <!-- <view class="mask">
-                          <view class="allnum">+12</view>
-                        </view> -->
                     </view>
                   </view>
             </view>
         </view>
-        <view class="productExplain">
-            {{wiki_info.wiki_info.wiki.desc}}
-        </view>
+        <view class="productExplain">{{wikiInfo.wiki.desc}}</view>
     </view>
     <view class="image-Icon-Box">
         <view class="icon-Message"
               wx:for="{{iconList}}"
-              wx:key="{{idx}}"
+              wx:key="{{index}}"
         >
           <view class="imgs"
                 data-url="{{item.path}}"

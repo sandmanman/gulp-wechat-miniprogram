@@ -9,7 +9,10 @@
         </view>
         <view class="username">{{userInfo.nickname}}</view>
       </view>
-      <view class="mytreasure">
+      <view class="mytreasure"
+            data-url="/pages/my/myTreasure/index"
+            bind:tap="navigateToHander"
+      >
         <text space="nbsp">我的宝物  <text class="treasure">256</text></text>
       </view>
       <button class="authorization"

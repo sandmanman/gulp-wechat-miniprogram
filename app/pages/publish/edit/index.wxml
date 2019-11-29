@@ -67,11 +67,11 @@
             <view class="actionSheet-list">
               <view class="actionSheet-item"
                     wx:for="{{tagList}}"
-                    wx:key="{{index}}"
+                    wx:key="{{item.id}}"
                     data-tag="{{item}}"
                     bind:tap="selectTagHander"
               >
-                <text>{{item}}</text>
+                <text>{{item.name}}</text>
               </view>
             </view>
           </view>

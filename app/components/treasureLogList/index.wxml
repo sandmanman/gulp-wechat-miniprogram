@@ -1,7 +1,9 @@
 <view class="GoodsLogsBox">
     <view class="logsTitle">
         <view class="logsTxt">玩物日志</view>
-        <view class="moretxt" bind:tap="jumpMoreDetail">
+        <view class="moretxt"
+              data-url="/pages/home/treasureLog/index"
+              bind:tap="navigateToHander">
             <text>更多</text>
             <text>></text>
         </view>
@@ -10,20 +12,21 @@
         <scroll-view class="scrolls" scroll-x>
           <view class="auction-list">
             <view class="auction_box"
-                  wx:for="{{auctionList}}"
+                  wx:for="{{list}}"
                   wx:key="index"
-                  bind:tap="jumpGoodsDetail"
+                  data-url="/pages/home/dynamicLog/index?id={{item.code}}"
+                  bind:tap="navigateToHander"
             >
               <view class="img-box">
-                <image src="https://lvcui-image.oss-cn-shanghai.aliyuncs.com/background/freeBootBg.png"></image>
-              </view>
-              <view class="txt-box">
-                <view class="title">纪念日老婆送的</view>
-                <view class="time">已玩245天,34次</view>
+                <image src="{{item.images_url}}" mode="aspectFill"></image>
+                <view class="txt-box">
+                  <view class="title">{{item.title}}</view>
+                  <view class="time">已玩{{item.play_number}}天,{{item.play_count}}次</view>
+                </view>
               </view>
               <view class="userbox">
-                <image src="https://lvcui-image.oss-cn-shanghai.aliyuncs.com/background/luckybagpng.png"></image>
-                <view>{{item.username}}</view>
+                <image src="{{item.avatar_url}}"></image>
+                <view>{{item.nickname}}</view>
               </view>
             </view>
           </view>

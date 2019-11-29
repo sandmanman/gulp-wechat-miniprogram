@@ -13,10 +13,14 @@
       width: 25%;
       text-align: center;
       margin-bottom: 28rpx;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       .category-img {
         width: 120rpx;
         height: 120rpx;
         border-radius: 50%;
+        overflow: hidden;
       }
       .category-name {
         width: 100%;

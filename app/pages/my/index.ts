@@ -51,5 +51,13 @@ export default Page({
     this.setData({
       selsectIndex: index
     })
+  },
+  navigateToHander({
+    currentTarget: {
+      dataset = { url: '' }
+    }
+  }) {
+    const { url } = dataset
+    wx.navigateTo({ url })
   }
 })

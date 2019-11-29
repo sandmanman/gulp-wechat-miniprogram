@@ -2,7 +2,7 @@ Page({
   data: {
     selectedSourceList: [],
     swiperCurrentIndex: 0,
-    tagList: ['翡翠', '玛瑙', '宝石', '么么哒'],
+    tagList: [],
     showConfirmActionSheet: false
   },
   onLoad() {
@@ -11,10 +11,12 @@ Page({
       'getSelectedSourceListFromMain',
       (data: {
         selectedSourceList: ISelectedSourceList
+        tagList: []
         swiperCurrentIndex: number
       }) => {
         this.setData({
           selectedSourceList: data.selectedSourceList,
+          tagList: data.tagList,
           swiperCurrentIndex: data.swiperCurrentIndex
         })
         console.log('data: ', data)
@@ -57,14 +59,18 @@ Page({
   },
   selectTagHander({
     currentTarget: {
-      dataset = { tag: '' }
+      dataset = { tag: {
+        id: 0,
+        name: ''
+      }}
     }
   }) {
     const { tag } = dataset
     const selectedSourceList: ISelectedSourceList = [].concat(
       this.data.selectedSourceList
     )
-    selectedSourceList[this.data.swiperCurrentIndex].tag = tag
+    selectedSourceList[this.data.swiperCurrentIndex].tag = tag.name
+    selectedSourceList[this.data.swiperCurrentIndex].tag_id = tag.id
     this.hideActionSheetHander(() => this.setData({ selectedSourceList }))
   },
   deleteTagHander() {

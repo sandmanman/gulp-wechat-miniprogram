@@ -1,11 +1,9 @@
-page {
-  background: #F8F8F8;
-}
 .treasureLogBox {
+  width: 100%;
   .titleChoiseBox {
     position: fixed;
-    top: 0rpx;
-    left: 0rpx;
+    top: 0;
+    left: 0;
     width: 100%;
     z-index: 10;
     font-size: 28rpx;
@@ -93,6 +91,7 @@ page {
         .img-box {
           width: 100%;
           height: 342rpx;
+          background: #F8F8F8;
         }
         .userDetail {
           color: #FFFFFF;

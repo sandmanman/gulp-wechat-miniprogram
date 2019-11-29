@@ -1,19 +1,18 @@
 Component({
-  properties: {},
-  methods: {
-    jumpGoodsDetail() {
-      wx.navigateTo({
-        url: '/pages/home/dynamicLog/index'
-      })
+  properties: {
+    list: {
+      type: Array,
+      value: []
     }
   },
-  data: {
-    auctionList: [
-      { username: '小东' },
-      { username: '小东' },
-      { username: '小东' },
-      { username: '小东' },
-      { username: '小东' }
-    ]
+  methods: {
+    navigateToHander({
+      currentTarget: {
+        dataset = { url: '' }
+      }
+    }) {
+      const { url } = dataset
+      wx.navigateTo({ url })
+    }
   }
 })

@@ -31,14 +31,15 @@ class API {
   uploadFile = (filePath: string, formData: {
     c_p: string
     signature: string
+    tag_id?: number
     file_info: string
   }): Promise<{
     file: string
+    id: number
     url_oss: string
-    uploadProgress: number
   }> => {
     return new Promise((resolve, reject) => {
-      const uploadTash = wx.uploadFile({
+      wx.uploadFile({
         filePath,
         name: 'file',
         url: `${config.urlPrefix}/file/upload`,
@@ -47,39 +48,35 @@ class API {
           'content-type': 'application/x-www-form-urlencoded'
         },
         success(res: WechatMiniprogram.UploadFileSuccessCallbackResult) {
-          uploadTash.abort()
-          const data: {
-            file: string
-            url_oss: string
-            uploadProgress: number
-          } = Object.assign(JSON.parse(res.data), { uploadProgress: 100 })
-          resolve(data)
+          const data = JSON.parse(res.data)
+          if (data.code === 200) {
+            resolve(data.obj)
+          } else {
+            wx.showToast({
+              title: data.msg,
+              icon: 'none'
+            })
+            reject(data.msg)
+          }
         },
         fail(error) {
           reject(error.errMsg)
         }
       })
-      uploadTash.onProgressUpdate((res: WechatMiniprogram.UploadTaskOnProgressUpdateCallbackResult) => {
-        resolve({
-          file: '',
-          url_oss: '',
-          uploadProgress: res.progress
-        })
-      })
     })
   }
 
   // 更改或发布宝物
-  save = (params: {
+  saveWiki = (params: {
     c_p: string
     signature: string
-    image: string
+    image_id: number
     name: string
     wiki_id?: string
     id?: string
   }): Promise<IResponseType<{
     name: string
-  }>> => httpRequest('/api/wikiuser/save', 'POST', params)
+  }>> => httpRequest('/wikiuser/save', 'POST', params)
 
   // 动态详情页
   getDynamicDetail = (params: {
@@ -102,36 +99,10 @@ class API {
   }>> => httpRequest('/dynamic/info', 'GET', params)
 
   // 动态玩物日志
-  getDynamicLog = (params: {
-    c_p: string
-    signature: string
-    Code: string
-  }): Promise<IResponseType<{
-    avatar_url: string
-    code: string
-    nick_name: string
-    play_count: string
-    play_number: string
-    tag_name: string
-    title: string
-  }>> => httpRequest('/dynamic/daily_info', 'GET', params)
+  getDynamicLog = (params: { c_p: any } & { signature: string; c_p: string }): Promise<IResponseType<{ avatar_url: string; code: string; nick_name: string; play_count: string; play_number: string; tag_name: string; title: string }>> => httpRequest('/dynamic/daily_info', 'GET', params)
 
   // 动态玩物日志数组
-  getDynamicLogList = (params: {
-    c_p: string
-    signature: string
-    Code: string
-    UserWikiCode: string
-    Page: string
-  }): Promise<IResponseType<{
-    avatar_url: string
-    code: string
-    nick_name: string
-    play_count: string
-    play_number: string
-    tag_name: string
-    title: string
-  }>> => httpRequest('/dynamic/daily_list', 'GET', params)
+  getDynamicLogList = (params: { c_p: any } & { signature: string; c_p: string }): Promise<IResponseType<{ avatar_url: string; code: string; nick_name: string; play_count: string; play_number: string; tag_name: string; title: string }>> => httpRequest('/dynamic/daily_list', 'GET', params)
 
   // 宝物详情接口
   getarticleDetailList = (params: {
@@ -139,8 +110,8 @@ class API {
     signature: string
     id: number
   }): Promise<IResponseType<{
-    cover: string
-    node: any
+    article: string[]
+    wiki: any
   }>> => httpRequest('/wiki/detail', 'GET', params)
 
   // 玩法指南节点
@@ -150,6 +121,7 @@ class API {
     id: number
   }): Promise<IResponseType<{
     cover: string
+    name: string
     node: any
   }>> => httpRequest('/wiki/guide', 'GET', params)
 
@@ -162,6 +134,42 @@ class API {
     nickname: string
     avatar_url: string
   }>> => httpRequest('/wiki/recommend', 'GET', params)
+
+  // 发布动态
+  saveMoment = (params: {
+    c_p: string
+    signature: string
+    title: string
+    content: string
+    media_ids: number
+    user_wiki_id?: number
+  }): Promise<IResponseType<{
+    data: any
+  }>> => httpRequest('/dynamic/create', 'POST', params)
+
+  // 创建日志/动态初始化
+  initMoment = (params: {
+    c_p: string
+    signature: string
+  }): Promise<IResponseType<{
+    my_wiki_list: Array<{
+      id: number
+      name: string
+    }>
+    tag_list: Array<{
+      id: number
+      name: string
+    }>
+  }>> => httpRequest('/dynamic/init', 'GET', params)
+
+  // 首页日志列表
+  getArticleList = (params: { c_p: any } & { signature: string; c_p: string }): Promise<IResponseType<{ current_page: number; last_page: number; list: any[]; per_page: number; total: number }>> => httpRequest('/dynamic/daily_home_list', 'GET', params)
+
+  // 获取我的宝物列表
+  getMyWikiList = (params: {
+    c_p: string
+    signature: string
+  }): Promise<IResponseType<unknown>> => httpRequest('/wikiuser/mywiki', 'GET', params)
 }
 
 export default new API()

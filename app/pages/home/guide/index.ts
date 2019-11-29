@@ -6,11 +6,14 @@ const app = getApp<IAppOption>()
 export default Page({
   data: {
     cover: '',
+    name: '',
     nodeList: []
   },
   async onLoad(query: Record<string, string | undefined>) {
     const { id = '1' } = query
-    await app.userLogin()
+    if (!app.globalData.userInfo.user_code) {
+      await app.userLogin()
+    }
     await this.getGuide(parseInt(id))
   },
   navigationBackHander() {
@@ -32,6 +35,7 @@ export default Page({
     const data = await api.getGuide(params)
     this.setData({
       cover: data.obj.cover,
+      name: data.obj.name,
       nodeList: data.obj.node
     })
     console.log(data.obj)

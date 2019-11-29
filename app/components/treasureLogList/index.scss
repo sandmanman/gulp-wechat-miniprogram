@@ -35,29 +35,42 @@
             height: 294rpx;
             border-radius: 16rpx;
             overflow: hidden;
-          }
-          .txt-box {
-            position: absolute;
-            top: 200rpx;
-            left: 16rpx;
-            color: #FFFFFF;
-            .title {
-              font-size: 28rpx;
-              font-weight: 600;
-            }
-            .time {
-              font-size: 22rpx;
+            position: relative;
+            .txt-box {
+              position: absolute;
+              bottom: 20rpx;
+              left: 16rpx;
+              right: 16rpx;
+              color: #FFFFFF;
+              z-index: 5;
+              .title {
+                width: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-size: 28rpx;
+                font-weight: 600;
+              }
+              .time {
+                font-size: 22rpx;
+                color: rgba(255, 255, 255, .8);
+              }
             }
           }
           .userbox {
             padding-top: 14rpx;
             display: flex;
+            align-items: center;
             image {
               width: 34rpx;
               height: 34rpx;
               border-radius: 50%;
             }
             view {
+              flex: 1;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
               color: #333333;
               font-size: 26rpx;
               padding-left: 10rpx;

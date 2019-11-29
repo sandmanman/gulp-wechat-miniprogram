@@ -16,6 +16,10 @@ export default (url: string, method: IWechatRequestMethods, data: string | Wecha
         if (data.code === 200) {
           resolve(data)
         } else {
+          wx.showToast({
+            title: data.msg,
+            icon: 'none'
+          })
           reject(data.msg)
         }
       },

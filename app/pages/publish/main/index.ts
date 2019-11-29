@@ -19,12 +19,16 @@ export default Page({
       '从手机相册选择视频'
     ],
     maxTitleLength: 20,
-    maxTextLength: 1000,
+    maxContentLength: 1000,
     title: '',
-    text: ''
+    content: '',
+    initData: {}
   },
   async onLoad() {
-    await app.userLogin()
+    if (!app.globalData.userInfo.user_code) {
+      await app.userLogin()
+    }
+    await this.initMoment()
   },
   onUnload() {
     this.offUploadTaskListener()
@@ -55,7 +59,7 @@ export default Page({
         }
 
         await Iterator()
-        self.preEditHander(selectedSourceList, swiperCurrentIndex)
+        self.preEditHander(selectedSourceList, self.data.initData.tag_list, swiperCurrentIndex)
       }
     })
   },
@@ -75,7 +79,8 @@ export default Page({
             fileType: 'video',
             path: '',
             orientation: 'up',
-            uploadProgess: 0
+            uploadProgess: 0,
+            tag_id: 0
           }
         ]
         self.preEditHander(selectedSourceList, 0)
@@ -137,6 +142,7 @@ export default Page({
   },
   preEditHander(
     selectedSourceList: ISelectedSourceList,
+    tagList: [],
     swiperCurrentIndex = 0
   ) {
     const self = this
@@ -151,6 +157,7 @@ export default Page({
       success(res) {
         res.eventChannel.emit('getSelectedSourceListFromMain', {
           selectedSourceList,
+          tagList,
           swiperCurrentIndex
         })
         wx.hideLoading()
@@ -163,14 +170,13 @@ export default Page({
     }
   }) {
     const { swipercurrentindex } = dataset
-    this.preEditHander(this.data.selectedSourceList, swipercurrentindex)
+    this.preEditHander(this.data.selectedSourceList, this.data.initData.tag_list, swipercurrentindex)
   },
   titleInputHander({
     detail: {
       value = ''
     }
   }) {
-    console.log(value)
     this.setData({
       title: value
     })
@@ -178,15 +184,17 @@ export default Page({
   textInputHander({
     detail: { value = '' }
   }) {
-    this.setData({ text: value })
+    this.setData({ content: value })
   },
   async upLoadFile(filePath: string, formData: {
     c_p: string
     signature: string
+    tag_id: number
     file_info: string
   }): Promise<{
     file: string
     url_oss: string
+    id: number
   }> {
     const self = this
     return new Promise((resolve, reject) => {
@@ -200,7 +208,16 @@ export default Page({
         },
         success(res: WechatMiniprogram.UploadFileSuccessCallbackResult) {
           self.offUploadTaskListener()
-          resolve(JSON.parse(res.data))
+          const data = JSON.parse(res.data)
+          if (data.code === 200) {
+            resolve(data.obj)
+          } else {
+            wx.showToast({
+              title: data.msg,
+              icon: 'none'
+            })
+            reject(data.msg)
+          }
         },
         fail(error) {
           reject(error.errMsg)
@@ -219,6 +236,10 @@ export default Page({
       user_code: app.globalData.userInfo.user_code
     })
     const { selectedSourceList } = this.data as { selectedSourceList: ISelectedSourceList }
+    if (selectedSourceList.every(i => i.uploadProgess === 100)) {
+      await this.submit()
+      return
+    }
     const currentSource = selectedSourceList[this.data.uploadedSourceCount]
     const sourceLangth = this.data.selectedSourceList.length
     const filePath = currentSource.fileType === 'video' ? currentSource.tempFilePath : currentSource.path
@@ -235,21 +256,75 @@ export default Page({
     })
     const params = getSignature({
       c_p,
+      tag_id: currentSource.tag_id,
       file_info: JSON.stringify(currentSource.fileType === 'image' ? imageFileInfo : videoFileInfo)
     })
     const uploadResult = await this.upLoadFile(filePath, params)
     selectedSourceList[this.data.uploadedSourceCount].url = uploadResult.url_oss
+    selectedSourceList[this.data.uploadedSourceCount].id = uploadResult.id
     this.setData({ selectedSourceList })
     this.setData({ uploadedSourceCount: this.data.uploadedSourceCount + 1 })
     if (this.data.uploadedSourceCount < sourceLangth) {
       await this.save()
     }
     wx.showToast({ title: '上传完成' })
+    await this.submit()
   },
   offUploadTaskListener() {
-    if (typeof uploadTask === 'object') {
+    if (uploadTask instanceof Object) {
       uploadTask.abort()
       uploadTask.offProgressUpdate(() => void 0)
     }
+  },
+  async submit() {
+    const { title = '', content = '', selectedSourceList = [] } = this.data
+    if (!title || !content || !selectedSourceList.length) {
+      wx.showModal({
+        title: '温馨提示',
+        content: '请填写完成内容'
+      })
+      return
+    }
+    const media_ids = selectedSourceList.reduce((acc: number[], item: ISelectedSourceItem) => {
+      acc.push(item.id)
+      return acc
+    }, [])
+    const params = getSignature({
+      c_p: app.globalData.c_p,
+      title,
+      content,
+      media_ids: media_ids.toString()
+    })
+    try {
+      const data = await api.saveMoment(params)
+      wx.showToast({ title: data.msg })
+      setTimeout(() => wx.switchTab({ url: '/pages/my/index' }), 2500)
+    } catch (error) {
+      wx.showToast({
+        title: error,
+        icon: 'none'
+      })
+    }
+  },
+  async initMoment() {
+    const params = getSignature({
+      c_p: app.globalData.c_p
+    })
+    try {
+      const data = await api.initMoment(params)
+      this.setData({
+        initData: data.obj
+      })
+    } catch (error) {
+      console.error(error)
+    }
+  },
+  navigateToHander({
+    currentTarget: {
+      dataset = { url: '' }
+    }
+  }) {
+    const { url } = dataset
+    wx.navigateTo({ url })
   }
 })

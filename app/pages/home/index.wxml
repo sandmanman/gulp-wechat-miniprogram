@@ -8,11 +8,13 @@
           data-url="/pages/home/articleDetail/index?id={{item.id}}"
           bind:tap="navigateToHander"
     >
-      <image class="category-img" src="{{item.cover}}"></image>
+      <view class="category-img">
+        <image src="{{item.cover}}"></image>
+      </view>
       <view class="category-name">{{item.name}}</view>
     </view>
   </view>
-  <treasurelog-list></treasurelog-list>
+  <treasurelog-list list="{{articleList}}"></treasurelog-list>
   <view class="title">全部动态</view>
   <view class="comment-list">
     <waterfalls-flow></waterfalls-flow>

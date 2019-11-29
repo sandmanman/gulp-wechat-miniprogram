@@ -40,7 +40,7 @@
            placeholder="填写标题会有更多赞哦~"
            placeholder-class="input-title-placeholder"
            maxlength="{{maxTitleLength}}"
-           value="{{value}}"
+           value="{{title}}"
            bind:input="titleInputHander"
     />
     <view class="word-count">{{maxTitleLength - title.length}}</view>
@@ -49,21 +49,37 @@
     <textarea class="textarea"
               placeholder="添加正文"
               placeholder-class="input-text-placeholder"
-              maxlength="{{maxTextLength}}"
-              value="{{text}}"
+              maxlength="{{maxContentLength}}"
+              value="{{content}}"
               show-confirm-bar="{{false}}"
               bind:input="textInputHander"
     ></textarea>
-    <view class="word-count">{{maxTextLength - text.length}}</view>
+    <view class="word-count">{{maxContentLength - content.length}}</view>
   </view>
   <view class="linked">
     <view class="linked-main">
       <view class="icon"></view>
       <view class="title">关联我的宝物</view>
     </view>
-    <view class="linked-secondary">
+    <view class="linked-secondary"
+          data-url="/pages/my/createProductPost/index"
+          bind:tap="navigateToHander"
+    >
       <view class="text">去创建我的宝物</view>
       <view class="icon"></view>
+    </view>
+  </view>
+  <!-- 我的宝物 -->
+  <view class="my-guide-list">
+    <view class="guide-item"
+          wx:for="{{initData.my_wiki_list}}"
+          wx:key="{{index}}"
+          data-id="{{item.id}}"
+          bind:tap="setSelectedGuideID"
+    ><text>{{item.name}}</text></view>
+    <view class="guide-item">
+      <view class="search-icon"></view>
+      <text>查看更多</text>
     </view>
   </view>
   <footer-button bind:submit="save">发布</footer-button>

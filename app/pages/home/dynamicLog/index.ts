@@ -71,7 +71,8 @@ Page({
       c_p: app.globalData.c_p,
       UserCode: app.globalData.userInfo.user_code,
       Code: 'f65ErrunbU7YUAkswduIeTikRKBzSyVR',
-      UserWikiCode: '5dKGgXZ0tkCsc3alfChfJPJ3cNjcJLsy'
+      UserWikiCode: '5dKGgXZ0tkCsc3alfChfJPJ3cNjcJLsy',
+      Page: 1
     })
     const data = await api.getDynamicLogList(params)
     // this.setData({
