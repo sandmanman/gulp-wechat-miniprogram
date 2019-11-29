@@ -58,7 +58,7 @@ export const WXGetImageInfoAsync = (
   })
 }
 
-export const getSignature = <T extends { c_p: any }, K extends keyof T>(target: T): T & { signature: string; c_p: string } => {
+export const getSignature = <T extends { c_p: any }, K extends keyof T>(target: T): T & { signature: string, c_p: string } => {
   let param = ''
   const c_p = JSON.stringify(target.c_p)
   try {

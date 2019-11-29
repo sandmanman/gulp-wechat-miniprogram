@@ -99,10 +99,10 @@ class API {
   }>> => httpRequest('/dynamic/info', 'GET', params)
 
   // 动态玩物日志
-  getDynamicLog = (params: { c_p: any } & { signature: string; c_p: string }): Promise<IResponseType<{ avatar_url: string; code: string; nick_name: string; play_count: string; play_number: string; tag_name: string; title: string }>> => httpRequest('/dynamic/daily_info', 'GET', params)
+  getDynamicLog = (params: { c_p: any } & { signature: string, c_p: string }): Promise<IResponseType<{ avatar_url: string, code: string, nick_name: string, play_count: string, play_number: string, tag_name: string, title: string }>> => httpRequest('/dynamic/daily_info', 'GET', params)
 
   // 动态玩物日志数组
-  getDynamicLogList = (params: { c_p: any } & { signature: string; c_p: string }): Promise<IResponseType<{ avatar_url: string; code: string; nick_name: string; play_count: string; play_number: string; tag_name: string; title: string }>> => httpRequest('/dynamic/daily_list', 'GET', params)
+  getDynamicLogList = (params: { c_p: any } & { signature: string, c_p: string }): Promise<IResponseType<{ avatar_url: string, code: string, nick_name: string, play_count: string, play_number: string, tag_name: string, title: string }>> => httpRequest('/dynamic/daily_list', 'GET', params)
 
   // 宝物详情接口
   getarticleDetailList = (params: {
@@ -163,7 +163,7 @@ class API {
   }>> => httpRequest('/dynamic/init', 'GET', params)
 
   // 首页日志列表
-  getArticleList = (params: { c_p: any } & { signature: string; c_p: string }): Promise<IResponseType<{ current_page: number; last_page: number; list: any[]; per_page: number; total: number }>> => httpRequest('/dynamic/daily_home_list', 'GET', params)
+  getArticleList = (params: { c_p: any } & { signature: string, c_p: string }): Promise<IResponseType<{ current_page: number, last_page: number, list: any[], per_page: number, total: number }>> => httpRequest('/dynamic/daily_home_list', 'GET', params)
 
   // 获取我的宝物列表
   getMyWikiList = (params: {
