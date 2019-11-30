@@ -9,7 +9,7 @@
                       <view class="label-icon">
                           <image src="/assets/img/home/treasure-white@2x.png"></image>
                       </view>
-                      <view class="label-txt">翡翠</view>
+                      <view class="label-txt">{{articleInfo.tag_name}}</view>
                 </view>
                 <view class="share-img-box">
                   <view class="share-img">
@@ -21,8 +21,8 @@
                 </view>
             </view>
             <view class="banner-txt-box">
-                <view class="banner-txt-title">纪念日老婆送的</view>
-                <view class="banner-txt-time">已玩483天 | 192次</view>
+                <view class="banner-txt-title">{{articleInfo.title}}</view>
+                <view class="banner-txt-time">已玩{{articleInfo.play_number}}天 | {{articleInfo.play_count}}次</view>
             </view>
         </view>
     </view>
@@ -30,42 +30,47 @@
       <view class="all-content">
         <view class="user-box">
           <view class="user-head-box">
-                <image src="https://lvcui-image.oss-cn-shanghai.aliyuncs.com/background/bg.png"></image>
+                <image src="{{articleInfo.avatar_url}}"></image>
             </view>
-            <view class="username">琼脂天下</view>
+            <view class="username">{{articleInfo.nick_name}}</view>
         </view>
         <view class="dynamic-content-box">
           <view class="treasure-content-box"
-                wx:for="{{dynamicList}}"
-                wx:key="{{idx}}"
+                wx:for="{{momentList}}"
+                wx:key="{{index}}"
           >
               <view class="time-record-box">
                     <view class="timelist">
                         <view class="upstairs">{{item.upstairsnum}}</view>
-                        <view class="upstairs-time">2019-11-09 12:23</view>
+                        <view class="upstairs-time">{{item.create_time}}</view>
                     </view>
-                    <view class="day-time">第483天</view>
+                    <view class="day-time">第{{item.play_number}}天</view>
               </view>
             <view class="logcontentbox">
               <view class="logdetail">
-                  <view class="logtitle">我是遗传标题字符</view>
+                  <view class="logtitle">{{item.title}}</view>
                   <view class="logtxt-box">
-                      <view class="detailtxt">刚刚的，整圈一致的种水，难得51的小圈口还是宽版厚装的，不是小窄条也不是贵妃。唯一缺点，我胖了，有点卡住了，呃。咔咔卡整圈一致的种水，难得51的小圈口还是宽版厚装的，不是小窄条也不是贵妃。唯一缺点</view>
-                      <view class="alltxt">全部</view>
+                      <view class="detailtxt">{{item.content}}</view>
+<!--                      <view class="alltxt">全部</view>-->
                   </view>
-                  <block wx:if="{{!item.videos}}">
+                  <block wx:if="{{item.source_type === 'image'}}">
                     <view class="logimage-box">
                         <view class="imagelist-box"
-                              wx:for="{{item.imgList}}"
-                              wx:key="{{idx}}"
+                              wx:for="{{item.source_list}}"
+                              wx:for-item="sourceItem"
+                              wx:for-index="sourceIndex"
+                              wx:key="{{sourceIndex}}"
                         >
-                            <image src="{{item.photos}}"></image>
+                            <image src="{{sourceItem.url_oss}}" mode="aspectFill"></image>
                         </view>
                     </view>
                   </block>
                   <block wx:else>
                     <view class="videolog-box">
-                      <video id="myVideo" src="{{item.videos}}" enable-danmu danmu-btn controls></video>
+                      <video src="{{item.source_url}}"
+                             controls
+                             object-fit="cover"
+                      ></video>
                     </view>
                   </block>
               </view>

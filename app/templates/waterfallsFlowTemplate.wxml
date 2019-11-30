@@ -2,7 +2,10 @@
   <block wx:for="{{list}}"
          wx:key="{{index}}"
   >
-    <view class="flow-item" bind:tap="nagivatorToDynamic">
+    <view class="flow-item"
+          data-url="/pages/home/moments/index?id={{item.code}}"
+          bind:tap="nagivatorHandle"
+    >
       <view class="item-image"
             style="height: {{width / ( item.width / item.height )}}rpx"
       >

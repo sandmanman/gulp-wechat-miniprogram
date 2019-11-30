@@ -35,10 +35,15 @@ Component({
     rightHeight: 0
   },
   methods: {
-    nagivatorToDynamic() {
-      wx.navigateTo({
-        url: '/pages/home/moments/index'
-      })
+    nagivatorHandle({
+      currentTarget: {
+        dataset = {
+          url: ''
+        }
+      }
+    }) {
+      const { url } = dataset
+      wx.navigateTo({ url })
     }
   }
 })
