@@ -10,14 +10,14 @@ export default Page({
       {
         type: 3,
         name: '动态',
-        pageNumber: 1,
+        pageNumber: 0,
         canLoadNextPage: false,
         data: []
       },
       {
         type: 4,
         name: '玩物日志',
-        pageNumber: 1,
+        pageNumber: 0,
         canLoadNextPage: false,
         data: []
       }
@@ -46,7 +46,7 @@ export default Page({
       const navBarList = this.data.navBarList
       navBarList[this.data.activeIndex].pageNumber += 1
       this.setData({ navBarList })
-      await this.getMomentList()
+      await this.getList(navBarList[this.data.activeIndex].type, navBarList[this.data.activeIndex].pageNumber)
     }
   },
   async updateUserInfo(e: { detail: WechatMiniprogram.GetUserInfoSuccessCallbackResult }) {
@@ -95,24 +95,25 @@ export default Page({
     const { url } = dataset
     wx.navigateTo({ url })
   },
-  navChangeHandle({
+  async navChangeHandle({
     detail = {
       current: 0
     }
   }) {
     const { current } = detail
-    this.setData({ activeIndex: current }, async () => {
-      await this.getList(this.data.navBarList[current].type, this.data.navBarList[current].pageNumber)
-      this.getRect(current === 0 ? '#moment' : '#article')
-    })
+    if (this.data.navBarList[current].pageNumber === 0) {
+      await this.getList(this.data.navBarList[current].type, 1)
+    }
+    this.getRect(current === 0 ? '#moment' : '#article', this.setData({ activeIndex: current }))
   },
-  getRect(nodeID: '#moment' | '#article') {
+  getRect(nodeID: '#moment' | '#article', callback: () => void) {
     const self = this
     wx.createSelectorQuery().select(nodeID).boundingClientRect((rect: WechatMiniprogram.BoundingClientRectCallbackResult) => {
-      self.setData({ swiperHeight: rect.height })
+      self.setData({ swiperHeight: rect.height }, callback)
     }).exec()
   },
   async getList(type: 1 | 2 | 3 | 4, page = 1) {
+    wx.showLoading({ title: '拼命加载中', mask: true })
     const params = getSignature({
       c_p: app.globalData.c_p,
       type,
@@ -125,7 +126,8 @@ export default Page({
       navBarList[activeIndex].canLoadNextPage = obj.current_page !== obj.last_page
       navBarList[activeIndex].pageNumber = obj.current_page
       navBarList[activeIndex].data = obj.current_page === 1 ? obj.list : navBarList[activeIndex].data.concat(obj.list)
-      this.setData({ navBarList })
+      this.setData({ navBarList }, wx.hideLoading)
+      this.getRect(activeIndex === 0 ? '#moment' : '#article')
     } catch (error) {
       console.error(error)
     }
