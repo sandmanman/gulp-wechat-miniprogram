@@ -1,83 +1,76 @@
 <view class="moments-container">
-  <!-- <navigation-bar background="transparent"
+  <navigation-bar background="transparent"
                   backgroundColorTop="transparent"
                   iconTheme="white"
                   back
                   bind:back="navigationBackHander"
-  ></navigation-bar> -->
+  ></navigation-bar>
   <!-- 上遮罩 -->
-  <view class="top-mark">
-      <navigation-bar background="transparent"
-                  backgroundColorTop="transparent"
-                  iconTheme="white"
-                  back
-                  bind:back="navigationBackHander"
-      ></navigation-bar>
-  </view>
+  <view class="top-mark"></view>
   <view class="banner-image-box">
     <block wx:if="{{!video_url}}">
       <view class="imagelist-box">
-          <swiper class="swiper-box" interval="5000" duration="1000"  bindchange="swiperChange">
-              <swiper-item class="swiperlist" wx:for="{{images_list}}" wx:key="{{idx}}">
-                  <view class="img">
-                      <image src="{{item.url_oss}}"></image>
-                  </view>
-                  <view class="label-box">
-                      <view class="label-img">
-                          <image src="/assets/img/publish/tag_white@2x.png"></image>
-                      </view>
-                      <view class="laber-txt">{{item.tag_name}}</view>
-                  </view>
-              </swiper-item>
-          </swiper>
-          <view class="page-num-box">{{swiperCurrent}}/{{images_list.length}}</view>
+        <swiper class="swiper-box" interval="5000" duration="1000" bindchange="swiperChange">
+          <swiper-item class="swiperlist" wx:for="{{images_list}}" wx:key="{{idx}}">
+            <view class="img">
+              <image src="{{item.url_oss}}"></image>
+            </view>
+            <view class="label-box">
+              <view class="label-img">
+                <image src="/assets/img/publish/tag_white@2x.png"></image>
+              </view>
+              <view class="laber-txt">{{item.tag_name}}</view>
+            </view>
+          </swiper-item>
+        </swiper>
+        <view class="page-num-box">{{swiperCurrent}}/{{images_list.length}}</view>
       </view>
     </block>
     <block wx:else>
       <view class="video-box">
-          <video id="myVideo"
-                  src="{{video_url}}"
-                  enable-danmu
-                  danmu-btn
-                  controls
-          ></video>
+        <video id="myVideo"
+               src="{{video_url}}"
+               enable-danmu
+               danmu-btn
+               controls
+        ></video>
       </view>
     </block>
   </view>
   <view class="detail-box">
     <view class="user-box">
       <view class="user-head">
-            <view class="user-img">
-              <image src="{{avatar_url}}"></image>
-            </view>
-            <view class="user-name">{{nickname}}</view>
+        <view class="user-img">
+          <image src="{{avatar_url}}"></image>
+        </view>
+        <view class="user-name">{{nickname}}</view>
       </view>
       <view class="share-box">
-          <view class="share-cion">
-            <image src="/assets/img/icon/share@2x.png"></image>
-          </view>
-          <view class="share-cion">
-            <image src="/assets/img/home/set@2x.png"></image>
-          </view>
+        <view class="share-cion">
+          <image src="/assets/img/icon/share@2x.png"></image>
+        </view>
+        <view class="share-cion">
+          <image src="/assets/img/home/set@2x.png"></image>
+        </view>
       </view>
     </view>
     <view class="content-box">
-        <view class="title">{{title}}</view>
-        <view class="txt">{{content}}</view>
+      <view class="title">{{title}}</view>
+      <view class="txt">{{content}}</view>
     </view>
     <view class="footer-box">
-        <view class="labeltxt-box">
-            <view class="imgsbox">
-                <image src="/assets/img/home/treasure-blue@2x.png"></image>
-            </view>
-            <view class="labelname">{{wiki_user_name}}</view>
+      <view class="labeltxt-box">
+        <view class="imgsbox">
+          <image src="/assets/img/home/treasure-blue@2x.png"></image>
         </view>
-        <view class="timetxt">{{create_time}}</view>
+        <view class="labelname">{{wiki_user_name}}</view>
+      </view>
+      <view class="timetxt">{{create_time}}</view>
     </view>
   </view>
   <view class="footbanner-box">
-      <view class="footimg">
-          <image src="/assets/img/home/zhizunbao_tec@2x.png"></image>
-      </view>
+    <view class="footimg">
+      <image src="/assets/img/home/zhizunbao_tec@2x.png"></image>
+    </view>
   </view>
 </view>

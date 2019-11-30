@@ -5,6 +5,11 @@ const app = getApp<IAppOption>()
 
 Page({
   data: {
+    code: 0,
+    pageNumber: 1,
+    canLoadNextPage: true,
+    articleList: [],
+    momentList: [],
     iconList: [
       {
         icomImg: '/assets/img/my/guide.png',
@@ -26,13 +31,21 @@ Page({
   },
   async onLoad(query: Record<string, string | undefined>) {
     const { id = '' } = query
+    this.setData({ code: parseInt(id) })
     if (!app.globalData.userInfo.user_code) {
       await app.userLogin()
     }
     const iconList = this.data.iconList
     iconList[0].path += `?id=${id}`
     this.setData({ iconList })
+    await this.getArticleList(this.data.code)
     await this.getarticleDetailList(parseInt(id))
+  },
+  async onReachBottom() {
+    if (this.data.canLoadNextPage) {
+      this.setData({ pageNumber: this.data.pageNumber + 1 })
+      await this.getMomentList()
+    }
   },
   async getarticleDetailList(id: number) {
     const params = getSignature({
@@ -48,6 +61,13 @@ Page({
     }
   }) {
     const { url } = dataset
+    if (url === '/pages/home/atlas/index') {
+      wx.showToast({
+        title: '功能正在开发中',
+        icon: 'none'
+      })
+      return
+    }
     wx.navigateTo({ url })
   },
   sendBtn({
@@ -57,5 +77,28 @@ Page({
   }) {
     const { url } = dataset
     wx.navigateTo({ url })
+  },
+  async getList(type: 1 | 2 | 3 | 4, page = 1) {
+    const params = getSignature({
+      c_p: app.globalData.c_p,
+      type,
+      page
+    })
+    try {
+      return await api.getDynamicList(params)
+    } catch (error) {
+      console.error(error)
+    }
+  },
+  async getArticleList() {
+    const data = await this.getList(2, 1, this.data.code)
+    this.setData({ articleList: data.obj.list })
+  },
+  async getMomentList() {
+    const data = await this.getList(1, this.data.pageNumber, this.data.code)
+    this.setData({
+      canLoadNextPage: this.data.pageNumber !== data.obj.last_page,
+      momentList: data.obj.list
+    })
   }
 })

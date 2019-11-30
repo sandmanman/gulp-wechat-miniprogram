@@ -17,6 +17,6 @@
   <treasurelog-list list="{{articleList}}"></treasurelog-list>
   <view class="title">全部动态</view>
   <view class="comment-list">
-    <waterfalls-flow></waterfalls-flow>
+    <waterfalls-flow list="{{momentList}}"></waterfalls-flow>
   </view>
 </view>

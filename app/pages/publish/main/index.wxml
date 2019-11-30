@@ -70,17 +70,25 @@
     </view>
   </view>
   <!-- 我的宝物 -->
-  <view class="my-guide-list">
-    <view class="guide-item"
+  <scroll-view class="my-guide-list"
+               scroll-x
+               enable-flex
+               scroll-left="{{scrollLeft}}"
+               bind:scroll="myGuideListScrollChangeHandle"
+  >
+    <view class="guide-item {{selectedWikiId === item.id && 'active'}}"
           wx:for="{{initData.my_wiki_list}}"
           wx:key="{{index}}"
           data-id="{{item.id}}"
           bind:tap="setSelectedGuideID"
     ><text>{{item.name}}</text></view>
-    <view class="guide-item">
+    <view class="guide-item"
+          data-url="/pages/my/myTreasure/index"
+          bind:tap="navigateToHander"
+    >
       <view class="search-icon"></view>
       <text>查看更多</text>
     </view>
-  </view>
-  <footer-button bind:submit="save">发布</footer-button>
+  </scroll-view>
+  <footer-button bind:submit="save" disabled="{{isDisabledClick}}">发布</footer-button>
 </view>

@@ -22,3 +22,9 @@ image, video {
 button[plain] {
   border: 0;
 }
+button[disabled] {
+  background: #F7F7F7 !important;
+}
+button[disabled] > text {
+  color: #4A4A4A !important;
+}

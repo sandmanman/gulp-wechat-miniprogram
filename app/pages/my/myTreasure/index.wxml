@@ -1,26 +1,29 @@
 <view class="my-all-treasure-box">
-      <view class="treasure-detail">
-          <view class="treasure-list-box"
-                wx:for="{{treasureList}}"
-                wx:key="{{index}}"
-          >
-              <image src="{{item.url_oss}}" mode="aspectFill"></image>
-              <image class="screen-icon" src="/assets/img/icon/set.png"></image>
-              <view class="usermessage">
-                    <view class="username-box">{{item.name}}</view>
-                    <view class="time">已玩{{item.days}}天，{{item.freq}}次</view>
-              </view>
-          </view>
+  <view class="treasure-detail">
+    <view class="treasure-list-box"
+          wx:for="{{treasureList}}"
+          wx:key="{{index}}"
+          data-item="{{item}}"
+          bind:tap="clickWikiHandle"
+    >
+      <image src="{{item.url_oss}}" mode="aspectFill"></image>
+      <image class="screen-icon" src="/assets/img/icon/set.png"></image>
+      <view class="usermessage">
+        <view class="username-box">{{item.name}}</view>
+        <view class="time">已玩{{item.days}}天，{{item.freq}}次</view>
       </view>
-      <!-- <view class="nodetail-box">
-          <image src="/assets/img/icon/no-detail-icon.png"></image>
-          <view>暂无宝物</view>
-      </view> -->
-      <view class="btn-box">
-          <image src="/assets/img/icon/tip-blue.png"></image>
-          <view class="create-treasure"
-                data-url="/pages/my/createProductPost/index"
-                bind:tap="navigateToHander"
-          >创建宝物</view>
-      </view>
+    </view>
+  </view>
+  <!-- <view class="nodetail-box">
+      <image src="/assets/img/icon/no-detail-icon.png"></image>
+      <view>暂无宝物</view>
+  </view> -->
+  <view class="btn-box">
+    <image src="/assets/img/icon/tip-blue.png" wx:if="{{!treasureList.length}}"></image>
+    <view class="create-treasure"
+          data-url="/pages/my/createProductPost/index"
+          bind:tap="navigateToHander"
+    >创建宝物
+    </view>
+  </view>
 </view>

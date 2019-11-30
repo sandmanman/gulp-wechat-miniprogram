@@ -2,12 +2,21 @@ import { getSignature } from '../../../utils/index'
 import api from '../../../api/index'
 
 const app = getApp<IAppOption>()
+let eventChannel: WechatMiniprogram.EventChannel | null
 
 Page({
   data: {
-    treasureList: []
+    treasureList: [],
+    mode: 'view' // view-查看详情模式 | select-选择关联宝物模式
   },
   async onLoad() {
+    eventChannel = this.getOpenerEventChannel()
+    eventChannel.on('EventSetMode', (data: {
+      mode: 'view' | 'select'
+    }) => {
+      console.log(data)
+      this.setData({ mode: data.mode })
+    })
     if (!app.globalData.userInfo.user_code) {
       await app.userLogin()
     }
@@ -33,12 +42,29 @@ Page({
     wx.navigateTo({
       url,
       events: {
-        async isUpdateList(data: {
-          flag: boolean
-        }) {
-          if (data.flag) await self.getMyWikiList()
+        async isUpdateList(flag: boolean) {
+          if (flag) await self.getMyWikiList()
         }
       }
     })
+  },
+  clickWikiHandle({
+    currentTarget: {
+      dataset = {
+        item: {
+          id: 0,
+          name: ''
+        }
+      }
+    }
+  }) {
+    const { item } = dataset
+    if (this.data.mode === 'select') {
+      wx.navigateBack({
+        success() {
+          eventChannel.emit('addWikiItem', item)
+        }
+      })
+    }
   }
 })

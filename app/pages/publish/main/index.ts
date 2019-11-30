@@ -22,7 +22,10 @@ export default Page({
     maxContentLength: 1000,
     title: '',
     content: '',
-    initData: {}
+    initData: {},
+    selectedWikiId: 0,
+    scrollLeft: 0,
+    isDisabledClick: false
   },
   async onLoad() {
     if (!app.globalData.userInfo.user_code) {
@@ -259,16 +262,21 @@ export default Page({
       tag_id: currentSource.tag_id,
       file_info: JSON.stringify(currentSource.fileType === 'image' ? imageFileInfo : videoFileInfo)
     })
-    const uploadResult = await this.upLoadFile(filePath, params)
-    selectedSourceList[this.data.uploadedSourceCount].url = uploadResult.url_oss
-    selectedSourceList[this.data.uploadedSourceCount].id = uploadResult.id
-    this.setData({ selectedSourceList })
-    this.setData({ uploadedSourceCount: this.data.uploadedSourceCount + 1 })
-    if (this.data.uploadedSourceCount < sourceLangth) {
-      await this.save()
+    try {
+      this.setData({ isDisabledClick: true })
+      const uploadResult = await this.upLoadFile(filePath, params)
+      selectedSourceList[this.data.uploadedSourceCount].url = uploadResult.url_oss
+      selectedSourceList[this.data.uploadedSourceCount].id = uploadResult.id
+      this.setData({ selectedSourceList })
+      this.setData({ uploadedSourceCount: this.data.uploadedSourceCount + 1 })
+      if (this.data.uploadedSourceCount < sourceLangth) {
+        await this.save()
+      }
+      wx.showToast({ title: '上传完成' })
+      await this.submit()
+    } catch (error) {
+      console.error(error)
     }
-    wx.showToast({ title: '上传完成' })
-    await this.submit()
   },
   offUploadTaskListener() {
     if (uploadTask instanceof Object) {
@@ -281,7 +289,8 @@ export default Page({
     if (!title || !content || !selectedSourceList.length) {
       wx.showModal({
         title: '温馨提示',
-        content: '请填写完成内容'
+        content: '请填写完成内容',
+        showCancel: false
       })
       return
     }
@@ -297,6 +306,7 @@ export default Page({
     })
     try {
       const data = await api.saveMoment(params)
+      this.setData({ isDisabledClick: false })
       wx.showToast({ title: data.msg })
       setTimeout(() => wx.switchTab({ url: '/pages/my/index' }), 2500)
     } catch (error) {
@@ -325,6 +335,63 @@ export default Page({
     }
   }) {
     const { url } = dataset
-    wx.navigateTo({ url })
+    const self = this
+    let navigateToOptionsMixin: {
+      url: string
+      events?: WechatMiniprogram.IAnyObject
+      success?: WechatMiniprogram.NavigateToSuccessCallback
+    } = {
+      url
+    }
+    if (['/pages/my/createProductPost/index'].includes(url)) {
+      navigateToOptionsMixin = {
+        ...navigateToOptionsMixin,
+        events: {
+          async isUpdateList(flag: boolean) {
+            if (flag) {
+              await self.initMoment()
+            }
+          }
+        }
+      }
+    } else if (['/pages/my/myTreasure/index'].includes(url)) {
+      navigateToOptionsMixin = {
+        ...navigateToOptionsMixin,
+        events: {
+          addWikiItem(wikiItem: any) {
+            let my_wiki_list = [].concat(self.data.initData.my_wiki_list)
+            my_wiki_list = my_wiki_list.filter((i: any) => i.id !== wikiItem.id)
+            my_wiki_list.unshift(wikiItem)
+            self.setData({
+              initData: {
+                ...self.data.initData,
+                my_wiki_list
+              },
+              selectedWikiId: wikiItem.id,
+              scrollLeft: 0
+            })
+          }
+        },
+        success(res: WechatMiniprogram.NavigateToSuccessCallbackResult) {
+          res.eventChannel.emit('EventSetMode', { mode: 'select' })
+        }
+      }
+    }
+    wx.navigateTo(navigateToOptionsMixin)
+  },
+  setSelectedGuideID({
+    currentTarget: {
+      dataset = {
+        id: 0
+      }
+    }
+  }) {
+    const { id } = dataset
+    this.setData({ selectedWikiId: id === this.data.selectedWikiId ? 0 : id })
+  },
+  myGuideListScrollChangeHandle({
+    detail: { scrollLeft = 0 }
+  }) {
+    this.setData({ scrollLeft })
   }
 })

@@ -2,7 +2,6 @@ import config from '../config/index'
 
 export default (url: string, method: IWechatRequestMethods, data: string | WechatMiniprogram.IAnyObject | ArrayBuffer): Promise<any> => {
   return new Promise((resolve, reject) => {
-    console.log('method', method)
     wx.request({
       url: config.urlPrefix + url,
       method,

@@ -1,12 +1,13 @@
 .moments-container {
   width: 100%;
+  position: relative;
   .top-mark {
     position: absolute;
     width: 100%;
     height: 124rpx;
     top: 0;
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
-    z-index: 15;
+    z-index: 5;
   }
   .banner-image-box {
     .imagelist-box {

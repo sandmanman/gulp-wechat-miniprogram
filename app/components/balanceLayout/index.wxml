@@ -1,16 +1,14 @@
 <view class="balance-box">
-    <view class="layotlistbox">
-        <view class="treasurelist-box"
-              wx:for="{{treasurelist}}"
-              wx:key="{{idx}}"
-        >
-            <view class="image-box">
-                <image src="https://lvcui-image.oss-cn-shanghai.aliyuncs.com/background/bg.png"></image>
-            </view>
-            <view class="txt-box">
-              <view class="name">{{item.txtname}}</view>
-              <view class="time">已玩12天,29次</view>
-            </view>
-        </view>
+  <view class="treasurelist-box"
+        wx:for="{{treasurelist}}"
+        wx:key="{{idx}}"
+  >
+    <view class="image-box">
+      <image src="https://lvcui-image.oss-cn-shanghai.aliyuncs.com/background/bg.png"></image>
     </view>
+    <view class="txt-box">
+      <view class="name">{{item.txtname}}</view>
+      <view class="time">已玩12天,29次</view>
+    </view>
+  </view>
 </view>

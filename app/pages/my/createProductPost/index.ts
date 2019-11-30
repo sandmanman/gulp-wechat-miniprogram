@@ -5,17 +5,22 @@ const app = getApp<IAppOption>()
 
 export default Page({
   data: {
+    isDisabledClick: false,
     maxiumNameLength: 10,
     name: '',
     coverimg: {},
-    tagList: ['翡翠', '玛瑙', '宝石', '么么哒'],
-    showActionSheet: false,
-    tagname: ''
+    wikiList: [],
+    wikiInfo: {
+      id: 0,
+      name: ''
+    },
+    showActionSheet: false
   },
   async onLoad() {
     if (!app.globalData.userInfo.user_code) {
       await app.userLogin()
     }
+    await this.getWikiList()
   },
   uploadimagebtn () {
     const self = this
@@ -42,20 +47,34 @@ export default Page({
   hideActionSheetHander () {
     this.setData({ showActionSheet: false })
   },
-  selectTagHander ({
+  setWikiInfoHander ({
     currentTarget: {
-      dataset = { tag: '' }
+      dataset = {
+        wikiinfo: {
+          id: 0,
+          name: ''
+        }
+      }
     }
   }) {
-    const { tag } = dataset
+    const { wikiinfo } = dataset
     this.setData({
-      tagname: tag,
+      wikiInfo: wikiinfo,
       showActionSheet: false
     })
   },
   async saveWiki() {
+    if (!this.data.name) {
+      wx.showModal({
+        title: '温馨提示',
+        content: '请填写完整内容',
+        showCancel: false
+      })
+      return
+    }
     try {
       const self = this
+      this.setData({ isDisabledClick: true })
       const uploadResult = await api.uploadFile(this.data.coverimg.path, getSignature({
         c_p: app.globalData.c_p,
         file_info: JSON.stringify({
@@ -67,24 +86,20 @@ export default Page({
       const params = getSignature({
         c_p: app.globalData.c_p,
         image_id: uploadResult.id,
+        wiki_id: this.data.wikiInfo.id,
         name: this.data.name
       })
-      wx.showLoading({
-        title: '请稍候...',
-        mask: true
-      })
       const data = await api.saveWiki(params)
-      wx.hideLoading()
-      console.log(data)
+      this.setData({ isDisabledClick: false })
       wx.showToast({ title: data.msg })
       setTimeout(function() {
         wx.navigateBack({
           success() {
             const eventChannel = self.getOpenerEventChannel()
-            eventChannel.emit('isUpdateList', { flag: true })
+            eventChannel.emit('isUpdateList', true)
           }
         })
-      }, 2500)
+      }, 1500)
     } catch (error) {
       console.error(error)
     }
@@ -92,7 +107,20 @@ export default Page({
   inputChangeHandle({ detail = {
     value: ''
   }}) {
-    console.log(detail)
     this.setData({ name: detail.value })
+  },
+  // 获取宝物
+  async getWikiList() {
+    const params = getSignature({
+      c_p: app.globalData.c_p
+    })
+    try {
+      const data = await api.getWikiList(params)
+      this.setData({
+        wikiList: data.obj
+      })
+    } catch (error) {
+      console.error(error)
+    }
   }
 })

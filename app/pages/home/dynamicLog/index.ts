@@ -39,7 +39,9 @@ Page({
     ]
   },
   async onLoad() {
-    await app.userLogin()
+    if (!app.globalData.userInfo.user_code) {
+      await app.userLogin()
+    }
     await this.getDynamicLog()
     await this.getDynamicLogList()
     this.setData({ userInfo: app.globalData.userInfo })
@@ -47,7 +49,6 @@ Page({
   async getDynamicLog() {
     const params = getSignature({
       c_p: app.globalData.c_p,
-      UserCode: app.globalData.userInfo.user_code,
       Code: 'f65ErrunbU7YUAkswduIeTikRKBzSyVR'
     })
     const data = await api.getDynamicLog(params)

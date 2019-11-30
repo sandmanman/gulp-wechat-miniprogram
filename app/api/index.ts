@@ -28,6 +28,16 @@ class API {
     user_code: string
   }>> => httpRequest('/usercenter/update', 'POST', params)
 
+  initUser = (params: {
+    c_p: string
+    signature: string
+  }): Promise<IResponseType<{
+    nickname: string
+    avatar_url: string
+    is_updated: boolean
+    my_wiki_count: number
+  }>> => httpRequest('/usercenter/init', 'GET', params)
+
   uploadFile = (filePath: string, formData: {
     c_p: string
     signature: string
@@ -73,7 +83,6 @@ class API {
     image_id: number
     name: string
     wiki_id?: string
-    id?: string
   }): Promise<IResponseType<{
     name: string
   }>> => httpRequest('/wikiuser/save', 'POST', params)
@@ -110,7 +119,10 @@ class API {
     signature: string
     id: number
   }): Promise<IResponseType<{
-    article: string[]
+    media: Array<{
+      article_id: number
+      url_oss: string
+    }>
     wiki: any
   }>> => httpRequest('/wiki/detail', 'GET', params)
 
@@ -126,14 +138,14 @@ class API {
   }>> => httpRequest('/wiki/guide', 'GET', params)
 
   // 获取首页宝物词条推荐
-  getGuideList = (params: {
+  getWikiList = (params: {
     c_p: string
     signature: string
   }): Promise<IResponseType<{
     user_code: string
     nickname: string
     avatar_url: string
-  }>> => httpRequest('/wiki/recommend', 'GET', params)
+  }[]>> => httpRequest('/wiki/recommend', 'GET', params)
 
   // 发布动态
   saveMoment = (params: {
@@ -170,6 +182,15 @@ class API {
     c_p: string
     signature: string
   }): Promise<IResponseType<unknown>> => httpRequest('/wikiuser/mywiki', 'GET', params)
+
+  // 获取动态/日志列表
+  getDynamicList = (params: {
+    c_p: string
+    signature: string
+    type: 1 | 2 | 3 | 4
+    page: number
+    code?: string
+  }): Promise<IResponseType<unknown>> => httpRequest('/dynamic/list', 'GET', params)
 }
 
 export default new API()

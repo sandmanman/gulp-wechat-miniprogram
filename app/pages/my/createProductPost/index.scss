@@ -46,39 +46,44 @@
       justify-content: space-between;
       margin: 110rpx 32rpx 47rpx;
       .importbox {
+        flex: 1;
+        overflow: hidden;
         height: 64rpx;
         line-height: 64rpx;
         font-size: 28rpx;
       }
       .maxtitle {
+        margin-left: 72rpx;
         font-size: 24rpx;
         color: #999999;
       }
     }
     .treasure-type-box {
       height: 98rpx;
-      line-height: 98rpx;
-      display: flex;
       padding: 0 32rpx;
+      display: flex;
+      align-items: center;
       justify-content: space-between;
       .treasure-title {
         display: flex;
+        align-items: center;
         .imgs {
           width: 32rpx;
           height: 28rpx;
-          margin: 0 17rpx 35rpx 0;
+          margin-right: 17rpx;
         }
         .title {
           font-size: 30rpx;
-          font-weight: 500;
+          font-weight: 600;
         }
       }
       .treasure-chose-txt {
         display: flex;
+        align-items: center;
         .imgs {
           width: 17rpx;
           height: 28rpx;
-          margin: 0 0 35rpx 22rpx;
+          margin-left: 22rpx;
         }
         .no-txt {
           font-size: 28rpx;
@@ -87,7 +92,7 @@
         }
         .has-txt {
           font-size: 28rpx;
-          font-weight: 500;
+          font-weight: 600;
           color: #333333;
         }
       }
@@ -98,7 +103,7 @@
       line-height: 90rpx;
       color: #FFFFFF;
       font-size: 32rpx;
-      font-weight: 500;
+      font-weight: 600;
       background-image: linear-gradient(to right,rgba(254,100,149,1) 0%,rgba(244,74,72,1) 100%);
       border-radius: 50px;
       text-align: center;

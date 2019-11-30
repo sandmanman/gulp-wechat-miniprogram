@@ -9,7 +9,7 @@
     "function-calc-no-unspaced-operator": true,
     "max-empty-lines": 1,
     "unit-no-unknown": null,
-    "keyframe-declaration-no-important": true,
+    "keyframe-declaration-no-important": null,
     "comment-no-empty": true,
     "no-extra-semicolons": true,
     "color-named": "never",

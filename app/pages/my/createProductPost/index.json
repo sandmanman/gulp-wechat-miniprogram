@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "创建宝物",
   "usingComponents": {
-    "vant-popup": "/vant/popup/index"
+    "vant-popup": "/vant/popup/index",
+    "footer-button": "/components/FooterButton/index"
   }
 }

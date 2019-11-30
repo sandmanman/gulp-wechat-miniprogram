@@ -1,20 +1,29 @@
 <template name="waterfallsFlowItem">
-  <view class="flow-item" bind:tap="nagivatorToDynamic">
-    <view class="item-image">
-      <view class="topping"><text>精华</text></view>
-      <view class="isVideo"></view>
-      <image src="https://pic1.zhimg.com/80/v2-b9df16458b36df7a3c8c71a46f278378_hd.jpg"></image>
-    </view>
-    <view class="item-content">
-      <view class="item-title">教程解说 | 翡翠打灯怎么看</view>
-      <view class="item-info">
-        <view class="avator">
-          <image src="https://pic1.zhimg.com/80/v2-f3308abbf7fdd42b0f50184f4456b3c8_hd.jpg"></image>
+  <block wx:for="{{list}}"
+         wx:key="{{index}}"
+  >
+    <view class="flow-item" bind:tap="nagivatorToDynamic">
+      <view class="item-image">
+        <view class="topping"><text>精华</text></view>
+        <view class="isVideo"></view>
+        <block wx:if="{{item.source_type === 'images'}}">
+          <image src="{{item.source_url}}" mode="aspectFill"></image>
+        </block>
+        <block wx:elif="{{item.source_type === 'video'}}">
+          <video src="{{item.source_url}}" object-fit="cover"></video>
+        </block>
+      </view>
+      <view class="item-content">
+        <view class="item-title">{{item.title || item.content}}</view>
+        <view class="item-info">
+          <view class="avator">
+            <image src="{{item.avatar_url}}"></image>
+          </view>
+          <text class="name">{{item.nickname}}</text>
         </view>
-        <text class="name">苏卡不列</text>
       </view>
     </view>
-  </view>
+  </block>
 </template>
 <template name="refresh">
     <view class="refresh-box">

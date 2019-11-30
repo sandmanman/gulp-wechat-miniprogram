@@ -5,20 +5,23 @@ const app = getApp<IAppOption>()
 export default Page({
   data: {
     guideList: [],
-    articleList: []
+    articleList: [],
+    momentList: [],
+    pageNumber: 1,
+    canLoadNextPage: true
   },
   async onLoad() {
     if (!app.globalData.userInfo.user_code) {
       await app.userLogin()
     }
-    await this.getGuideList()
+    await this.getWikiList()
     await this.getArticleList()
+    await this.getMomentList()
   },
-  onShow(): void {
-    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
-      this.getTabBar().setData({
-        selected: 0
-      })
+  async onReachBottom() {
+    if (this.data.canLoadNextPage) {
+      this.setData({ pageNumber: this.data.pageNumber + 1 })
+      await this.getMomentList()
     }
   },
   navigateToHander({
@@ -29,12 +32,12 @@ export default Page({
     const { url } = dataset
     wx.navigateTo({ url })
   },
-  async getGuideList() {
+  async getWikiList() {
     const params = getSignature({
       c_p: app.globalData.c_p
     })
     try {
-      const data = await api.getGuideList(params)
+      const data = await api.getWikiList(params)
       this.setData({
         guideList: data.obj
       })
@@ -42,17 +45,27 @@ export default Page({
       console.error(error)
     }
   },
-  async getArticleList() {
+  async getList(type: 1 | 2 | 3 | 4, page = 1) {
     const params = getSignature({
       c_p: app.globalData.c_p,
-      page: 1
+      type,
+      page
     })
     try {
-      const data = await api.getArticleList(params)
-      this.setData({ articleList: data.obj.list })
-      console.log(data)
+      return await api.getDynamicList(params)
     } catch (error) {
       console.error(error)
     }
+  },
+  async getArticleList() {
+    const data = await this.getList(2)
+    this.setData({ articleList: data.obj.list })
+  },
+  async getMomentList() {
+    const data = await this.getList(1, this.data.pageNumber)
+    this.setData({
+      canLoadNextPage: this.data.pageNumber !== data.obj.last_page,
+      momentList: data.obj.list
+    })
   }
 })

@@ -1,61 +1,70 @@
 <view class="auctionDetail-box">
-    <view class="auctionInformation">
-        <view class="productMessage">
-              <view class="productTxtBox">
-                  <view class="productTitle">{{wikiInfo.wiki.name}} <text class="txt">{{wikiInfo.wiki.foreign_name}}</text></view>
-                  <view class="anothername">别称：{{wikiInfo.wiki.alias}}</view>
-              </view>
-              <view class="share-icon">
-                <image src="/assets/img/icon/share@2x.png"></image>
-              </view>
+  <view class="auctionInformation">
+    <view class="productMessage">
+      <view class="productTxtBox">
+        <view class="productTitle">{{wikiInfo.wiki.name}}
+          <text class="txt" space="nbsp"> {{wikiInfo.wiki.foreign_name}}</text>
         </view>
-        <view class="videoAndPhotoBox">
-            <view class="videoBox">
-                  <view class="videoplaybox">
-                    <video id="myVideo"
-                           src="{{wikiInfo.wiki.video}}"
-                           poster="{{wikiInfo.wiki.cover}}"
-                           object-fit="cover"
-                           controls
-                    ></video>
-                  </view>
-                  <view class="pictures">
-                    <view class="photoBox"
-                          wx:for="{{wikiInfo.article}}"
-                          wx:key="{{index}}"
-                    >
-                        <view class="pictus">
-                          <image src="{{item.cover}}"></image>
-                        </view>
-                    </view>
-                  </view>
-            </view>
-        </view>
-        <view class="productExplain">{{wikiInfo.wiki.desc}}</view>
-    </view>
-    <view class="image-Icon-Box">
-        <view class="icon-Message"
-              wx:for="{{iconList}}"
-              wx:key="{{index}}"
-        >
-          <view class="imgs"
-                data-url="{{item.path}}"
-                bind:tap="navigateToHander"
-          >
-            <image src="{{item.icomImg}}"></image>
-          </view>
-          <view class="icontxt">{{item.txtname}}</view>
-        </view>
-    </view>
-    <view class="treasureLog-List">
-        <treasureLog-List></treasureLog-List>
-    </view>
-    <view class="sendpost-Btn"
-          bind:tap="sendBtn"
-          data-url="/pages/publish/main/index"
-    >
-      <view class="fiximg">
-        <image src="/assets/img/icon/sendpost.png"></image>
+        <view class="anothername">别称：{{wikiInfo.wiki.alias}}</view>
+      </view>
+      <view class="share-icon"
+            data-url="/pages/home/atlas/index"
+            bind:tap="navigateToHander"
+      >
+        <image src="/assets/img/icon/share@2x.png"></image>
       </view>
     </view>
+    <view class="videoAndPhotoBox">
+      <view class="videoBox">
+        <view class="videoplaybox">
+          <video id="myVideo"
+                 src="{{wikiInfo.wiki.video}}"
+                 poster="{{wikiInfo.wiki.cover}}"
+                 object-fit="cover"
+                 controls
+          ></video>
+        </view>
+        <view class="pictures">
+          <view class="photoBox"
+                wx:for="{{wikiInfo.media}}"
+                wx:key="{{index}}"
+          >
+            <view class="pictus">
+              <image src="{{item.url_oss}}"></image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="productExplain">{{wikiInfo.wiki.desc}}</view>
+  </view>
+  <view class="image-Icon-Box">
+    <view class="icon-Message"
+          wx:for="{{iconList}}"
+          wx:key="{{index}}"
+    >
+      <view class="imgs"
+            data-url="{{item.path}}"
+            bind:tap="navigateToHander"
+      >
+        <image src="{{item.icomImg}}"></image>
+      </view>
+      <view class="icontxt">{{item.txtname}}</view>
+    </view>
+  </view>
+  <view class="treasureLog-List">
+    <treasureLog-List list="{{articleList}}"></treasureLog-List>
+  </view>
+  <view class="title">全部动态</view>
+  <view class="comment-list">
+    <waterfalls-flow list="{{momentList}}"></waterfalls-flow>
+  </view>
+  <view class="sendpost-Btn"
+        bind:tap="sendBtn"
+        data-url="/pages/publish/main/index"
+  >
+    <view class="fiximg">
+      <image src="/assets/img/icon/sendpost.png"></image>
+    </view>
+  </view>
 </view>

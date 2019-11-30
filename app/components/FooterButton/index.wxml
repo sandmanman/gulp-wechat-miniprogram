@@ -1,5 +1,8 @@
 <view class="publish-main-container">
-  <view class="publish-main-button" bind:tap="submit">
+  <button class="publish-main-button"
+          disabled="{{disabled}}"
+          bind:tap="submit"
+  >
       <text><slot>发布</slot></text>
-  </view>
+  </button>
 </view>

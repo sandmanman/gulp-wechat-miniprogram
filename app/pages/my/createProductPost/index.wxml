@@ -1,68 +1,70 @@
 <view class="create-product-box">
-      <view class="picture-cover">
-          <view class="photo-box">
-            <view class="no-photo" bind:tap ="uploadimagebtn" wx:if="{{!coverimg.path}}">
-              <view class="addpicture">
-                <image src="/assets/img/icon/add.png"></image>
-              </view>
-              <view class="addtxt">宝物封面</view>
-            </view>
-            <view class="has-photo" wx:else>
-                <image class="cover-img" mode="aspectFill" src="{{coverimg.path}}"></image>
-                <image class="close-img" bind:tap="deleteImg" src="/assets/img/icon/close@2x.png"></image>
-            </view>
-          </view>
-
-          <view class="input-box">
-              <input  type="text"
-                      class="importbox"
-                      maxlength="{{maxiumNameLength}}"
-                      bind:input="inputChangeHandle"
-                      value="{{name}}"
-                      placeholder="填写宝物名称"
-                      placeholder-style="color:#999999;"
-              />
-              <view class="maxtitle">{{maxiumNameLength - name.length}}</view>
-          </view>
-
-          <view class="treasure-type-box">
-              <view class="treasure-title">
-                <view class="imgs">
-                  <image src="/assets/img/icon/treasure@2x.png"></image>
-                </view>
-                <view class="title">宝物类型</view>
-              </view>
-              <view class="treasure-chose-txt" bind:tap="showActionSheetHander">
-                <view class="has-txt" wx:if="{{tagname}}">{{tagname}}</view>
-                <view class="no-txt" wx:else>添加合适的类型会有更多赞哦~</view>
-                <view class="imgs">
-                    <image src="/assets/img/icon/fill@2x.png"></image>
-                </view>
-              </view>
-          </view>
-          <view class="btn-box" bind:tap="saveWiki">确认创建</view>
+  <view class="picture-cover">
+    <view class="photo-box">
+      <view class="no-photo" bind:tap="uploadimagebtn" wx:if="{{!coverimg.path}}">
+        <view class="addpicture">
+          <image src="/assets/img/icon/add.png"></image>
+        </view>
+        <view class="addtxt">宝物封面</view>
       </view>
+      <view class="has-photo" wx:else>
+        <image class="cover-img" mode="aspectFill" src="{{coverimg.path}}"></image>
+        <image class="close-img" bind:tap="deleteImg" src="/assets/img/icon/close@2x.png"></image>
+      </view>
+    </view>
 
-      <vant-popup show="{{showActionSheet}}"
-                    position="bottom"
-                    round
-                    custom-style="opacity: 0.85;"
-                    bind:close="hideActionSheetHander"
+    <view class="input-box">
+      <input type="text"
+             class="importbox"
+             maxlength="{{maxiumNameLength}}"
+             bind:input="inputChangeHandle"
+             value="{{name}}"
+             placeholder="填写宝物名称"
+             placeholder-style="color:#999999;"
+      />
+      <view class="maxtitle">{{maxiumNameLength - name.length}}</view>
+    </view>
+
+    <view class="treasure-type-box">
+      <view class="treasure-title">
+        <view class="imgs">
+          <image src="/assets/img/icon/treasure@2x.png"></image>
+        </view>
+        <text class="title">宝物类型</text>
+      </view>
+      <view class="treasure-chose-txt" bind:tap="showActionSheetHander">
+        <text class="has-txt" wx:if="{{wikiInfo.name}}">{{wikiInfo.name}}</text>
+        <text class="no-txt" wx:else>添加合适的类型会有更多赞哦~</text>
+        <view class="imgs">
+          <image src="/assets/img/icon/fill@2x.png"></image>
+        </view>
+      </view>
+    </view>
+    <footer-button bind:submit="saveWiki"
+                   disabled="{{isDisabledClick}}"
+    >确认创建</footer-button>
+  </view>
+
+  <vant-popup show="{{showActionSheet}}"
+              position="bottom"
+              round
+              custom-style="opacity: 0.85;"
+              bind:close="hideActionSheetHander"
+  >
+    <view class="actionSheet">
+      <view class="actionSheet-head">
+        <text>选择标签</text>
+      </view>
+      <view class="actionSheet-list">
+        <view class="actionSheet-item"
+              wx:for="{{wikiList}}"
+              wx:key="{{item.id}}"
+              data-wikiinfo="{{item}}"
+              bind:tap="setWikiInfoHander"
         >
-          <view class="actionSheet">
-            <view class="actionSheet-head">
-              <text>选择标签</text>
-            </view>
-            <view class="actionSheet-list">
-              <view class="actionSheet-item"
-                    wx:for="{{tagList}}"
-                    wx:key="{{index}}"
-                    data-tag="{{item}}"
-                    bind:tap="selectTagHander"
-              >
-                <text>{{item}}</text>
-              </view>
-            </view>
-          </view>
-      </vant-popup>
+          <text>{{item.name}}</text>
+        </view>
+      </view>
+    </view>
+  </vant-popup>
 </view>

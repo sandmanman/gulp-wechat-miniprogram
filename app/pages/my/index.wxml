@@ -1,8 +1,11 @@
 <import src="/templates/waterfallsFlowTemplate.wxml"></import>
 <view class="my-center-box">
   <view class="user-center-box">
-    <image class="bg" src="https://lvcui-image.oss-cn-shanghai.aliyuncs.com/background/bg-circle.png"></image>
-    <view class="user-box">
+    <image class="bg"
+           src="/assets/img/home/bg-circle.png"
+           mode="widthFix"
+    ></image>
+    <view class="main-userinfo">
       <view class="userhead-box">
         <view class="photo-box" hover-class="none" hover-stop-propagation="false">
           <image src="{{userInfo.avatar_url}}"></image>
@@ -13,46 +16,43 @@
             data-url="/pages/my/myTreasure/index"
             bind:tap="navigateToHander"
       >
-        <text space="nbsp">我的宝物  <text class="treasure">256</text></text>
+        <text space="nbsp">我的宝物  <text class="treasure">{{userInfo.my_wiki_count}}</text></text>
       </view>
       <button class="authorization"
               open-type="getUserInfo"
               plain
               lang="zh_CN"
-              bind:getuserinfo="getUerInfo"
+              bind:getuserinfo="updateUserInfo"
               wx:if="{{!userInfo.is_updated}}"
       ></button>
     </view>
-    <view class="title-txt">
-      <view class="titleName"
-            bind:tap="selectBtn"
-            wx:for="{{titleList}}"
+  </view>
+  <view class="nav-bar">
+    <view class="centent-container">
+      <view class="nav-bar-item"
+            wx:for="{{navBarList}}"
+            wx:key="{{index}}"
             data-index="{{index}}"
-            wx:key="{{idx}}"
+            bind:tap="selectNavbar"
       >
-        <view class="txtname"
-              style="{{selsectIndex === index && 'color:#333333;font-weight:600;'}}"
-        >{{item.txtname}}</view>
-        <text class="line" wx:if="{{selsectIndex == index}}"></text>
+        <text class="{{activeIndex === index && 'active'}}">{{item.name}}</text>
+        <view class="line" wx:if="{{activeIndex === index}}"></view>
       </view>
     </view>
-    <view class="divider"></view>
   </view>
-  <view class="comment-list" wx:if="{{!selsectIndex}}">
-    <waterfalls-flow></waterfalls-flow>
-  </view>
-  <view class="balancelayout-list" wx:else>
-    <balancelayout-list></balancelayout-list>
-  </view>
-  <!-- <view class="detail-Box">
-    <view class="icon-img">
-      <image src="/assets/img/icon/no-detail-icon.png"></image>
-    </view>
-    <view class="notxt">暂无动态</view>
-  </view>
-  <view class="send-icon">
-    <view class="sendimg">
-      <image src="/assets/img/icon/tip-red.png"></image>
-    </view>
-  </view> -->
+  <swiper current="{{activeIndex}}"
+          bind:change="navChangeHandle"
+          style="height: {{swiperHeight}}px"
+  >
+    <swiper-item>
+      <view class="list-container" id="moment">
+        <waterfalls-flow></waterfalls-flow>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="list-container" id="article">
+        <balancelayout-list></balancelayout-list>
+      </view>
+    </swiper-item>
+  </swiper>
 </view>

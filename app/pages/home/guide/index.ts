@@ -14,7 +14,7 @@ export default Page({
     if (!app.globalData.userInfo.user_code) {
       await app.userLogin()
     }
-    await this.getGuide(parseInt(id))
+    await this.getGuide(id)
   },
   navigationBackHander() {
     wx.navigateBack()
@@ -38,6 +38,5 @@ export default Page({
       name: data.obj.name,
       nodeList: data.obj.node
     })
-    console.log(data.obj)
   }
 })
