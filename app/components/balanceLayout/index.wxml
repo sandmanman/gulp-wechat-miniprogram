@@ -1,14 +1,19 @@
 <view class="balance-box">
   <view class="treasurelist-box"
-        wx:for="{{treasurelist}}"
-        wx:key="{{idx}}"
+        wx:for="{{list}}"
+        wx:key="{{index}}"
   >
     <view class="image-box">
-      <image src="https://lvcui-image.oss-cn-shanghai.aliyuncs.com/background/bg.png"></image>
+      <block wx:if="{{item.source_type === 'image'}}">
+        <image src="{{item.source_url}}" mode="aspectFill"></image>
+      </block>
+      <block wx:elif="{{item.source_type === 'video'}}">
+        <video src="{{item.source_url}}" object-fit="cover" controls="{{false}}"></video>
+      </block>
     </view>
     <view class="txt-box">
-      <view class="name">{{item.txtname}}</view>
-      <view class="time">已玩12天,29次</view>
+      <view class="title">{{item.title}}</view>
+      <view class="time">已玩{{item.play_number}}天,{{item.play_count}}次</view>
     </view>
   </view>
 </view>

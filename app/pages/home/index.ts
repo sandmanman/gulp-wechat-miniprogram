@@ -64,8 +64,9 @@ export default Page({
   async getMomentList() {
     const data = await this.getList(1, this.data.pageNumber)
     this.setData({
-      canLoadNextPage: this.data.pageNumber !== data.obj.last_page,
-      momentList: data.obj.list
+      canLoadNextPage: data.obj.current_page !== data.obj.last_page,
+      pageNumber: data.obj.current_page,
+      momentList: data.obj.current_page === 1 ? data.obj.list : this.data.momentList.concat(data.obj.list)
     })
   }
 })

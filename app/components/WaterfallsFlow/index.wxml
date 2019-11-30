@@ -3,7 +3,7 @@
 <view class="waterfallsFlow-component">
   <block wx:for="{{2}}" wx:key="{{item}}">
     <view class="flow-col" style="width: {{width}}rpx">
-      <template is="waterfallsFlowItem" data="{{list: flowList[item]}}"></template>
+      <template is="waterfallsFlowItem" data="{{list: flowList[item], width}}"></template>
     </view>
   </block>
 </view>

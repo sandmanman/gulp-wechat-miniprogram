@@ -1,13 +1,10 @@
 Component({
-  properties: {},
+  properties: {
+    list: {
+      type: Array,
+      value: []
+    }
+  },
   methods: {},
-  data: {
-    treasurelist: [
-      { txtname: '小东' },
-      { txtname: '小东' },
-      { txtname: '小东' },
-      { txtname: '小东' },
-      { txtname: '小东' }
-    ]
-  }
+  data: {}
 })

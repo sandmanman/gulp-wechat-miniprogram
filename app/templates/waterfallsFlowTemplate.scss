@@ -46,10 +46,13 @@
       font-weight: 600;
       line-height: 40rpx;
       vertical-align: middle;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
+      //display: -webkit-box;
+      //-webkit-box-orient: vertical;
+      //-webkit-line-clamp: 2;
+      //overflow: hidden;
       overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     .item-info {
       width: 100%;

@@ -190,7 +190,7 @@ class API {
     type: 1 | 2 | 3 | 4
     page: number
     code?: string
-  }): Promise<IResponseType<unknown>> => httpRequest('/dynamic/list', 'GET', params)
+  }): Promise<IResponseType<any>> => httpRequest('/dynamic/list', 'GET', params)
 }
 
 export default new API()

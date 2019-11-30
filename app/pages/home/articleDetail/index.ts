@@ -39,6 +39,7 @@ Page({
     iconList[0].path += `?id=${id}`
     this.setData({ iconList })
     await this.getArticleList(this.data.code)
+    await this.getMomentList(this.data.code)
     await this.getarticleDetailList(parseInt(id))
   },
   async onReachBottom() {
@@ -78,11 +79,12 @@ Page({
     const { url } = dataset
     wx.navigateTo({ url })
   },
-  async getList(type: 1 | 2 | 3 | 4, page = 1) {
+  async getList(type: 1 | 2 | 3 | 4, page = 1, code: string) {
     const params = getSignature({
       c_p: app.globalData.c_p,
       type,
-      page
+      page,
+      code
     })
     try {
       return await api.getDynamicList(params)
@@ -97,8 +99,9 @@ Page({
   async getMomentList() {
     const data = await this.getList(1, this.data.pageNumber, this.data.code)
     this.setData({
-      canLoadNextPage: this.data.pageNumber !== data.obj.last_page,
-      momentList: data.obj.list
+      pageNumber: data.obj.current_page,
+      canLoadNextPage: data.obj.current_page !== data.obj.last_page,
+      momentList: data.obj.current_page === 1 ? data.obj.list : this.data.momentList.concat(data.obj.list)
     })
   }
 })
