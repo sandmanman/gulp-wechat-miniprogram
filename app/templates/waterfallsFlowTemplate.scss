@@ -66,8 +66,12 @@
         overflow: hidden;
       }
       .name {
+        overflow: hidden;
+        padding-left: 10rpx;
         color: #666666;
         font-size: 24rpx;
+        white-space: nowrap;
+        text-overflow: ellipsis;
       }
     }
   }

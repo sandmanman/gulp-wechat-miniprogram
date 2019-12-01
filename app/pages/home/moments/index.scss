@@ -10,18 +10,18 @@
     z-index: 5;
   }
   .banner-image-box {
+    width: 100%;
     .imagelist-box {
+      width: 100%;
       .swiper-box {
+        width: 100%;
         height: 750rpx;
         .swiperlist {
           position: relative;
           .img {
             width: 100%;
-            height: 750rpx;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 10;
+            height: 100%;
+            overflow: hidden;
           }
           .label-box {
             height: 44rpx;
@@ -62,7 +62,7 @@
       }
     }
     .video-box {
-      height: 1060rpx;
+      width: 100%;
     }
   }
   .detail-box {

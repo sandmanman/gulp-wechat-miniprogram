@@ -8,14 +8,16 @@
   <!-- 上遮罩 -->
   <view class="top-mark"></view>
   <view class="banner-image-box">
-    <block wx:if="{{!video_url}}">
+    <block wx:if="{{!momentInfo.video_url}}">
       <view class="imagelist-box">
-        <swiper class="swiper-box" bind:change="swiperChange">
+        <swiper class="swiper-box"
+                style="height: {{750 / maxScale}}rpx;"
+                bind:change="swiperChange">
           <swiper-item class="swiperlist"
                        wx:for="{{momentInfo.images_list}}"
                        wx:key="{{index}}">
             <view class="img">
-              <image src="{{item.url_oss}}"></image>
+              <image src="{{item.url_oss}}" mode="aspectFill"></image>
             </view>
             <view class="label-box" wx:if="{{item.tag_name}}">
               <view class="label-img">
@@ -29,10 +31,11 @@
       </view>
     </block>
     <block wx:else>
-      <view class="video-box">
+      <view class="video-box" style="height: {{750 / (momentInfo.images_list[0].file_info_obj.width / momentInfo.images_list[0].file_info_obj.height)}}rpx">
         <video id="myVideo"
                src="{{momentInfo.video_url}}"
                controls
+               object-fit="cover"
         ></video>
       </view>
     </block>
@@ -59,14 +62,13 @@
       <view class="txt">{{momentInfo.content}}</view>
     </view>
     <view class="footer-box">
-      <view class="labeltxt-box">
-        <block wx:if="{{momentInfo.wiki_user_name}}">
-          <view class="imgsbox">
-            <image src="/assets/img/home/treasure-blue@2x.png"></image>
-          </view>
-          <view class="labelname">{{momentInfo.wiki_user_name}}</view>
-        </block>
+      <view class="labeltxt-box" wx:if="{{momentInfo.wiki_user_name}}">
+        <view class="imgsbox">
+          <image src="/assets/img/home/treasure-blue@2x.png"></image>
+        </view>
+        <view class="labelname">{{momentInfo.wiki_user_name}}</view>
       </view>
+	    <view wx:else></view>
       <view class="timetxt">{{momentInfo.create_time}}</view>
     </view>
   </view>

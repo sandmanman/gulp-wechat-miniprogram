@@ -8,10 +8,10 @@ Component({
         let rightHeight = this.data.rightHeight
         const flowList = list.reduce((acc, item) => {
           if (leftHeight > rightHeight) {
-            rightHeight += (item.width / item.height)
+            rightHeight += this.data.width / (item.width / item.height)
             acc[1].push(item)
           } else {
-            leftHeight += (item.width / item.height)
+            leftHeight += this.data.width / (item.width / item.height)
             acc[0].push(item)
           }
           console.log(leftHeight, rightHeight)

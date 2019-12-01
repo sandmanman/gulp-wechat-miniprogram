@@ -7,6 +7,7 @@ Page({
   data: {
     code: '',
     momentInfo: {},
+    maxScale: 1,
     swiperCurrent: 1
   },
   async onLoad(query: Record<string, string | undefined>) {
@@ -23,7 +24,19 @@ Page({
       code: this.data.code
     })
     const data = await api.getDynamicDetail(params)
-    this.setData({ momentInfo: data.obj })
+    const { images_list = [] } = data.obj
+    let maxScale = 0
+    images_list.forEach((item: any, index: number) => {
+      const itemScale = item.file_info_obj.width / item.file_info_obj.height
+      if (index === 0) {
+        maxScale = itemScale
+      }
+      maxScale = maxScale > itemScale ? maxScale : itemScale
+    })
+    this.setData({
+      momentInfo: data.obj,
+      maxScale
+    })
   },
   navigationBackHander() {
     wx.navigateBack()
