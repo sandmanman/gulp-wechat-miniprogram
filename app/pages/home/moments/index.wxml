@@ -16,11 +16,12 @@
           <swiper-item class="swiperlist"
                        wx:for="{{momentInfo.images_list}}"
                        wx:key="{{index}}">
-            <view class="img">
+            <view class="img"
+                  bind:tap="previewImageHandle"
+                  data-url="{{item.url_oss}}"
+            >
               <image  src="{{item.url_oss}}"
                       mode="aspectFill"
-                      bind:tap="previewImage"
-                      data-url="{{item.url_oss}}"
                ></image>
             </view>
             <view class="label-box" wx:if="{{item.tag_name}}">
@@ -53,10 +54,16 @@
         <view class="user-name">{{momentInfo.nickname}}</view>
       </view>
       <view class="options-btn">
-        <view class="share-icon">
+        <button class="share-icon"
+                plain
+                open-type="share"
+        >
           <image src="/assets/img/icon/share@2x.png"></image>
-        </view>
-        <view class="delete-icon">
+        </button>
+        <view class="delete-icon"
+              bind:tap="showConfirmActionSheetHander"
+              wx:if="{{momentInfo.is_self}}"
+        >
           <image src="/assets/img/home/set@2x.png"></image>
         </view>
       </view>
@@ -82,21 +89,8 @@
     </view>
   </view>
   <!--  删除确认弹窗  -->
-  <vant-popup show="{{showConfirmActionSheet}}"
-              position="bottom"
-              round
-              bind:close="hideActionSheetHander"
-  >
-    <view class="confirm-actionSheet">
-      <view class="actionSheet-head">
-        <text>确定要删除吗？</text>
-      </view>
-      <view class="actionSheet-confirm" bind:tap="deleteCurrentSourceHander">
-        <text>删除</text>
-      </view>
-      <view class="actionSheet-cancel" bind:tap="hideConfirmActionSheetHander">
-        <text>取消</text>
-      </view>
-    </view>
-  </vant-popup>
+  <delete-actionsheet show="{{showConfirmActionSheet}}"
+                      bind:confirm="deleteConfirmActionSheetHander"
+                      bind:cancel="hideConfirmActionSheetHander"
+  ></delete-actionsheet>
 </view>

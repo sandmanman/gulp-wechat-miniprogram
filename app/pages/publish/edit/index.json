@@ -9,6 +9,7 @@
   "navigationStyle": "custom",
   "usingComponents": {
     "navigation-bar": "/components/NavigationBar/index",
+    "delete-actionsheet": "/components/DeleteActionSheet/index",
     "vant-popup": "/vant/popup/index"
   }
 }

@@ -31,7 +31,7 @@ export default Page({
     if (!app.globalData.userInfo.user_code) {
       await app.userLogin()
     }
-    await this.initMoment()
+    this.initMoment()
   },
   onUnload() {
     this.offUploadTaskListener()

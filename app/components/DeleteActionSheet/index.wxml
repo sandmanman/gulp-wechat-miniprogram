@@ -1,0 +1,19 @@
+<view class="delete-actionsheet-component">
+  <vant-popup show="{{show}}"
+              position="bottom"
+              round
+              bind:close="cancelHandle"
+  >
+    <view class="confirm-actionSheet">
+      <view class="actionSheet-head">
+        <text>确定要删除吗？</text>
+      </view>
+      <view class="actionSheet-confirm" bind:tap="confrimHandle">
+        <text>删除</text>
+      </view>
+      <view class="actionSheet-cancel" bind:tap="cancelHandle">
+        <text>取消</text>
+      </view>
+    </view>
+  </vant-popup>
+</view>

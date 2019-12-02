@@ -197,6 +197,12 @@ class API {
     page: number
     code?: string
   }): Promise<IResponseType<any>> => httpRequest('/dynamic/list', 'GET', params)
+
+  wikiDelete = (params: {
+    c_p: string
+    signature: string
+    id: number
+  }): Promise<IResponseType<any>> => httpRequest('/wikiuser/delete', 'POST', params)
 }
 
 export default new API()

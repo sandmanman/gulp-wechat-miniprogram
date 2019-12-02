@@ -3,6 +3,6 @@
   "navigationStyle": "custom",
   "usingComponents": {
     "navigation-bar": "/components/NavigationBar/index",
-    "vant-popup": "/vant/popup/index"
+    "delete-actionsheet": "/components/DeleteActionSheet/index"
   }
 }

@@ -8,7 +8,13 @@
         <image src="{{item.source_url}}" mode="aspectFill"></image>
       </block>
       <block wx:elif="{{item.source_type === 'video'}}">
-        <video src="{{item.source_url}}" object-fit="cover" controls="{{false}}"></video>
+        <video src="{{item.source_url}}"
+               object-fit="cover"
+               controls="{{false}}"
+               show-play-btn="{{false}}"
+               show-fullscreen-btn="{{false}}"
+               show-fullscreen-btn="{{false}}"
+        ></video>
       </block>
     </view>
     <view class="txt-box">

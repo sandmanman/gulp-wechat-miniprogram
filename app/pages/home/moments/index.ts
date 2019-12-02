@@ -19,6 +19,13 @@ Page({
     }
     await this.getDynamicList()
   },
+  onShareAppMessage(): WechatMiniprogram.Page.ICustomShareContent {
+    console.log(this.getCurrentPage())
+    return {
+      title: this.data.momentInfo.title || this.data.momentInfo.content,
+      path: `/pages/home/moments/index?id=${this.data.code}`
+    }
+  },
   async getDynamicList() {
     const params = getSignature({
       c_p: app.globalData.c_p,
@@ -62,8 +69,21 @@ Page({
       current
     })
   },
-  deleteCurrentSourceHander() {
-    void 0
+  async deleteConfirmActionSheetHander() {
+    const params = getSignature({
+      c_p: app.globalData.c_p,
+      id: this.data.code
+    })
+    try {
+      await api.wikiDelete(params)
+      this.hideConfirmActionSheetHander()
+      wx.showToast({
+        title: '删除成功'
+      })
+      setTimeout(() => wx.navigateBack, 1500)
+    } catch (e) {
+      console.error(e.message)
+    }
   },
   showConfirmActionSheetHander() {
     this.setData({ showConfirmActionSheet: true })

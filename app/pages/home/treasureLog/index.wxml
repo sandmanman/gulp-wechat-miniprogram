@@ -11,7 +11,7 @@
               style="{{selected == index ? 'color:#333333;font-weight:600;' : ''}}"
               data-index="{{index}}"
               wx:key="{{idx}}"
-              data-canLoadNextPage=false
+              data-canLoadNextPage="{{false}}"
               data-pageNumber="1"
               wx:for="{{titleList}}"
               data-id="{{item.id}}"
@@ -38,7 +38,7 @@
                   style="{{selected == index && 'color:#FFF;background:#14B0EE;'}}"
                   data-index="{{index}}"
                   wx:key="{{idx}}"
-                  data-canLoadNextPage=false
+                  data-canLoadNextPage="{{false}}"
                   data-pageNumber="1"
                   wx:for="{{titleList}}"
                   data-id="{{item.id}}"
