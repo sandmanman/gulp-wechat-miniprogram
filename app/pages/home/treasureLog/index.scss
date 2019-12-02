@@ -1,3 +1,4 @@
+@import "../../../templates/withoutStateTemplate.scss";
 .treasureLogBox {
   width: 100%;
   .titleChoiseBox {
@@ -8,10 +9,11 @@
     z-index: 10;
     font-size: 28rpx;
     background: #FFFFFF;
-    // display:flex;
-    // position: relative;
     .scrolllabel {
+      display: flex;
+      justify-content: space-between;
       .scrolls {
+        width: 85%;
         white-space: nowrap;
         display: flex;
         overflow: hidden;
@@ -26,9 +28,6 @@
         width: 125rpx;
         height: 72rpx;
         line-height: 72rpx;
-        position: absolute;
-        right: 0;
-        bottom: 0rpx;
         display: flex;
         background: #FFFFFF;
         .opentxt {
@@ -96,9 +95,14 @@
         .userDetail {
           color: #FFFFFF;
           position: absolute;
+          width: 320rpx;
           top: 238rpx;
           left: 20rpx;
           .txtName {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
             font-size: 34rpx;
           }
           .txtTime {

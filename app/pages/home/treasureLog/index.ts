@@ -1,43 +1,40 @@
+import api from '../../../api/index'
+import { getSignature } from '../../../utils/index'
+
+const app = getApp<IAppOption>()
+
 Page({
   data: {
-    titleList: [
-      { txtname: '全部' },
-      { txtname: '翡翠' },
-      { txtname: '玛瑙' },
-      { txtname: '琥珀' },
-      { txtname: '南红' },
-      { txtname: '蜜蜡' },
-      { txtname: '小明' },
-      { txtname: '小东' },
-      { txtname: '小西' },
-      { txtname: '小北' },
-      { txtname: '小南' },
-      { txtname: '和田玉' }
-    ],
-    articleList: [
-      { username: '小唐马' },
-      { username: '小唐马' },
-      { username: '小唐马' },
-      { username: '小唐马' }
-    ],
+    titleList: [],
+    articleList: [],
     index: 0,
     selected: 0,
-    showlabel: true
+    showlabel: true,
+    page: 1
   },
-  onLoad() {
-    console.log(111)
+  async onLoad(query: Record<string, string | undefined>) {
+    const { id = '' } = query
+    this.setData({ code: id })
+    if (!app.globalData.userInfo.user_code) {
+      await app.userLogin()
+    }
+    this.getSelsectLogList()
+    this.getTreasureDataList()
   },
   titleClick({
     currentTarget: {
       dataset = {
-        index: 0
+        index: 0,
+        id: 1
       }
     }
   }) {
-    const { index } = dataset
+    const { index, id } = dataset
     this.setData({
-      selected: index
+      selected: index,
+      wiki_id: id
     })
+    this.getTreasureDataList()
   },
   openbtn() {
     this.setData({
@@ -48,5 +45,28 @@ Page({
     this.setData({
       showlabel: true
     })
+  },
+  async getTreasureDataList(type: 1 | 2 | 3 | 4, wiki_id = 1, page = 1) {
+    const params = getSignature({
+      c_p: app.globalData.c_p,
+      code: this.data.code,
+      wiki_id,
+      type: 2,
+      page
+    })
+    const data = await api.getDynamicList(params)
+    console.log(data)
+    this.setData({ articleList: data.obj.list })
+  },
+  async getSelsectLogList() {
+    const params = getSignature({
+      c_p: app.globalData.c_p,
+      code: this.data.code,
+      type: 2,
+      page: 1
+    })
+    const data = await api.selsectArticleList(params)
+    console.log(data)
+    this.setData({ titleList: data.obj })
   }
 })
