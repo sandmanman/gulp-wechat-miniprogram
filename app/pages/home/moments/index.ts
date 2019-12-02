@@ -75,11 +75,9 @@ Page({
       id: this.data.code
     })
     try {
-      await api.wikiDelete(params)
+      const { msg } = await api.wikiDelete(params)
       this.hideConfirmActionSheetHander()
-      wx.showToast({
-        title: '删除成功'
-      })
+      wx.showToast({ title: msg })
       setTimeout(() => wx.navigateBack, 1500)
     } catch (e) {
       console.error(e.message)

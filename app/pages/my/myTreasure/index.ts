@@ -7,7 +7,9 @@ let eventChannel: WechatMiniprogram.EventChannel | null
 Page({
   data: {
     treasureList: [],
-    mode: 'view' // view-查看详情模式 | select-选择关联宝物模式
+    mode: 'view', // view-查看详情模式 | select-选择关联宝物模式
+    willDeleteId: 0,
+    showConfirmActionSheet: false
   },
   async onLoad() {
     eventChannel = this.getOpenerEventChannel()
@@ -27,7 +29,6 @@ Page({
     try {
       const data = await api.getMyWikiList(params)
       this.setData({ treasureList: data.obj })
-      console.log(data)
     } catch (error) {
       console.error(error)
     }
@@ -66,5 +67,34 @@ Page({
         }
       })
     }
+  },
+  async deleteWikiHandle() {
+    const params = getSignature({
+      c_p: app.globalData.c_p,
+      id: this.data.willDeleteId
+    })
+    try {
+      const { msg } = await api.wikiDelete(params)
+      this.hideConfirmActionSheetHander()
+      wx.showToast({ title: msg })
+      await this.getMyWikiList()
+    } catch (e) {
+      console.error(e.message)
+    }
+  },
+  showConfirmActionSheetHander({
+    currentTarget: {
+      dataset: {
+        id = 0
+      }
+    }
+  }) {
+    this.setData({
+      willDeleteId: id,
+      showConfirmActionSheet: true
+    })
+  },
+  hideConfirmActionSheetHander() {
+    this.setData({ showConfirmActionSheet: false })
   }
 })

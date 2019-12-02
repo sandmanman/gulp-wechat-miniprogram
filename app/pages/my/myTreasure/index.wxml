@@ -8,7 +8,11 @@
           bind:tap="clickWikiHandle"
     >
       <image src="{{item.url_oss}}" mode="aspectFill"></image>
-      <image class="screen-icon" src="/assets/img/icon/set.png"></image>
+      <image class="screen-icon"
+             src="/assets/img/icon/set.png"
+             data-id="{{item.id}}"
+             catch:tap="showConfirmActionSheetHander"
+      ></image>
       <view class="usermessage">
         <view class="username-box">{{item.name}}</view>
         <view class="time">已玩{{item.days}}天，{{item.freq}}次</view>
@@ -24,4 +28,9 @@
     >创建宝物
     </view>
   </view>
+  <!--  删除确认弹窗  -->
+  <delete-actionsheet show="{{showConfirmActionSheet}}"
+                      bind:confirm="deleteWikiHandle"
+                      bind:cancel="hideConfirmActionSheetHander"
+  ></delete-actionsheet>
 </view>

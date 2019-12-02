@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "我的宝物",
   "usingComponents": {
-
+    "delete-actionsheet": "/components/DeleteActionSheet/index"
   }
 }

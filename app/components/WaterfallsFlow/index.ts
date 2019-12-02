@@ -15,7 +15,6 @@ Component({
             leftHeight += scale
             acc[0].push(item)
           }
-          console.log(leftHeight, rightHeight)
           return acc
         }, [[], []])
         this.setData({
