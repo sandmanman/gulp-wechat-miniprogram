@@ -28,6 +28,8 @@
           <view class="photoBox"
                 wx:for="{{wikiInfo.media}}"
                 wx:key="{{index}}"
+                data-url="/pages/home/atlas/index?id={{item.article_id}}"
+                bind:tap="nagivateToAtlas"
           >
             <view class="pictus">
               <image src="{{item.url_oss}}"></image>

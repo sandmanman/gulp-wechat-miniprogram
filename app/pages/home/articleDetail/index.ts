@@ -71,6 +71,22 @@ Page({
     }
     wx.navigateTo({ url })
   },
+  nagivateToAtlas({
+    currentTarget: {
+      dataset = { url: '' }
+    }
+  }) {
+    const { url } = dataset
+    console.log(dataset)
+    if (url === '/pages/home/atlas/index') {
+      wx.showToast({
+        title: '功能正在开发中',
+        icon: 'none'
+      })
+    } else {
+      wx.navigateTo({ url })
+    }
+  },
   sendBtn({
     currentTarget: {
       dataset = { url: '' }
