@@ -4,19 +4,32 @@ const app = getApp<IAppOption>()
 
 export default Page({
   data: {
-    guideList: [],
-    articleList: [],
+    guideList: [
+      { cover: '', name: '' },
+      { cover: '', name: '' },
+      { cover: '', name: '' },
+      { cover: '', name: '' },
+      { cover: '', name: '' },
+      { cover: '', name: '' },
+      { cover: '', name: '' },
+      { cover: '', name: '' }
+    ],
+    articleList: [
+      { source_url: '', source_type: 'image', title: '', play_number: '', play_count: '', nickname: '', avatar_url: '/assets/img/icon/default-head.png' },
+      { source_url: '', source_type: 'image', title: '', play_number: '', play_count: '', nickname: '', avatar_url: '/assets/img/icon/default-head.png' },
+      { source_url: '', source_type: 'image', title: '', play_number: '', play_count: '', nickname: '', avatar_url: '/assets/img/icon/default-head.png' }
+    ],
     momentList: [],
-    pageNumber: 1,
+    pageNumber: 0,
     canLoadNextPage: true
   },
   async onLoad() {
     if (!app.globalData.userInfo.user_code) {
       await app.userLogin()
     }
-    await this.getWikiList()
-    await this.getArticleList()
-    await this.getMomentList()
+    this.getWikiList()
+    this.getArticleList()
+    this.getMomentList()
   },
   async onReachBottom() {
     if (this.data.canLoadNextPage) {

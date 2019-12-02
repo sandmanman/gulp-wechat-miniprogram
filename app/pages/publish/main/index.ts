@@ -180,9 +180,7 @@ export default Page({
       value = ''
     }
   }) {
-    this.setData({
-      title: value
-    })
+    this.setData({ title: value })
   },
   textInputHander({
     detail: { value = '' }
@@ -238,6 +236,7 @@ export default Page({
     const c_p = Object.assign(config.cp, {
       user_code: app.globalData.userInfo.user_code
     })
+    this.setData({ isDisabledClick: true })
     const { selectedSourceList } = this.data as { selectedSourceList: ISelectedSourceList }
     if (selectedSourceList.every(i => i.uploadProgess === 100)) {
       await this.submit()
@@ -263,7 +262,6 @@ export default Page({
       file_info: JSON.stringify(currentSource.fileType === 'image' ? imageFileInfo : videoFileInfo)
     })
     try {
-      this.setData({ isDisabledClick: true })
       const uploadResult = await this.upLoadFile(filePath, params)
       selectedSourceList[this.data.uploadedSourceCount].url = uploadResult.url_oss
       selectedSourceList[this.data.uploadedSourceCount].id = uploadResult.id
@@ -303,18 +301,23 @@ export default Page({
       content,
       media_ids: media_ids.toString()
     })
+    console.log(params)
     try {
-      const data = await api.saveMoment(params)
+      await api.saveMoment(params)
       this.setData({ isDisabledClick: false })
-      wx.showToast({ title: data.msg })
-      setTimeout(() => wx.switchTab({ url: '/pages/my/index' }), 2500)
     } catch (error) {
-      this.setData({ isDisabledClick: false })
       wx.showToast({
         title: error,
         icon: 'none'
       })
     }
+    this.setData({ isDisabledClick: false })
+    wx.switchTab({
+      url: '/pages/my/index',
+      fail(error) {
+        console.error(error)
+      }
+    })
   },
   async initMoment() {
     const params = getSignature({

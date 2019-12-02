@@ -48,10 +48,14 @@
           </view>
           <view class="logcontentbox">
             <view class="logdetail">
-              <view class="logtitle"><text>{{item.title}}</text></view>
-              <view class="logtxt-box">
-                <view class="detailtxt"><text>{{item.content}}</text></view>
-                <!--                      <view class="alltxt">全部</view>-->
+              <view data-url="/pages/home/moments/index?id={{item.code}}"
+                    bind:tap="navigateToHander"
+              >
+                <view class="logtitle"><text>{{item.title}}</text></view>
+                <view class="logtxt-box">
+                  <view class="detailtxt"><text>{{item.content}}</text></view>
+                  <!--                      <view class="alltxt">全部</view>-->
+                </view>
               </view>
               <block wx:if="{{item.source_type === 'image'}}">
                 <view class="logimage-box">
@@ -60,6 +64,9 @@
                         wx:for-item="sourceItem"
                         wx:for-index="sourceIndex"
                         wx:key="{{sourceIndex}}"
+                        data-current="{{sourceItem.url_oss}}"
+                        data-index="{{index}}"
+                        bind:tap="previewImageHandle"
                   >
                     <image src="{{sourceItem.url_oss}}" mode="aspectFill"></image>
                   </view>

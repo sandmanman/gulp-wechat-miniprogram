@@ -4,23 +4,22 @@ Component({
       type: Array,
       value: [],
       observer(list: any[]) {
-        let leftHeight = this.data.leftHeight
-        let rightHeight = this.data.rightHeight
+        let leftHeight = 0
+        let rightHeight = 0
         const flowList = list.reduce((acc, item) => {
+          const scale = item.height / item.width
           if (leftHeight > rightHeight) {
-            rightHeight += this.data.width / (item.width / item.height)
+            rightHeight += scale
             acc[1].push(item)
           } else {
-            leftHeight += this.data.width / (item.width / item.height)
+            leftHeight += scale
             acc[0].push(item)
           }
           console.log(leftHeight, rightHeight)
           return acc
         }, [[], []])
         this.setData({
-          flowList,
-          leftHeight,
-          rightHeight
+          flowList
         })
       }
     },
@@ -30,9 +29,7 @@ Component({
     }
   },
   data: {
-    flowList: [[], []],
-    leftHeight: 0,
-    rightHeight: 0
+    flowList: [[], []]
   },
   methods: {
     nagivatorHandle({

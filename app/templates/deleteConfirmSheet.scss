@@ -1,0 +1,30 @@
+.confirm-actionSheet {
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 24rpx 24rpx 0 0;
+  text-align: center;
+  .actionSheet-head, .actionSheet-confirm, .actionSheet-cancel {
+    width: 100%;
+    height: 106rpx;
+    display: table;
+    text {
+      display: table-cell;
+      vertical-align: middle;
+    }
+  }
+  .actionSheet-head {
+    padding: 0 20rpx;
+    border-bottom: 1px solid #F5F5F5;
+    color: #888888;
+    font-size: 30rpx;
+  }
+  .actionSheet-confirm {
+    color: #FF335F;
+    font-size: 32rpx;
+  }
+  .actionSheet-cancel {
+    color: #666666;
+    font-size: 32rpx;
+    background: #F8F8F8;
+  }
+}

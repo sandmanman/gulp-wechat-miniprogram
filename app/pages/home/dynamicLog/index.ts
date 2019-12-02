@@ -38,5 +38,27 @@ Page({
     })
     const data = await api.getDynamicList(params)
     this.setData({ momentList: data.obj.list })
+  },
+  previewImageHandle({
+    currentTarget: {
+      dataset: {
+        current = '',
+        index = 0
+      }
+    }
+  }) {
+    const self = this
+    wx.previewImage({
+      urls: self.data.momentList[index].source_list.map((i: any) => i.url_oss),
+      current
+    })
+  },
+  navigateToHander({
+    currentTarget: {
+      dataset = { url: '' }
+    }
+  }) {
+    const { url } = dataset
+    wx.navigateTo({ url })
   }
 })
