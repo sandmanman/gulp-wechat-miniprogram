@@ -3,7 +3,7 @@
     <view class="productMessage">
       <view class="productTxtBox">
         <view class="productTitle">{{wikiInfo.wiki.name}}
-          <text class="txt" space="nbsp"> {{wikiInfo.wiki.foreign_name}}</text>
+          <text class="txt" space="nbsp">  /{{wikiInfo.wiki.foreign_name}}</text>
         </view>
         <view class="anothername">别称：{{wikiInfo.wiki.alias}}</view>
       </view>

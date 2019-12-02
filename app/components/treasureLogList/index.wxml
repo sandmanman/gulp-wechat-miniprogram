@@ -3,9 +3,10 @@
         <view class="logsTxt">玩物日志</view>
         <view class="moretxt"
               data-url="/pages/home/treasureLog/index"
-              bind:tap="navigateToHander">
-            <text>更多</text>
-            <text>></text>
+              bind:tap="navigateToHander"
+        >
+          <text space="nbsp">更多 </text>
+          <view class="more-icon"></view>
         </view>
     </view>
     <view class="playGoodsBox">

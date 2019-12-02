@@ -10,8 +10,17 @@
       font-weight: 600;
     }
     .moretxt {
+      display: flex;
+      align-items: center;
       color: #999999;
       font-size: 24rpx;
+      .more-icon {
+        width: 18rpx;
+        height: 18rpx;
+        background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAkBAMAAAB73QeTAAAAGFBMVEVHcEyZmZmZmZmZmZmdnZ2ZmZmampqZmZkuNBveAAAAB3RSTlMAdvM8DezX39IB1AAAADlJREFUGNNjYEAAFgc4U7wQzgwvF4Ax08vhwkblcGFm9YEWdsBgIilAaKObIHJAIQUfUqAiBTUCAADExiPLOQ43WgAAAABJRU5ErkJggg==");
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
     }
   }
   .playGoodsBox {
@@ -33,6 +42,7 @@
           .img-box {
             width: 294rpx;
             height: 294rpx;
+            background: #F8F8F8;
             border-radius: 16rpx;
             overflow: hidden;
             position: relative;

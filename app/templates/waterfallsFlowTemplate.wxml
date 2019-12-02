@@ -1,6 +1,6 @@
 <template name="waterfallsFlowItem">
   <block wx:for="{{list}}"
-         wx:key="{{index}}"
+         wx:key="{{item.code}}"
   >
     <view class="flow-item"
           data-url="/pages/home/moments/index?id={{item.code}}"

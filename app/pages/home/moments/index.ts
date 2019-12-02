@@ -47,5 +47,18 @@ Page({
     }
   }) {
     this.setData({ swiperCurrent: current + 1 })
+  },
+  previewImageHandle({
+    currentTarget: {
+      dataset: {
+        current = ''
+      }
+    }
+  }) {
+    const self = this
+    wx.previewImage({
+      urls: self.data.momentInfo.images_list.map((i: any) => i.source_url),
+      current
+    })
   }
 })
