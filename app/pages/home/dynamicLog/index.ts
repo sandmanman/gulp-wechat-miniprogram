@@ -7,7 +7,8 @@ Page({
   data: {
     code: '',
     articleInfo: {},
-    momentList: []
+    momentList: [],
+    showConfirmActionSheet: false
   },
   async onLoad(query: Record<string, string | undefined>) {
     const { id = '' } = query
@@ -18,6 +19,12 @@ Page({
     this.getDynamicLog()
     this.getDynamicLogList()
     app.loadBaseFont()
+  },
+  onShareAppMessage(): WechatMiniprogram.Page.ICustomShareContent {
+    return {
+      title: this.data.articleInfo.title || this.data.articleInfo.content,
+      path: `/pages/home/moments/index?id=${this.data.code}`
+    }
   },
   async getDynamicLog() {
     const params = getSignature({
@@ -60,5 +67,27 @@ Page({
   }) {
     const { url } = dataset
     wx.navigateTo({ url })
+  },
+  async deleteConfirmActionSheetHander() {
+    const params = getSignature({
+      c_p: app.globalData.c_p,
+      id: this.data.code
+    })
+    try {
+      const data = await api.wikiDelete(params)
+      this.hideConfirmActionSheetHander()
+      wx.showToast({
+        title: data.msg
+      })
+      setTimeout(() => wx.navigateBack, 1500)
+    } catch (e) {
+      console.error(e.message)
+    }
+  },
+  showConfirmActionSheetHander() {
+    this.setData({ showConfirmActionSheet: true })
+  },
+  hideConfirmActionSheetHander() {
+    this.setData({ showConfirmActionSheet: false })
   }
 })

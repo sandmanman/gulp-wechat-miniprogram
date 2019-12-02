@@ -90,5 +90,13 @@ Page({
   },
   hideConfirmActionSheetHander() {
     this.setData({ showConfirmActionSheet: false })
+  },
+  navigateToHander({
+    currentTarget: {
+      dataset = { url: '' }
+    }
+  }) {
+    const { url } = dataset
+    wx.navigateTo({ url })
   }
 })

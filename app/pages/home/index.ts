@@ -51,6 +51,12 @@ export default Page({
     const { url } = dataset
     wx.navigateTo({ url })
   },
+  onShareAppMessage(): WechatMiniprogram.Page.ICustomShareContent {
+    return {
+      title: '万物宝典',
+      path: '/pages/home/index'
+    }
+  },
   async getWikiList() {
     const params = getSignature({
       c_p: app.globalData.c_p

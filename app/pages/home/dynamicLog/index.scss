@@ -32,6 +32,10 @@
             width: 44rpx;
             height: 44rpx;
             margin-right: 28rpx;
+            overflow: visible;
+            image {
+              display: block;
+            }
           }
           .more-img {
             width: 44rpx;

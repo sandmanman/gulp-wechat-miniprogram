@@ -12,10 +12,16 @@
           <view class="label-txt">{{articleInfo.tag_name}}</view>
         </view>
         <view class="share-img-box">
-          <view class="share-img">
+          <button class="share-img"
+                  plain
+                  open-type="share"
+          >
             <image src="/assets/img/home/share@2x.png"></image>
-          </view>
-          <view class="more-img">
+          </button>
+          <view class="more-img"
+                bind:tap="showConfirmActionSheetHander"
+                wx:if="{{articleInfo.is_self}}"
+          >
             <image src="/assets/img/home/set-white@2x.png"></image>
           </view>
         </view>
@@ -91,4 +97,9 @@
 <!--      </view>-->
 <!--    </view>-->
   </view>
+  <!--  删除确认弹窗  -->
+  <delete-actionsheet show="{{showConfirmActionSheet}}"
+                      bind:confirm="deleteConfirmActionSheetHander"
+                      bind:cancel="hideConfirmActionSheetHander"
+  ></delete-actionsheet>
 </view>
