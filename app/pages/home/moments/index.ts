@@ -20,7 +20,7 @@ Page({
     await this.getDynamicList()
   },
   onShareAppMessage(): WechatMiniprogram.Page.ICustomShareContent {
-    console.log(this.getCurrentPage())
+    console.log(this.data.momentInfo)
     return {
       title: this.data.momentInfo.title || this.data.momentInfo.content,
       path: `/pages/home/moments/index?id=${this.data.code}`

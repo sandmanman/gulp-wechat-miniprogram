@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "万物宝典",
+  "enablePullDownRefresh": true,
   "usingComponents": {
     "treasurelog-list": "/components/treasureLogList/index",
     "waterfalls-flow": "/components/WaterfallsFlow/index"

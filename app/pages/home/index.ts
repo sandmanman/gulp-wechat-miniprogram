@@ -37,6 +37,12 @@ export default Page({
       await this.getMomentList()
     }
   },
+  async onPullDownRefresh() {
+    this.setData({ pageNumber: 0 })
+    await this.getArticleList()
+    await this.getMomentList()
+    wx.stopPullDownRefresh()
+  },
   navigateToHander({
     currentTarget: {
       dataset = { url: '' }
@@ -58,28 +64,28 @@ export default Page({
       console.error(error)
     }
   },
-  async getList(type: 1 | 2 | 3 | 4, page = 1) {
+  async getArticleList() {
     const params = getSignature({
       c_p: app.globalData.c_p,
-      type,
-      page
+      page: 1
     })
-    try {
-      return await api.getDynamicList(params)
-    } catch (error) {
-      console.error(error)
-    }
-  },
-  async getArticleList() {
-    const data = await this.getList(2)
+    const data = await api.getDailyList(params)
     this.setData({ articleList: data.obj.list })
   },
   async getMomentList() {
-    const data = await this.getList(1, this.data.pageNumber)
-    this.setData({
-      canLoadNextPage: data.obj.current_page !== data.obj.last_page,
-      pageNumber: data.obj.current_page,
-      momentList: data.obj.current_page === 1 ? data.obj.list : this.data.momentList.concat(data.obj.list)
+    const params = getSignature({
+      c_p: app.globalData.c_p,
+      page: this.data.pageNumber
     })
+    try {
+      const data = await api.getDynamicList(params)
+      this.setData({
+        canLoadNextPage: data.obj.page.page !== data.obj.page.last_page,
+        pageNumber: data.obj.page.page,
+        momentList: data.obj.page.page === 1 ? data.obj.list : this.data.momentList.concat(data.obj.list)
+      })
+    } catch (e) {
+      console.error(e.message)
+    }
   }
 })

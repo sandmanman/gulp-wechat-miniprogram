@@ -3,22 +3,14 @@
         wx:for="{{list}}"
         wx:key="{{index}}"
   >
-    <view class="image-box">
-      <block wx:if="{{item.source_type === 'image'}}">
-        <image src="{{item.source_url}}" mode="aspectFill"></image>
-      </block>
-      <block wx:elif="{{item.source_type === 'video'}}">
-        <video src="{{item.source_url}}"
-               object-fit="cover"
-               controls="{{false}}"
-               show-play-btn="{{false}}"
-               show-fullscreen-btn="{{false}}"
-               show-fullscreen-btn="{{false}}"
-        ></video>
-      </block>
+    <view class="image-box"
+          data-url="/pages/home/dynamicLog/index?id={{item.code}}"
+          bind:tap="navigateToHander"
+    >
+      <image src="{{item.url_oss}}" mode="aspectFill"></image>
     </view>
     <view class="txt-box">
-      <view class="title">{{item.title}}</view>
+      <view class="title">{{item.name}}</view>
       <view class="time">已玩{{item.play_number}}天,{{item.play_count}}次</view>
     </view>
   </view>

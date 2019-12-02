@@ -35,7 +35,7 @@
         </view>
         <view class="selectlistbox">
             <view class="lebellist"
-                  style="{{selected == index && 'color:#FFF;background:#14B0EE;'}}"
+                  style="{{selected === index && 'color:#FFFFFF;background:#14B0EE;'}}"
                   data-index="{{index}}"
                   wx:key="{{idx}}"
                   data-canLoadNextPage="{{false}}"

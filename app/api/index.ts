@@ -188,15 +188,23 @@ class API {
     signature: string
   }): Promise<IResponseType<unknown>> => httpRequest('/wikiuser/mywiki', 'GET', params)
 
-  // 获取动态/日志列表
+  // 获取动态列表
   getDynamicList = (params: {
     c_p: string
     signature: string
-    wiki_id: number
-    type: 1 | 2 | 3 | 4
+    wiki_id?: number
+    is_self?: boolean
     page: number
-    code?: string
   }): Promise<IResponseType<any>> => httpRequest('/dynamic/list', 'GET', params)
+
+  // 获取日志列表
+  getDailyList = (params: {
+    c_p: string
+    signature: string
+    wiki_id?: number
+    is_self?: boolean
+    page: number
+  }): Promise<IResponseType<any>> => httpRequest('/dynamic/daily_list', 'GET', params)
 
   wikiDelete = (params: {
     c_p: string

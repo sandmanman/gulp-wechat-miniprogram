@@ -83,11 +83,11 @@
       <view class="timetxt">{{momentInfo.create_time}}</view>
     </view>
   </view>
-  <view class="footbanner-box">
-    <view class="footimg">
-      <image src="/assets/img/home/zhizunbao_tec@2x.png"></image>
-    </view>
-  </view>
+<!--  <view class="footbanner-box">-->
+<!--    <view class="footimg">-->
+<!--      <image src="/assets/img/home/zhizunbao_tec@2x.png"></image>-->
+<!--    </view>-->
+<!--  </view>-->
   <!--  删除确认弹窗  -->
   <delete-actionsheet show="{{showConfirmActionSheet}}"
                       bind:confirm="deleteConfirmActionSheetHander"

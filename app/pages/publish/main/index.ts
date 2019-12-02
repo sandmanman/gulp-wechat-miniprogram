@@ -370,9 +370,8 @@ export default Page({
                 ...self.data.initData,
                 my_wiki_list
               },
-              selectedWikiId: wikiItem.id,
               scrollLeft: 0
-            })
+            }, () => self.setData({ selectedWikiId: wikiItem.id }))
           }
         },
         success(res: WechatMiniprogram.NavigateToSuccessCallbackResult) {

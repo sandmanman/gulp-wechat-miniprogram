@@ -7,7 +7,7 @@ Component({
         let leftHeight = 0
         let rightHeight = 0
         const flowList = list.reduce((acc, item) => {
-          const scale = item.height / item.width
+          const scale = item.file_info.height / item.file_info.width
           if (leftHeight > rightHeight) {
             rightHeight += scale
             acc[1].push(item)

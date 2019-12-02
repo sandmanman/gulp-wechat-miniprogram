@@ -85,10 +85,10 @@
         </view>
       </view>
     </view>
-    <view class="footbanner-box">
-      <view class="footimg">
-        <image src="/assets/img/home/zhizunbao_tec@2x.png"></image>
-      </view>
-    </view>
+<!--    <view class="footbanner-box">-->
+<!--      <view class="footimg">-->
+<!--        <image src="/assets/img/home/zhizunbao_tec@2x.png"></image>-->
+<!--      </view>-->
+<!--    </view>-->
   </view>
 </view>

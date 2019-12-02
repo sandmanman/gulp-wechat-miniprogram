@@ -84,6 +84,7 @@
     <view class="guide-item"
           data-url="/pages/my/myTreasure/index"
           bind:tap="navigateToHander"
+          wx:if="{{initData.my_wiki_list.length > 10}}"
     >
       <view class="search-icon"></view>
       <text>查看更多</text>

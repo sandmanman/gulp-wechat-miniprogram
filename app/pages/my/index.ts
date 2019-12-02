@@ -8,14 +8,14 @@ export default Page({
     swiperHeight: 0,
     navBarList: [
       {
-        type: 3,
+        type: 0,
         name: '动态',
         pageNumber: 0,
         canLoadNextPage: false,
         data: []
       },
       {
-        type: 4,
+        type: 1,
         name: '玩物日志',
         pageNumber: 0,
         canLoadNextPage: false,
@@ -39,7 +39,7 @@ export default Page({
   async onReady() {
     const currentNav = this.data.navBarList[this.data.activeIndex]
     await this.getList(currentNav.type, currentNav.pageNumber)
-    this.getRect('#moment')
+    this.getRect(currentNav.type === 0 ? '#moment' : '#article')
   },
   async onReachBottom() {
     if (this.data.navBarList[this.data.activeIndex].canLoadNextPage) {
@@ -48,6 +48,14 @@ export default Page({
       this.setData({ navBarList })
       await this.getList(navBarList[this.data.activeIndex].type, navBarList[this.data.activeIndex].pageNumber)
     }
+  },
+  async onPullDownRefresh() {
+    const navBarList = this.data.navBarList
+    const currentNav = Object.assign({}, navBarList[this.data.activeIndex])
+    navBarList[this.data.activeIndex].pageNumber = 0
+    this.setData({ navBarList })
+    await this.getList(currentNav.type, currentNav.pageNumber)
+    this.getRect(currentNav.type === 0 ? '#moment' : '#article')
   },
   async updateUserInfo(e: { detail: WechatMiniprogram.GetUserInfoSuccessCallbackResult }) {
     const params = getSignature({
@@ -112,20 +120,26 @@ export default Page({
       self.setData({ swiperHeight: rect.height }, callback)
     }).exec()
   },
-  async getList(type: 1 | 2 | 3 | 4, page = 1) {
+  async getList(type: 0 | 1, page = 1) {
     wx.showLoading({ title: '拼命加载中', mask: true })
     const params = getSignature({
       c_p: app.globalData.c_p,
-      type,
+      is_self: true,
       page
     })
     try {
-      const { obj } = await api.getDynamicList(params)
+      let data = null
+      if (type === 0) {
+        data = await api.getDynamicList(params)
+      } else if (type === 1) {
+        data = await api.getDailyList(params)
+      }
+      const { obj } = data
       const navBarList = this.data.navBarList
       const activeIndex = this.data.activeIndex
-      navBarList[activeIndex].canLoadNextPage = obj.current_page !== obj.last_page
-      navBarList[activeIndex].pageNumber = obj.current_page
-      navBarList[activeIndex].data = obj.current_page === 1 ? obj.list : navBarList[activeIndex].data.concat(obj.list)
+      navBarList[activeIndex].canLoadNextPage = obj.page.page !== obj.page.last_page
+      navBarList[activeIndex].pageNumber = obj.page.page
+      navBarList[activeIndex].data = obj.page.page === 1 ? obj.list : navBarList[activeIndex].data.concat(obj.list)
       this.setData({ navBarList }, wx.hideLoading)
       this.getRect(activeIndex === 0 ? '#moment' : '#article')
     } catch (error) {
