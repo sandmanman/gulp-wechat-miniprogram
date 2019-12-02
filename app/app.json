@@ -30,20 +30,20 @@
     "list": [
       {
         "pagePath": "pages/home/index",
-        "iconPath": "/assets/img/tabbar/index.png",
-        "selectedIconPath": "/assets/img/tabbar/indexOn.png",
+        "iconPath": "/assets/img/tabbar/faxian@2x.png",
+        "selectedIconPath": "/assets/img/tabbar/faxian-select@2x.png",
         "text": "首页"
       },
       {
         "pagePath": "pages/publish/index",
-        "iconPath": "/assets/img/tabbar/fabu-select@2x.png",
-        "selectedIconPath": "/assets/img/tabbar/fabu-select@2x.png",
-        "text": ""
+        "iconPath": "/assets/img/tabbar/releaseOn.png",
+        "selectedIconPath": "/assets/img/tabbar/releaseOn.png",
+        "text": "  "
       },
       {
         "pagePath": "pages/my/index",
-        "iconPath": "/assets/img/tabbar/userCenter.png",
-        "selectedIconPath": "/assets/img/tabbar/userCenterOn.png",
+        "iconPath": "/assets/img/tabbar/wode-not@2x.png",
+        "selectedIconPath": "/assets/img/tabbar/wode@2x.png",
         "text": "我的"
       }
     ]
