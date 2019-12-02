@@ -31,6 +31,7 @@ interface IAppOption {
   userInfoReadyCallback?: WechatMiniprogram.GetUserInfoSuccessCallback
   WXGetSettingHander(): void
   getSystemInfoHander(): void
+  loadBaseFont(): void
 }
 
 type IWechatRequestMethods = 'OPTIONS' | 'GET' | 'HEAD' | 'POST' | 'PUT' | 'DELETE' | 'TRACE' | 'CONNECT'

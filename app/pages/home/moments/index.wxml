@@ -58,8 +58,8 @@
       </view>
     </view>
     <view class="content-box">
-      <view class="title">{{momentInfo.title}}</view>
-      <view class="txt">{{momentInfo.content}}</view>
+      <view class="title"><text>{{momentInfo.title}}</text></view>
+      <view class="txt"><text>{{momentInfo.content}}</text></view>
     </view>
     <view class="footer-box">
       <view class="labeltxt-box" wx:if="{{momentInfo.wiki_user_name}}">

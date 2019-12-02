@@ -44,7 +44,7 @@
         margin: 15rpx 0 16rpx;
         .banner-txt-title {
           font-size: 48rpx;
-          font-weight: 500;
+          font-weight: 600;
           margin-bottom: 6rpx;
         }
         .banner-txt-time {
@@ -75,7 +75,7 @@
         }
         .username {
           font-size: 30rpx;
-          font-weight: 500;
+          font-weight: 600;
           margin: 12rpx 0 0 20rpx;
         }
       }
@@ -89,6 +89,7 @@
             .timelist {
               display: flex;
               .upstairs {
+                font-family: 'Base', serif;
                 width: 50rpx;
                 text-align: center;
                 color: #75CEF1;
@@ -96,6 +97,7 @@
               }
               .upstairs-time {
                 color: #B3B3B3;
+                font-weight: 500;
                 font-size: 24rpx;
                 margin: 6rpx 0 0 24rpx;
               }
@@ -114,7 +116,7 @@
               margin-left: 44rpx;
               .logtitle {
                 font-size: 32rpx;
-                font-weight: 600;
+                font-weight: 500;
                 margin: 24rpx 0 16rpx;
               }
               .logtxt-box {

@@ -1,87 +1,87 @@
 <view class="dynamiclog-box">
-    <view class="banner-box">
-        <view class="banner-photo-box">
-            <image src="/assets/img/home/bg-circle@2x.png"></image>
-        </view>
-        <view class="detail-box">
-            <view class="label-box">
-                <view class="label-detail">
-                      <view class="label-icon">
-                          <image src="/assets/img/home/treasure-white@2x.png"></image>
-                      </view>
-                      <view class="label-txt">{{articleInfo.tag_name}}</view>
-                </view>
-                <view class="share-img-box">
-                  <view class="share-img">
-                     <image src="/assets/img/home/share@2x.png"></image>
-                  </view>
-                  <view class="more-img">
-                     <image src="/assets/img/home/set-white@2x.png"></image>
-                  </view>
-                </view>
-            </view>
-            <view class="banner-txt-box">
-                <view class="banner-txt-title">{{articleInfo.title}}</view>
-                <view class="banner-txt-time">已玩{{articleInfo.play_number}}天 | {{articleInfo.play_count}}次</view>
-            </view>
-        </view>
+  <view class="banner-box">
+    <view class="banner-photo-box">
+      <image src="/assets/img/home/bg-circle@2x.png"></image>
     </view>
-    <view class="content-box">
-      <view class="all-content">
-        <view class="user-box">
-          <view class="user-head-box">
-                <image src="{{articleInfo.avatar_url}}"></image>
-            </view>
-            <view class="username">{{articleInfo.nick_name}}</view>
+    <view class="detail-box">
+      <view class="label-box">
+        <view class="label-detail">
+          <view class="label-icon">
+            <image src="/assets/img/home/treasure-white@2x.png"></image>
+          </view>
+          <view class="label-txt">{{articleInfo.tag_name}}</view>
         </view>
-        <view class="dynamic-content-box">
-          <view class="treasure-content-box"
-                wx:for="{{momentList}}"
-                wx:key="{{index}}"
-          >
-              <view class="time-record-box">
-                    <view class="timelist">
-                        <view class="upstairs">{{item.upstairsnum}}</view>
-                        <view class="upstairs-time">{{item.create_time}}</view>
-                    </view>
-                    <view class="day-time">第{{item.play_number}}天</view>
+        <view class="share-img-box">
+          <view class="share-img">
+            <image src="/assets/img/home/share@2x.png"></image>
+          </view>
+          <view class="more-img">
+            <image src="/assets/img/home/set-white@2x.png"></image>
+          </view>
+        </view>
+      </view>
+      <view class="banner-txt-box">
+        <view class="banner-txt-title">{{articleInfo.title}}</view>
+        <view class="banner-txt-time">已玩{{articleInfo.play_number}}天 | {{articleInfo.play_count}}次</view>
+      </view>
+    </view>
+  </view>
+  <view class="content-box">
+    <view class="all-content">
+      <view class="user-box">
+        <view class="user-head-box">
+          <image src="{{articleInfo.avatar_url}}"></image>
+        </view>
+        <view class="username">{{articleInfo.nick_name}}</view>
+      </view>
+      <view class="dynamic-content-box">
+        <view class="treasure-content-box"
+              wx:for="{{momentList}}"
+              wx:key="{{index}}"
+        >
+          <view class="time-record-box">
+            <view class="timelist">
+              <view class="upstairs">{{momentList.length - index < 10 ? '0' + (momentList.length - index) : (momentList.length - index)}}</view>
+              <view class="upstairs-time">{{item.create_time}}</view>
+            </view>
+            <view class="day-time">第{{item.play_number}}天</view>
+          </view>
+          <view class="logcontentbox">
+            <view class="logdetail">
+              <view class="logtitle"><text>{{item.title}}</text></view>
+              <view class="logtxt-box">
+                <view class="detailtxt"><text>{{item.content}}</text></view>
+                <!--                      <view class="alltxt">全部</view>-->
               </view>
-            <view class="logcontentbox">
-              <view class="logdetail">
-                  <view class="logtitle">{{item.title}}</view>
-                  <view class="logtxt-box">
-                      <view class="detailtxt">{{item.content}}</view>
-<!--                      <view class="alltxt">全部</view>-->
+              <block wx:if="{{item.source_type === 'image'}}">
+                <view class="logimage-box">
+                  <view class="imagelist-box"
+                        wx:for="{{item.source_list}}"
+                        wx:for-item="sourceItem"
+                        wx:for-index="sourceIndex"
+                        wx:key="{{sourceIndex}}"
+                  >
+                    <image src="{{sourceItem.url_oss}}" mode="aspectFill"></image>
                   </view>
-                  <block wx:if="{{item.source_type === 'image'}}">
-                    <view class="logimage-box">
-                        <view class="imagelist-box"
-                              wx:for="{{item.source_list}}"
-                              wx:for-item="sourceItem"
-                              wx:for-index="sourceIndex"
-                              wx:key="{{sourceIndex}}"
-                        >
-                            <image src="{{sourceItem.url_oss}}" mode="aspectFill"></image>
-                        </view>
-                    </view>
-                  </block>
-                  <block wx:else>
-                    <view class="videolog-box">
-                      <video src="{{item.source_url}}"
-                             controls
-                             object-fit="cover"
-                      ></video>
-                    </view>
-                  </block>
-              </view>
+                </view>
+              </block>
+              <block wx:else>
+                <view class="videolog-box">
+                  <video src="{{item.source_url}}"
+                         controls
+                         object-fit="cover"
+                  ></video>
+                </view>
+              </block>
             </view>
           </view>
         </view>
       </view>
-      <view class="footbanner-box">
-          <view class="footimg">
-              <image src="/assets/img/home/zhizunbao_tec@2x.png"></image>
-          </view>
+    </view>
+    <view class="footbanner-box">
+      <view class="footimg">
+        <image src="/assets/img/home/zhizunbao_tec@2x.png"></image>
       </view>
     </view>
+  </view>
 </view>

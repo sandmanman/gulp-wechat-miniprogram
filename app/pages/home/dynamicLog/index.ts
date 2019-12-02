@@ -17,6 +17,7 @@ Page({
     }
     this.getDynamicLog()
     this.getDynamicLogList()
+    app.loadBaseFont()
   },
   async getDynamicLog() {
     const params = getSignature({
@@ -32,7 +33,7 @@ Page({
     const params = getSignature({
       c_p: app.globalData.c_p,
       code: this.data.code,
-      type: 1 as 1 | 2 | 3 | 4,
+      type: 2 as 1 | 2 | 3 | 4,
       page: 1
     })
     const data = await api.getDynamicList(params)

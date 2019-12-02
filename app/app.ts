@@ -121,5 +121,14 @@ App<IAppOption>({
       navBarExtendHeight: isIOS ? 4 : 0,
       ...systemInfo
     } // 将信息保存到全局变量中
+  },
+  loadBaseFont() {
+    wx.loadFontFace({
+      family: 'Base',
+      source: 'url("https://lvcui-file.oss-cn-shenzhen.aliyuncs.com/wechat/BEBAS___.TTF")',
+      complete(res) {
+        console.log('字体加载: ', res)
+      }
+    })
   }
 })

@@ -46,7 +46,9 @@
         align-items: center;
         padding: 0 32rpx;
         height: 50rpx;
+        margin-bottom: 24rpx;
         .first-level-node-index {
+          font-family: 'Base', serif;
           font-size: 38rpx;
           color: #75CEF1;
           margin-right: 9rpx;
@@ -60,7 +62,7 @@
       .second-level-node {
         width: 100%;
         .second-level-node-head {
-          padding: 26rpx 32rpx 16rpx;
+          padding: 2rpx 32rpx 16rpx;
           color: #999999;
           font-size: 24rpx;
         }

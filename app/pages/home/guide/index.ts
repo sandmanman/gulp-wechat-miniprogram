@@ -14,7 +14,8 @@ export default Page({
     if (!app.globalData.userInfo.user_code) {
       await app.userLogin()
     }
-    await this.getGuide(id)
+    app.loadBaseFont()
+    this.getGuide(id)
   },
   navigationBackHander() {
     wx.navigateBack()

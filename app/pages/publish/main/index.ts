@@ -272,7 +272,6 @@ export default Page({
       if (this.data.uploadedSourceCount < sourceLangth) {
         await this.save()
       }
-      wx.showToast({ title: '上传完成' })
       await this.submit()
     } catch (error) {
       console.error(error)
@@ -310,6 +309,7 @@ export default Page({
       wx.showToast({ title: data.msg })
       setTimeout(() => wx.switchTab({ url: '/pages/my/index' }), 2500)
     } catch (error) {
+      this.setData({ isDisabledClick: false })
       wx.showToast({
         title: error,
         icon: 'none'
