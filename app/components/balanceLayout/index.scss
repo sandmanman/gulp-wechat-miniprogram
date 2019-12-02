@@ -20,6 +20,10 @@
       top: 239rpx;
       left: 20rpx;
       color: #FFFFFF;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      width: 250rpx;
       .name {
         font-size: 34rpx;
         font-weight: 500;

@@ -10,8 +10,9 @@ Page({
     index: 0,
     selected: 0,
     showlabel: true,
-    pageNumber: 1,
-    canLoadNextPage: false
+    pageNumber: 0,
+    canLoadNextPage: false,
+    wiki_id: 0
   },
   async onLoad() {
     if (!app.globalData.userInfo.user_code) {
@@ -22,11 +23,9 @@ Page({
   },
   async onReachBottom() {
     if (this.data.canLoadNextPage) {
-      return false
+      this.setData({ pageNumber: this.data.pageNumber += 1 })
+      await this.getTreasureDataList(this.data.wiki_id, this.data.pageNumber)
     }
-    wx.showLoading({ title: '数据加载中', mask: true })
-    this.data.pageNumber += 1
-    await this.getTreasureDataList(this.data.wiki_id, this.data.pageNumber)
   },
   titleClick({
     currentTarget: {
@@ -63,16 +62,12 @@ Page({
     })
     // try {
     //   const { obj } = await api.getDynamicList(params)
-    //   const listData = this.data.articleList
-    //   listData = listData.concat(obj.list)
-    //   const nomore = obj.current_page === obj.last_page
-    //   this.setData({ articleList: listData, nomore }, wx.hideLoading)
     // } catch (error) {
     //   console.error(error)
     // }
     const data = await api.getDynamicList(params)
     console.log(data)
-    this.setData({ articleList: data.obj.list })
+    this.setData({ articleList: data.obj.list }, wx.hideLoading())
   },
   async getSelsectLogList() {
     const params = getSignature({
