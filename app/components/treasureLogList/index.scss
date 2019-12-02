@@ -46,24 +46,31 @@
             border-radius: 16rpx;
             overflow: hidden;
             position: relative;
-            .txt-box {
+            .txt-model{
               position: absolute;
-              bottom: 20rpx;
-              left: 16rpx;
-              right: 16rpx;
-              color: #FFFFFF;
-              z-index: 5;
-              .title {
-                width: 100%;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                font-size: 28rpx;
-                font-weight: 600;
-              }
-              .time {
-                font-size: 22rpx;
-                color: rgba(255, 255, 255, .8);
+              top: 0;
+              width: 294rpx;
+              height: 294rpx;
+              background: rgba(0, 0, 0, .3);
+              .txt-box {
+                position: absolute;
+                bottom: 20rpx;
+                left: 16rpx;
+                right: 16rpx;
+                color: #FFFFFF;
+                z-index: 5;
+                .title {
+                  width: 100%;
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  font-size: 28rpx;
+                  font-weight: 600;
+                }
+                .time {
+                  font-size: 22rpx;
+                  color: rgba(255, 255, 255, .8);
+                }
               }
             }
           }

@@ -113,7 +113,7 @@
             border-left: 2rpx solid #CCCCCC;
             margin-left: 24rpx;
             .logdetail {
-              width: 613rpx;
+              width: 614rpx;
               margin-left: 44rpx;
               .logtitle {
                 font-size: 32rpx;
@@ -145,16 +145,17 @@
               }
               .logimage-box {
                 display: flex;
-                // justify-content: space-between;
-                width: 202rpx;
                 flex-wrap: wrap;
                 margin-top: 16rpx;
-                .imagelist-box {
-                  width: 200rpx;
-                  height: 200rpx;
-                  border-radius: 10rpx;
-                  margin-top: 10rpx;
-                  overflow: hidden;
+                .allimagelist{
+                  width:33%;
+                  .imagelist-box {
+                    width: 200rpx;
+                    height: 200rpx;
+                    border-radius: 10rpx;
+                    margin-top: 10rpx;
+                    overflow: hidden;
+                  }
                 }
               }
               .videolog-box {
