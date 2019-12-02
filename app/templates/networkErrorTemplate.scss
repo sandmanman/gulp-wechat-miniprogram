@@ -1,0 +1,46 @@
+.refresh-box {
+  width: 364rpx;
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%);
+  max-width: 50%;
+  text-align: center;
+  .refreshimage {
+    width: 256rpx;
+    height: 248rpx;
+    margin: 0 auto 15rpx;
+  }
+  .refresh-txt {
+    color: #888888;
+    font-size: 28rpx;
+  }
+  .refresh-btn-box {
+    width: 158rpx;
+    height: 56rpx;
+    line-height: 56rpx;
+    text-align: center;
+    color: #FFFFFF;
+    border-radius: 32rpx;
+    font-size : 26rpx;
+    margin: 20rpx auto 0;
+    background: linear-gradient(90deg,rgba(255,123,152,1) 0%,rgba(255,110,109,1) 100%);
+  }
+}
+.no-data-box {
+  width: 256rpx;
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%);
+  max-width: 50%;
+  text-align: center;
+  .dataimg {
+    width: 256rpx;
+    height: 248rpx;
+  }
+  .no-txt {
+    font-size: 28rpx;
+    color: #888888;
+  }
+}

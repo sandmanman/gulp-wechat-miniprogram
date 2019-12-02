@@ -67,7 +67,7 @@ export default Page({
     if (!this.data.name) {
       wx.showModal({
         title: '温馨提示',
-        content: '请填写完整内容',
+        content: '宝物名称未填写哦',
         showCancel: false
       })
       return
