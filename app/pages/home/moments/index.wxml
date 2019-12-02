@@ -15,12 +15,13 @@
                 bind:change="swiperChange">
           <swiper-item class="swiperlist"
                        wx:for="{{momentInfo.images_list}}"
-                       wx:key="{{index}}">
+                       wx:key="{{index}}"
+                       data-current="{{item.url_oss}}"
+                       bind:tap="previewImageHandle"
+          >
             <view class="img">
               <image  src="{{item.url_oss}}"
                       mode="aspectFill"
-                      bind:tap="previewImage"
-                      data-url="{{item.url_oss}}"
                ></image>
             </view>
             <view class="label-box" wx:if="{{item.tag_name}}">

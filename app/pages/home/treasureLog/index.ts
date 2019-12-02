@@ -12,7 +12,8 @@ Page({
     showlabel: true,
     pageNumber: 0,
     canLoadNextPage: false,
-    wiki_id: 0
+    wiki_id: 0,
+    is_self: 0
   },
   async onLoad() {
     if (!app.globalData.userInfo.user_code) {
@@ -56,18 +57,20 @@ Page({
     const params = getSignature({
       c_p: app.globalData.c_p,
       code: this.data.code,
+      is_self: this.data.is_self,
       wiki_id,
       type: 2 as 1 | 2 | 3 | 4,
       page
     })
-    // try {
-    //   const { obj } = await api.getDynamicList(params)
-    // } catch (error) {
-    //   console.error(error)
-    // }
-    const data = await api.getDynamicList(params)
-    console.log(data)
-    this.setData({ articleList: data.obj.list }, wx.hideLoading())
+    try {
+      const { obj } = await api.getDynamicList(params)
+      const canLoadNextPage = obj.page.page !== obj.page.last_page
+      const pageNumber = obj.page.page
+      const articleList = this.data.articleList.concat(obj.list)
+      this.setData({ articleList, canLoadNextPage, pageNumber }, wx.hideLoading())
+    } catch (error) {
+      console.error(error)
+    }
   },
   async getSelsectLogList() {
     const params = getSignature({

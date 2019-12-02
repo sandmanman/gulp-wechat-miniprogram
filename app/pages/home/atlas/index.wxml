@@ -5,8 +5,8 @@
         data-index="{{index}}"
   >
     <image class="img-box"
-           src="{{item.imgs}}"
-           data-url="{{item.imgs}}"
+           src="{{item.url_oss}}"
+           data-url="{{item.url_oss}}"
            bind:tap="previewImage"
     ></image>
   </view>

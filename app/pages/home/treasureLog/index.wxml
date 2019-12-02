@@ -60,7 +60,7 @@
               src="{{item.source_url}}"
         ></image>
         <view class="userDetail">
-            <view class="txtName">{{item.title}}</view>
+            <view class="txtName">{{item.name}}</view>
             <view class="txtTime">已玩{{item.play_number}}天,{{item.play_count}}次</view>
         </view>
         <view class="userImg">

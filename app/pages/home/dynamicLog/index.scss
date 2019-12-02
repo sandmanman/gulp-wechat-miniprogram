@@ -112,7 +112,7 @@
             border-left: 2rpx solid #CCCCCC;
             margin-left: 24rpx;
             .logdetail {
-              width: 614rpx;
+              width: 613rpx;
               margin-left: 44rpx;
               .logtitle {
                 font-size: 32rpx;
@@ -144,7 +144,8 @@
               }
               .logimage-box {
                 display: flex;
-                justify-content: space-between;
+                // justify-content: space-between;
+                width: 202rpx;
                 flex-wrap: wrap;
                 margin-top: 16rpx;
                 .imagelist-box {
