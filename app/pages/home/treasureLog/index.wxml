@@ -1,3 +1,5 @@
+<import src="/templates/networkErrorTemplate.wxml"></import>
+
 <view class="treasureLogBox">
   <view class="titleChoiseBox"
         style="{{showlabel && 'height:72rpx;line-height:72rpx;'}}"
@@ -8,10 +10,13 @@
               bind:tap="titleClick"
               style="{{selected == index ? 'color:#333333;font-weight:600;' : ''}}"
               data-index="{{index}}"
-              wx:key="index"
+              wx:key="{{idx}}"
+              data-canLoadNextPage=false
+              data-pageNumber="1"
               wx:for="{{titleList}}"
+              data-id="{{item.id}}"
       >
-          {{item.txtname}}
+          {{item.name}}
         </view>
       </scroll-view>
       <view class="open-more-box" bind:tap="openbtn">
@@ -32,11 +37,14 @@
             <view class="lebellist"
                   style="{{selected == index && 'color:#FFF;background:#14B0EE;'}}"
                   data-index="{{index}}"
-                  wx:key="index"
+                  wx:key="{{idx}}"
+                  data-canLoadNextPage=false
+                  data-pageNumber="1"
                   wx:for="{{titleList}}"
+                  data-id="{{item.id}}"
                   bind:tap="titleClick"
             >
-              {{item.txtname}}
+              {{item.name}}
             </view>
         </view>
     </view>
@@ -49,20 +57,21 @@
             bind:tap="jumpGoodsDetail"
       >
         <image class="img-box"
-              src="https://lvcui-image.oss-cn-shanghai.aliyuncs.com/background/bg.png"
+              src="{{item.source_url}}"
         ></image>
         <view class="userDetail">
-            <view class="txtName">{{item.username}}</view>
-            <view class="txtTime">已玩12天,29次</view>
+            <view class="txtName">{{item.title}}</view>
+            <view class="txtTime">已玩{{item.play_number}}天,{{item.play_count}}次</view>
         </view>
         <view class="userImg">
             <image class="user-img"
-                   src="https://lvcui-image.oss-cn-shanghai.aliyuncs.com/background/bg.png"
+                   src="{{item.avatar_url}}"
             ></image>
-            <view class="username">小东</view>
+            <view class="username">{{item.nickname}}</view>
         </view>
       </view>
     </view>
   </view>
   <view class="model-box" wx:if="{{showlabel === false}}"></view>
+  <template is="nonedata" wx:if="{{!articleList.length}}"></template>
 </view>

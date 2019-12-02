@@ -156,6 +156,14 @@ class API {
     data: any
   }>> => httpRequest('/dynamic/create', 'POST', params)
 
+  // 玩物日志头部选择栏
+  selsectArticleList = (params: {
+    c_p: string
+    signature: string
+  }): Promise<IResponseType<{
+    data: any
+  }>> => httpRequest('/wiki/daily_list', 'GET', params)
+
   // 创建日志/动态初始化
   initMoment = (params: {
     c_p: string
@@ -184,6 +192,7 @@ class API {
   getDynamicList = (params: {
     c_p: string
     signature: string
+    wiki_id: number
     type: 1 | 2 | 3 | 4
     page: number
     code?: string

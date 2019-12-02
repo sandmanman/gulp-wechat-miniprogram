@@ -1,8 +1,10 @@
 @import "../../../templates/deleteConfirmSheet.scss";
-
+page {
+  background: #F5F5F5;
+}
 .moments-container {
   width: 100%;
-  position: relative;
+  background: #FFFFFF;
   .top-mark {
     position: absolute;
     width: 100%;
@@ -15,6 +17,7 @@
     width: 100%;
     .imagelist-box {
       width: 100%;
+      position: relative;
       .swiper-box {
         width: 100%;
         height: 750rpx;
@@ -60,7 +63,7 @@
         z-index: 10;
         position: absolute;
         right: 32rpx;
-        top: 51%;
+        bottom: 24rpx;
       }
     }
     .video-box {
@@ -88,9 +91,9 @@
           font-size: 30rpx;
         }
       }
-      .share-box {
+      .options-btn {
         display: flex;
-        .share-cion {
+        .share-icon, .delete-icon {
           margin-top: 10rpx;
           width: 44rpx;
           height: 44rpx;
@@ -144,7 +147,6 @@
     line-height: 121rpx;
     background: #F5F5F5;
     text-align: center;
-    margin-top: 85rpx;
     .footimg {
       width: 545rpx;
       height: 37rpx;
