@@ -20,9 +20,11 @@
             >
               <view class="img-box">
                 <image src="{{item.url_oss}}" mode="aspectFill"></image>
-                <view class="txt-box">
-                  <view class="title">{{item.name}}</view>
-                  <view class="time">已玩{{item.play_number}}天,{{item.play_count}}次</view>
+                <view class="txt-model">
+                  <view class="txt-box">
+                    <view class="title">{{item.name}}</view>
+                    <view class="time">已玩{{item.play_number}}天,{{item.play_count}}次</view>
+                  </view>
                 </view>
               </view>
               <view class="userbox">
