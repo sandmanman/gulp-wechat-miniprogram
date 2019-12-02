@@ -8,7 +8,8 @@ Page({
     code: '',
     momentInfo: {},
     maxScale: 1,
-    swiperCurrent: 1
+    swiperCurrent: 1,
+    showConfirmActionSheet: false
   },
   async onLoad(query: Record<string, string | undefined>) {
     const { id = '' } = query
@@ -57,8 +58,17 @@ Page({
   }) {
     const self = this
     wx.previewImage({
-      urls: self.data.momentInfo.images_list.map((i: any) => i.source_url),
+      urls: self.data.momentInfo.images_list.map((i: any) => i.url_oss),
       current
     })
+  },
+  deleteCurrentSourceHander() {
+    void 0
+  },
+  showConfirmActionSheetHander() {
+    this.setData({ showConfirmActionSheet: true })
+  },
+  hideConfirmActionSheetHander() {
+    this.setData({ showConfirmActionSheet: false })
   }
 })

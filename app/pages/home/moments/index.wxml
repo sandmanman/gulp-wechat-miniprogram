@@ -17,7 +17,7 @@
                        wx:for="{{momentInfo.images_list}}"
                        wx:key="{{index}}">
             <view class="img"
-                  data-current="{{item.source_url}}"
+                  data-current="{{item.url_oss}}"
                   bind:tap="previewImageHandle">
               <image src="{{item.url_oss}}" mode="aspectFill"></image>
             </view>
@@ -79,4 +79,22 @@
       <image src="/assets/img/home/zhizunbao_tec@2x.png"></image>
     </view>
   </view>
+  <!--  删除确认弹窗  -->
+  <vant-popup show="{{showConfirmActionSheet}}"
+              position="bottom"
+              round
+              bind:close="hideActionSheetHander"
+  >
+    <view class="confirm-actionSheet">
+      <view class="actionSheet-head">
+        <text>确定要删除吗？</text>
+      </view>
+      <view class="actionSheet-confirm" bind:tap="deleteCurrentSourceHander">
+        <text>删除</text>
+      </view>
+      <view class="actionSheet-cancel" bind:tap="hideConfirmActionSheetHander">
+        <text>取消</text>
+      </view>
+    </view>
+  </vant-popup>
 </view>
