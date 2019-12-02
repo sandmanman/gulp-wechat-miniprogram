@@ -179,6 +179,15 @@ class API {
     }>
   }>> => httpRequest('/dynamic/init', 'GET', params)
 
+  // 图集
+  getAtlasList = (params: {
+    c_p: string
+    signature: string
+    id: number
+  }): Promise<IResponseType<{
+    data: any
+  }>> => httpRequest('/wiki/imglist', 'GET', params)
+
   // 首页日志列表
   getArticleList = (params: { c_p: any } & { signature: string, c_p: string }): Promise<IResponseType<{ current_page: number, last_page: number, list: any[], per_page: number, total: number }>> => httpRequest('/dynamic/daily_home_list', 'GET', params)
 
