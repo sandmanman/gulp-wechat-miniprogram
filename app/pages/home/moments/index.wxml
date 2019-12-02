@@ -16,10 +16,19 @@
           <swiper-item class="swiperlist"
                        wx:for="{{momentInfo.images_list}}"
                        wx:key="{{index}}">
+<<<<<<< HEAD
             <view class="img"
                   data-current="{{item.url_oss}}"
                   bind:tap="previewImageHandle">
               <image src="{{item.url_oss}}" mode="aspectFill"></image>
+=======
+            <view class="img">
+              <image  src="{{item.url_oss}}"
+                      mode="aspectFill"
+                      bind:tap="previewImage"
+                      data-url="{{item.url_oss}}"
+               ></image>
+>>>>>>> lzc
             </view>
             <view class="label-box" wx:if="{{item.tag_name}}">
               <view class="label-img">
@@ -50,11 +59,11 @@
         </view>
         <view class="user-name">{{momentInfo.nickname}}</view>
       </view>
-      <view class="share-box">
-        <view class="share-cion">
+      <view class="options-btn">
+        <view class="share-icon">
           <image src="/assets/img/icon/share@2x.png"></image>
         </view>
-        <view class="share-cion">
+        <view class="delete-icon">
           <image src="/assets/img/home/set@2x.png"></image>
         </view>
       </view>
