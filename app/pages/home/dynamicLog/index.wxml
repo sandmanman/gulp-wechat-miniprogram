@@ -65,7 +65,7 @@
               </view>
               <block wx:if="{{item.source_type === 'image'}}">
                 <view class="logimage-box">
-                  <view class="imagelist-box"
+                  <view class="allimagelist"
                         wx:for="{{item.source_list}}"
                         wx:for-item="sourceItem"
                         wx:for-index="sourceIndex"
@@ -74,7 +74,9 @@
                         data-index="{{index}}"
                         bind:tap="previewImageHandle"
                   >
-                    <image src="{{sourceItem.url_oss}}" mode="aspectFill"></image>
+                      <view class="imagelist-box">
+                        <image src="{{sourceItem.url_oss}}" mode="aspectFill"></image>
+                      </view>
                   </view>
                 </view>
               </block>
