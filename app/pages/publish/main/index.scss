@@ -157,6 +157,13 @@
         color: #333333;
         font-weight: 600;
       }
+      .hint-icon {
+        margin-left:8rpx;
+        background-size: 100%;
+        background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4BAMAAABaqCYtAAAAJ1BMVEVHcEyIiIiJiYmPj4+MjIyIiIiIiIiJiYmJiYmKioqJiYmIiIiIiIhOEBiFAAAADHRSTlMA5bUNKvXVZnlMmoukYXdyAAAB5ElEQVQ4y31Vv0/CUBA+KKjAJv4aOqAhGpMOOCiOOuDEgAljB6IuJgyoK4NGJ8NgTGRiME4mMjC7tWlrgfujfK/h/Sx5b3j09R5393333RWAr9zr7ubl+vcZLFnvLiYrPEyZrCfy+urnd59c2alpxjsMDxKHuXsXt1XbEKMH9lzv4q1sK6HXE6dVGydSQCd8lu+eur4Ie4EbapRzvOEAbV/Lz3I8BvcEP3VkRbxePDmzNCVjn6VaSRuzi4RHXi1ttOxp8tttL6O6ESWQ8XGZcQ0pLUfCa/1r70X4LZN98MdJpEWrslM/Jpvd4chxy8aQoV/xAArY49lXwRpimdGPb5ANWcgRxW1158yRW4G8z4I4Ad2bHj+3oMnzsVt0zyPz1A9gEHBjwmIGWUbNGMYtLr/k7TH/Z34GTkdlZsBjrvgLZ0I/GPPCeGCrhR4h91T0wJ3ItoIbcaZLoWZsSFIrhqpby45EHxG3SkIlWaMkIQVKhpANEhRBAs01kg6EBEEfpXMuHQh9gnh6Vm4GUskoTCkkLZkotq5cUmwhE21RmQiB0X6TRgkVmCRNAmUq5ROroobxDFRRy+3w0dbaQW4kq6Y1krkFjc1rbHvzwDCOGuOQMo8342A0j1TzMDaPceMHYOmn4x8aUriIAvQeaQAAAABJRU5ErkJggg==");
+        width: 28rpx;
+        height: 28rpx;
+      }
     }
     .linked-secondary {
       .text {

@@ -1,5 +1,5 @@
 <view class="photo-box">
-  <view class="img-box" wx:for="{{imgList}}" wx:key="idx" data-index="{{index}}">
+  <view class="img-box" wx:for="{{imgList}}" wx:key="{{index}}" data-index="{{index}}">
     <image src="{{item.url_oss}}" data-url="{{item.url_oss}}" bind:tap="previewImage"></image>
   </view>
 </view>
