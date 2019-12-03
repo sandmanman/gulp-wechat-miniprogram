@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "宝物图集",
+  "enablePullDownRefresh": false,
   "usingComponents": {
 
   }

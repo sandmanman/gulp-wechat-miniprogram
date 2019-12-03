@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "发布",
+  "enablePullDownRefresh": false,
   "usingComponents": {
     "footer-button": "/components/FooterButton/index"
   }
