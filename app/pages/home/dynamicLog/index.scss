@@ -13,9 +13,11 @@
       right: 32rpx;
       .label-box {
         display: flex;
+        align-items: center;
         justify-content: space-between;
         .label-detail {
           display: flex;
+          align-items: center;
           .label-icon {
             width: 25rpx;
             height: 22rpx;

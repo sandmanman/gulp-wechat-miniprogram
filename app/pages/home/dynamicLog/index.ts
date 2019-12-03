@@ -39,8 +39,7 @@ Page({
   },
   onShareAppMessage(): WechatMiniprogram.Page.ICustomShareContent {
     return {
-      title: this.data.articleInfo.title,
-      path: `/pages/home/moments/index?id=${this.data.code}`
+      title: this.data.articleInfo.title
     }
   },
   async getDynamicLog() {

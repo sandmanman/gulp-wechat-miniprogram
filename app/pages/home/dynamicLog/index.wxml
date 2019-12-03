@@ -39,7 +39,7 @@
         <view class="user-head-box">
           <image src="{{articleInfo.avatar_url}}"></image>
         </view>
-        <view class="username">{{articleInfo.nick_name}}</view>
+        <view class="username">{{articleInfo.nickname}}</view>
       </view>
       <view class="dynamic-content-box">
         <view class="treasure-content-box"
@@ -64,31 +64,27 @@
                   <!-- <view class="alltxt">全部</view> -->
                 </view>
               </view>
-              <block wx:if="{{!articleInfo.video_url}}">
-                <view class="logimage-box">
-                  <view class="allimagelist"
-                        wx:for="{{item.media_list}}"
-                        wx:for-item="mediaItem"
-                        wx:for-index="mediaIndex"
-                        wx:key="{{mediaItem.id}}"
-                        data-current="{{mediaItem.url_oss}}"
-                        data-index="{{index}}"
-                        bind:tap="previewImageHandle"
-                  >
-                      <view class="imagelist-box">
-                        <image src="{{mediaItem.url_oss}}" mode="aspectFill"></image>
-                      </view>
-                  </view>
+              <view class="logimage-box" wx:if="{{!item.video_url}}">
+                <view class="allimagelist"
+                      wx:for="{{item.media_list}}"
+                      wx:for-item="mediaItem"
+                      wx:for-index="mediaIndex"
+                      wx:key="{{mediaItem.id}}"
+                      data-current="{{mediaItem.url_oss}}"
+                      data-index="{{index}}"
+                      bind:tap="previewImageHandle"
+                >
+                    <view class="imagelist-box">
+                      <image src="{{mediaItem.url_oss}}" mode="aspectFill"></image>
+                    </view>
                 </view>
-              </block>
-              <block wx:else>
-                <view class="videolog-box">
-                  <video src="{{sourceItem.video_url}}"
-                         controls
-                         object-fit="cover"
-                  ></video>
-                </view>
-              </block>
+              </view>
+              <view class="videolog-box" wx:else>
+                <video src="{{item.video_url}}"
+                       controls
+                       object-fit="cover"
+                ></video>
+              </view>
             </view>
           </view>
         </view>

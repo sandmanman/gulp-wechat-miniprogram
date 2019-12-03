@@ -22,8 +22,7 @@ Page({
   onShareAppMessage(): WechatMiniprogram.Page.ICustomShareContent {
     console.log(this.data.momentInfo)
     return {
-      title: this.data.momentInfo.title || this.data.momentInfo.content || '我在至尊宝物上发了一篇动态，快来看看吧',
-      path: `/pages/home/moments/index?id=${this.data.code}`
+      title: this.data.momentInfo.title || this.data.momentInfo.content || '我在至尊宝物上发了一篇动态，快来看看吧'
     }
   },
   async onPullDownRefresh() {
@@ -82,7 +81,7 @@ Page({
       const { msg } = await api.deleteMoment(params)
       this.hideConfirmActionSheetHander()
       wx.showToast({ title: msg })
-      setTimeout(() => wx.navigateBack, 1500)
+      setTimeout(() => wx.navigateBack(), 1500)
     } catch (e) {
       console.error(e.message)
     }
