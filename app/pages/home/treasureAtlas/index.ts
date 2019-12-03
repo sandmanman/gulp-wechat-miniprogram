@@ -1,9 +1,34 @@
+import api from '../../../api/index'
+import { getSignature } from '../../../utils/index'
+
+const app = getApp<IAppOption>()
+
 Page({
   data: {
-    auctionLixt: [
-      { photos: '翡翠玉佩' },
-      { photos: '翡翠玉佩翡翠玉佩翡翠玉佩' },
-      { photos: '翡翠玉佩' }
-    ]
+    auctionLixt: []
+  },
+  async onLoad(query: Record<string, string | undefined>) {
+    const { id = '' } = query
+    this.setData({ id: id })
+    if (!app.globalData.userInfo.user_code) {
+      await app.userLogin()
+    }
+    await this.getAtlasDataList(id)
+  },
+  async getAtlasDataList(id: number) {
+    const params = getSignature({
+      c_p: app.globalData.c_p,
+      id
+    })
+    const data = await api.getAllAtlasList(params)
+    this.setData({ auctionLixt: data.obj })
+  },
+  nagivateToAuctionClick({
+    currentTarget: {
+      dataset = { url: '' }
+    }
+  }) {
+    const { url } = dataset
+    wx.navigateTo({ url })
   }
 })

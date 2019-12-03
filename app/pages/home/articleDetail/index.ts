@@ -19,7 +19,7 @@ Page({
       {
         icomImg: '/assets/img/my/pic.png',
         txtname: '宝物图集',
-        path: '/pages/home/atlas/index'
+        path: '/pages/home/treasureAtlas/index'
       },
       {
         icomImg: '/assets/img/my/diary.png',
@@ -58,14 +58,13 @@ Page({
   },
   navigateToHander({
     currentTarget: {
-      dataset = { url: '' }
+      dataset = { url: '', id: 0 }
     }
   }) {
-    const { url } = dataset
-    if (url === '/pages/home/atlas/index') {
-      wx.showToast({
-        title: '功能正在开发中',
-        icon: 'none'
+    const { url, id } = dataset
+    if (url === '/pages/home/treasureAtlas/index') {
+      wx.navigateTo({
+        url: '/pages/home/treasureAtlas/index?id=' + id
       })
       return
     }
@@ -77,7 +76,6 @@ Page({
     }
   }) {
     const { url } = dataset
-    console.log(dataset)
     if (url === '/pages/home/atlas/index') {
       wx.showToast({
         title: '功能正在开发中',
