@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "玩物日志",
+  "enablePullDownRefresh": true,
   "usingComponents": {
     "delete-actionsheet": "/components/DeleteActionSheet/index"
   }

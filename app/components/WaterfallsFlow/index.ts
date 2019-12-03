@@ -3,7 +3,8 @@ Component({
     list: {
       type: Array,
       value: [],
-      observer(list: any[]) {
+      observer(list: any[], oldList: any[]) {
+        if (list.length === oldList.length) return
         let leftHeight = 0
         let rightHeight = 0
         const flowList = list.reduce((acc, item) => {

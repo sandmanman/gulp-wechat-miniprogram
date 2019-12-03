@@ -21,7 +21,7 @@ export default Page({
     ],
     momentList: [],
     pageNumber: 0,
-    canLoadNextPage: true
+    canLoadNextPage: false
   },
   async onLoad() {
     if (!app.globalData.userInfo.user_code) {
@@ -38,7 +38,10 @@ export default Page({
     }
   },
   async onPullDownRefresh() {
-    this.setData({ pageNumber: 0 })
+    this.setData({
+      pageNumber: 0,
+      canLoadNextPage: false
+    })
     await this.getArticleList()
     await this.getMomentList()
     wx.stopPullDownRefresh()

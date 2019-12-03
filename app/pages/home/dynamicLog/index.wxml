@@ -47,10 +47,10 @@
         >
           <view class="time-record-box">
             <view class="timelist">
-              <view class="upstairs">{{momentList.length - index < 10 ? '0' + (momentList.length - index) : (momentList.length - index)}}</view>
+              <view class="upstairs">{{totalLength - index < 10 ? '0' + (totalLength - index) : (totalLength - index)}}</view>
               <view class="upstairs-time">{{item.publish_time}}</view>
             </view>
-            <view class="day-time">第{{item.play_number}}天</view>
+            <view class="day-time">第{{item.day}}天</view>
           </view>
           <view class="logcontentbox">
             <view class="logdetail">

@@ -35,11 +35,11 @@ export default Page({
       await app.userLogin()
     }
     this.getUserInfo()
-  },
-  async onReady() {
     const currentNav = this.data.navBarList[this.data.activeIndex]
     await this.getList(currentNav.type, currentNav.pageNumber)
-    this.getRect(currentNav.type === 0 ? '#moment' : '#article')
+  },
+  async onReady() {
+    this.getRect(this.data.navBarList[this.data.activeIndex].type === 0 ? '#moment' : '#article')
   },
   async onReachBottom() {
     if (this.data.navBarList[this.data.activeIndex].canLoadNextPage) {
@@ -103,28 +103,30 @@ export default Page({
     const { url } = dataset
     wx.navigateTo({ url })
   },
-  async navChangeHandle({
+  navChangeHandle({
     detail = {
       current: 0
     }
   }) {
     const { current } = detail
-    if (this.data.navBarList[current].pageNumber === 0) {
-      await this.getList(this.data.navBarList[current].type, 1)
-    }
-    this.getRect(current === 0 ? '#moment' : '#article', this.setData({ activeIndex: current }))
+    this.setData({ activeIndex: current }, async () => {
+      if (this.data.navBarList[current].pageNumber === 0) {
+        await this.getList(this.data.navBarList[current].type, 1)
+      }
+      this.getRect(current === 0 ? '#moment' : '#article')
+    })
   },
-  getRect(nodeID: '#moment' | '#article', callback: () => void) {
+  getRect(nodeID: '#moment' | '#article') {
     const self = this
     wx.createSelectorQuery().select(nodeID).boundingClientRect((rect: WechatMiniprogram.BoundingClientRectCallbackResult) => {
-      self.setData({ swiperHeight: rect.height }, callback)
+      self.setData({ swiperHeight: rect.height })
     }).exec()
   },
   async getList(type: 0 | 1, page = 1) {
     wx.showLoading({ title: '拼命加载中', mask: true })
     const params = getSignature({
       c_p: app.globalData.c_p,
-      is_self: true,
+      is_self: 1,
       page
     })
     try {

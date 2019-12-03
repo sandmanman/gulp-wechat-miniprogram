@@ -15,7 +15,7 @@
             <view class="auction_box"
                   wx:for="{{list}}"
                   wx:key="{{item.id}}"
-                  data-url="/pages/home/dynamicLog/index?id={{item.code}}"
+                  data-url="/pages/home/dynamicLog/index?code={{item.code}}&id={{item.id}}"
                   bind:tap="navigateToHander"
             >
               <view class="img-box">

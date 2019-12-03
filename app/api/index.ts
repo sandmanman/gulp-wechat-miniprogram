@@ -202,7 +202,7 @@ class API {
     c_p: string
     signature: string
     wiki_id?: number
-    is_self?: boolean
+    is_self?: number
     page: number
   }): Promise<IResponseType<any>> => httpRequest('/dynamic/list', 'GET', params)
 
@@ -211,7 +211,7 @@ class API {
     c_p: string
     signature: string
     wiki_id?: number
-    is_self?: boolean
+    is_self?: number
     page: number
   }): Promise<IResponseType<any>> => httpRequest('/dynamic/daily_list', 'GET', params)
 
@@ -220,6 +220,14 @@ class API {
     signature: string
     id: number
   }): Promise<IResponseType<any>> => httpRequest('/wikiuser/delete', 'POST', params)
+
+  // 获取日志的动态列表 /dynamic/daily_info_list
+  getWikiMomentList = (params: {
+    c_p: string
+    signature: string
+    id?: number
+    page: number
+  }): Promise<IResponseType<any>> => httpRequest('/dynamic/daily_info_list', 'GET', params)
 }
 
 export default new API()

@@ -8,14 +8,13 @@
           bind:tap="clickWikiHandle"
     >
       <image src="{{item.url_oss}}" mode="aspectFill"></image>
-      <image class="screen-icon"
-             src="/assets/img/icon/set.png"
-             data-id="{{item.id}}"
-             catch:tap="showConfirmActionSheetHander"
-      ></image>
+      <view class="delete-btn"
+            data-id="{{item.id}}"
+            catch:tap="showConfirmActionSheetHander"
+      ></view>
       <view class="usermessage">
         <view class="username-box">{{item.name}}</view>
-        <view class="time">已玩{{item.days}}天，{{item.freq}}次</view>
+        <view class="time">已玩{{item.play_count}}天，{{item.play_number}}次</view>
       </view>
     </view>
   </view>

@@ -8,11 +8,14 @@ Page({
     code: '',
     articleInfo: {},
     momentList: [],
-    showConfirmActionSheet: false
+    showConfirmActionSheet: false,
+    canLoadNextPage: false,
+    pageNumber: 0,
+    totalLength: 0
   },
   async onLoad(query: Record<string, string | undefined>) {
-    const { id = '' } = query
-    this.setData({ code: id })
+    const { id = '', code = '' } = query
+    this.setData({ code, id })
     if (!app.globalData.userInfo.user_code) {
       await app.userLogin()
     }
@@ -20,9 +23,23 @@ Page({
     this.getDynamicLogList()
     app.loadBaseFont()
   },
+  async onReachBottom() {
+    if (this.data.canLoadNextPage) {
+      this.setData({ pageNumber: this.data.pageNumber + 1 })
+      await this.getDynamicLogList()
+    }
+  },
+  async onPullDownRefresh() {
+    this.setData({
+      pageNumber: 0,
+      canLoadNextPage: false
+    })
+    await this.getDynamicLogList()
+    wx.stopPullDownRefresh()
+  },
   onShareAppMessage(): WechatMiniprogram.Page.ICustomShareContent {
     return {
-      title: this.data.articleInfo.title || this.data.articleInfo.content,
+      title: this.data.articleInfo.title,
       path: `/pages/home/moments/index?id=${this.data.code}`
     }
   },
@@ -39,12 +56,16 @@ Page({
   async getDynamicLogList() {
     const params = getSignature({
       c_p: app.globalData.c_p,
-      code: this.data.code,
-      type: 2 as 1 | 2 | 3 | 4,
-      page: 1
+      id: this.data.id,
+      page: this.data.pageNumber
     })
-    const data = await api.getDynamicList(params)
-    this.setData({ momentList: data.obj.list })
+    const data = await api.getWikiMomentList(params)
+    this.setData({
+      totalLength: data.obj.page.total,
+      canLoadNextPage: data.obj.page.page !== data.obj.page.last_page,
+      pageNumber: data.obj.page.page,
+      momentList: data.obj.page.page === 1 ? data.obj.list : this.data.momentList.concat(data.obj.list)
+    })
   },
   previewImageHandle({
     currentTarget: {

@@ -6,6 +6,8 @@
   .item-image {
     width: 100%;
     height: 345rpx;
+    border-radius: 12rpx 12rpx 0 0;
+    overflow: hidden;
     position: relative;
     .topping {
       position: absolute;
