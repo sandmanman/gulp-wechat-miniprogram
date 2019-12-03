@@ -20,18 +20,18 @@
         .txt-box {
           display: inline-block;
           padding: 0 32rpx;
-          height:30rpx;
+          height: 30rpx;
           color: #888888;
           font-weight: 400;
           text-align: center;
-          .txt-name{
-            height:30rpx;
+          .txt-name {
+            height: 30rpx;
           }
           .txt-line {
-            display:inline-block;
-            width:48rpx;
-            height:6rpx;
-            border-radius:3rpx;
+            display: inline-block;
+            width: 48rpx;
+            height: 6rpx;
+            border-radius: 3rpx;
           }
         }
       }
@@ -102,9 +102,9 @@
           width: 100%;
           height: 342rpx;
         }
-        .txt-model{
-          width:100%;
-          height:342rpx;
+        .txt-model {
+          width: 100%;
+          height: 342rpx;
           position: absolute;
           top: 0;
           background: rgba(0,0,0,.3);
