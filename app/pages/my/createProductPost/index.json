@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "创建宝物",
+  "enablePullDownRefresh": false,
   "usingComponents": {
     "vant-popup": "/vant/popup/index",
     "footer-button": "/components/FooterButton/index"

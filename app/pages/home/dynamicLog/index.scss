@@ -188,4 +188,13 @@
       }
     }
   }
+  .sendpost-Btn {
+    position: fixed;
+    bottom: 30rpx;
+    left: 297rpx;
+    .fiximg {
+      width: 156rpx;
+      height: 156rpx;
+    }
+  }
 }
