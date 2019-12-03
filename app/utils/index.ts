@@ -44,6 +44,7 @@ export const WXGetImageInfoAsync = (
           ...res,
           showActionSheet: false,
           tag: '',
+          tag_id: 0,
           fileType: 'image',
           tempFilePath: '',
           size: 0,
