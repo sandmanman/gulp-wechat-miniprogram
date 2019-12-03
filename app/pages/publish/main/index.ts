@@ -62,7 +62,7 @@ export default Page({
         }
 
         await Iterator()
-        self.preEditHander(selectedSourceList, self.data.initData.tag_list, swiperCurrentIndex)
+        self.preEditHander(selectedSourceList, swiperCurrentIndex)
       }
     })
   },
@@ -145,7 +145,6 @@ export default Page({
   },
   preEditHander(
     selectedSourceList: ISelectedSourceList,
-    tagList: [],
     swiperCurrentIndex = 0
   ) {
     const self = this
@@ -160,7 +159,7 @@ export default Page({
       success(res) {
         res.eventChannel.emit('getSelectedSourceListFromMain', {
           selectedSourceList,
-          tagList,
+          tagList: self.data.initData.tag_list,
           swiperCurrentIndex
         })
         wx.hideLoading()
@@ -173,7 +172,7 @@ export default Page({
     }
   }) {
     const { swipercurrentindex } = dataset
-    this.preEditHander(this.data.selectedSourceList, this.data.initData.tag_list, swipercurrentindex)
+    this.preEditHander(this.data.selectedSourceList, swipercurrentindex)
   },
   titleInputHander({
     detail: {
@@ -233,6 +232,14 @@ export default Page({
     })
   },
   async save() {
+    if (!this.data.selectedSourceList.length) {
+      wx.showModal({
+        title: '提示',
+        content: '至少发布一张照片或视频哦',
+        showCancel: false
+      })
+      return
+    }
     const c_p = Object.assign(config.cp, {
       user_code: app.globalData.userInfo.user_code
     })
@@ -282,15 +289,7 @@ export default Page({
     }
   },
   async submit() {
-    const { title = '', content = '', selectedSourceList = [] } = this.data
-    if (!title || !content || !selectedSourceList.length) {
-      wx.showModal({
-        title: '温馨提示',
-        content: '请填写完成内容',
-        showCancel: false
-      })
-      return
-    }
+    const { title, content, selectedSourceList = [] } = this.data
     const media_ids = selectedSourceList.reduce((acc: number[], item: ISelectedSourceItem) => {
       acc.push(item.id)
       return acc
@@ -299,12 +298,25 @@ export default Page({
       c_p: app.globalData.c_p,
       title,
       content,
+      user_wiki_id: this.data.selectedWikiId,
       media_ids: media_ids.toString()
     })
     console.log(params)
     try {
-      await api.saveMoment(params)
-      this.setData({ isDisabledClick: false })
+      const { obj, msg } = await api.saveMoment(params)
+      wx.showToast({
+        title: msg,
+        icon: 'none'
+      })
+      setTimeout(() => {
+        if (obj.type === 1) {
+          wx.switchTab({ url: '/pages/my/index' })
+        } else {
+          wx.navigateTo({
+            url: `/pages/home/dynamicLog/index?code=${obj.code}&id={{obj.id}}`
+          })
+        }
+      }, 1500)
     } catch (error) {
       wx.showToast({
         title: error,
@@ -312,12 +324,6 @@ export default Page({
       })
     }
     this.setData({ isDisabledClick: false })
-    wx.switchTab({
-      url: '/pages/my/index',
-      fail(error) {
-        console.error(error)
-      }
-    })
   },
   async initMoment() {
     const params = getSignature({

@@ -1,5 +1,10 @@
 {
   "navigationBarTitleText": "动态详情",
+  "navigationBarBackgroundColor": "#000000",
+  "backgroundColor": "#f5f5f5",
+  "backgroundColorTop": "#f5f5f5",
+  "backgroundColorBottom": "#f5f5f5",
+  "navigationBarTextStyle": "white",
   "navigationStyle": "custom",
   "usingComponents": {
     "navigation-bar": "/components/NavigationBar/index",

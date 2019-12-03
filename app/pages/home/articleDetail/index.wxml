@@ -9,6 +9,8 @@
       </view>
       <view class="share-icon"
             data-url="/pages/home/atlas/index"
+            controls="{{false}}"
+            show-fullscreen-btn="{{false}}"
             bind:tap="navigateToHander"
       >
         <image src="/assets/img/icon/share@2x.png"></image>
@@ -55,7 +57,7 @@
       <view class="icontxt">{{item.txtname}}</view>
     </view>
   </view>
-  <view class="treasureLog-List">
+  <view class="treasureLog-List" wx:if="{{articleList.length}}">
     <treasureLog-List list="{{articleList}}"></treasureLog-List>
   </view>
   <view class="title">全部动态</view>

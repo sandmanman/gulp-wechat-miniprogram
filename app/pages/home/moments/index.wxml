@@ -74,7 +74,7 @@
     </view>
     <view class="footer-box">
       <view class="labeltxt-box"
-            data-url="/pages/home/dynamicLog/index?id={{momentInfo.wiki_code}}"
+            data-url="/pages/home/dynamicLog/index?code={{momentInfo.wiki_code}}&id={{momentInfo.wiki_user_id}}"
             bind:tap="navigateToHander"
             wx:if="{{momentInfo.wiki_user_name}}"
       >

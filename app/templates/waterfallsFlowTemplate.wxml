@@ -21,7 +21,6 @@
                  controls="{{false}}"
                  show-play-btn="{{false}}"
                  show-fullscreen-btn="{{false}}"
-                 show-fullscreen-btn="{{false}}"
           ></video>
         </block>
       </view>

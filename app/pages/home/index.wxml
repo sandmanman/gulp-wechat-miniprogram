@@ -4,7 +4,7 @@
   <view class="treasure-list">
     <view class="category"
           wx:for="{{guideList}}"
-          wx:key="index"
+          wx:key="{{index}}"
           data-url="/pages/home/articleDetail/index?id={{item.id}}"
           bind:tap="navigateToHander"
     >

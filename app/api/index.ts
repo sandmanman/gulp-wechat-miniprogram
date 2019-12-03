@@ -153,9 +153,7 @@ class API {
     content: string
     media_ids: number
     user_wiki_id?: number
-  }): Promise<IResponseType<{
-    data: any
-  }>> => httpRequest('/dynamic/create', 'POST', params)
+  }): Promise<IResponseType<any>> => httpRequest('/dynamic/create', 'POST', params)
 
   // 玩物日志头部选择栏
   selsectArticleList = (params: {

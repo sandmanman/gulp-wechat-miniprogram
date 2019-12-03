@@ -8,7 +8,11 @@ Page({
     code: 0,
     pageNumber: 1,
     canLoadNextPage: true,
-    articleList: [],
+    articleList: [
+      { source_url: '', source_type: 'image', title: '', play_number: '', play_count: '', nickname: '', avatar_url: '/assets/img/icon/default-head.png' },
+      { source_url: '', source_type: 'image', title: '', play_number: '', play_count: '', nickname: '', avatar_url: '/assets/img/icon/default-head.png' },
+      { source_url: '', source_type: 'image', title: '', play_number: '', play_count: '', nickname: '', avatar_url: '/assets/img/icon/default-head.png' }
+    ],
     momentList: [],
     iconList: [
       {
@@ -106,16 +110,30 @@ Page({
       console.error(error)
     }
   },
-  async getArticleList() {
-    const data = await this.getList(2, 1, this.data.code)
+  async getArticleList(wiki_id: number) {
+    const params = getSignature({
+      c_p: app.globalData.c_p,
+      wiki_id,
+      page: 1
+    })
+    const data = await api.getDailyList(params)
     this.setData({ articleList: data.obj.list })
   },
-  async getMomentList() {
-    const data = await this.getList(1, this.data.pageNumber, this.data.code)
-    this.setData({
-      pageNumber: data.obj.current_page,
-      canLoadNextPage: data.obj.current_page !== data.obj.last_page,
-      momentList: data.obj.current_page === 1 ? data.obj.list : this.data.momentList.concat(data.obj.list)
+  async getMomentList(wiki_id: number) {
+    const params = getSignature({
+      c_p: app.globalData.c_p,
+      wiki_id,
+      page: this.data.pageNumber
     })
+    try {
+      const data = await api.getDynamicList(params)
+      this.setData({
+        canLoadNextPage: data.obj.page.page !== data.obj.page.last_page,
+        pageNumber: data.obj.page.page,
+        momentList: data.obj.page.page === 1 ? data.obj.list : this.data.momentList.concat(data.obj.list)
+      })
+    } catch (e) {
+      console.error(e.message)
+    }
   }
 })

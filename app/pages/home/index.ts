@@ -31,6 +31,13 @@ export default Page({
     this.getArticleList()
     this.getMomentList()
   },
+  onShow(): void {
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 0
+      })
+    }
+  },
   async onReachBottom() {
     if (this.data.canLoadNextPage) {
       this.setData({ pageNumber: this.data.pageNumber + 1 })

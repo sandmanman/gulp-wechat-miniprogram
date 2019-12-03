@@ -3,10 +3,10 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 100rpx;
+  height: 88rpx;
   background: #FFFFFF;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   padding-bottom: env(safe-area-inset-bottom);
 }
 
@@ -23,18 +23,17 @@
 
 .tab-bar-item {
   flex: 1;
-  height: 100rpx;
+  height: 88rpx;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   image {
-    width: 48rpx;
-    height: 48rpx;
+    width: 44rpx;
+    height: 44rpx;
   }
   .tabbar-name {
-    margin-top: 6rpx;
     font-size: 22rpx;
   }
 }
@@ -42,8 +41,8 @@
 .tab-bar-item2 {
 
   image {
-    width: 88rpx;
-    height: 88rpx;
+    width: 64rpx;
+    height: 64rpx;
     border-radius: 50%;
   }
 }

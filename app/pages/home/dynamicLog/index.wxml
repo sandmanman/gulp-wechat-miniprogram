@@ -1,11 +1,11 @@
 <view class="dynamiclog-box">
   <view class="banner-box">
     <view class="banner-photo-box">
-      <image src="/assets/img/home/bg-circle@2x.png"></image>
+      <image src="{{articleInfo.url_oss}}" mode="aspectFill"></image>
     </view>
     <view class="detail-box">
       <view class="label-box">
-        <view class="label-detail">
+        <view class="label-detail" wx:if="{{articleInfo.tag_name}}">
           <view class="label-icon">
             <image src="/assets/img/home/treasure-white@2x.png"></image>
           </view>
@@ -48,7 +48,7 @@
           <view class="time-record-box">
             <view class="timelist">
               <view class="upstairs">{{totalLength - index < 10 ? '0' + (totalLength - index) : (totalLength - index)}}</view>
-              <view class="upstairs-time">{{item.publish_time}}</view>
+              <view class="upstairs-time">{{item.create_time}}</view>
             </view>
             <view class="day-time">第{{item.day}}天</view>
           </view>
@@ -63,26 +63,26 @@
                   <!--                      <view class="alltxt">全部</view>-->
                 </view>
               </view>
-              <block wx:if="{{item.source_type === 'image'}}">
+              <block wx:if="{{!articleInfo.video_url}}">
                 <view class="logimage-box">
                   <view class="allimagelist"
-                        wx:for="{{item.source_list}}"
-                        wx:for-item="sourceItem"
-                        wx:for-index="sourceIndex"
-                        wx:key="{{sourceIndex}}"
-                        data-current="{{sourceItem.url_oss}}"
+                        wx:for="{{item.media_list}}"
+                        wx:for-item="mediaItem"
+                        wx:for-index="mediaIndex"
+                        wx:key="{{mediaItem.id}}"
+                        data-current="{{mediaItem.url_oss}}"
                         data-index="{{index}}"
                         bind:tap="previewImageHandle"
                   >
                       <view class="imagelist-box">
-                        <image src="{{sourceItem.url_oss}}" mode="aspectFill"></image>
+                        <image src="{{mediaItem.url_oss}}" mode="aspectFill"></image>
                       </view>
                   </view>
                 </view>
               </block>
               <block wx:else>
                 <view class="videolog-box">
-                  <video src="{{item.source_url}}"
+                  <video src="{{sourceItem.video_url}}"
                          controls
                          object-fit="cover"
                   ></video>
