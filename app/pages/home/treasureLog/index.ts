@@ -15,12 +15,18 @@ Page({
     wiki_id: 0,
     is_self: 0
   },
-  async onLoad() {
+  async onLoad(query: Record<string, string | undefined>) {
+    const { id = '' } = query
+    this.setData({ listId: parseInt(id) })
     if (!app.globalData.userInfo.user_code) {
       await app.userLogin()
     }
-    await this.getSelsectLogList()
-    await this.getTreasureDataList(this.data.titleList[0].id, this.data.pageNumber)
+    if (!this.data.listId) {
+      await this.getSelsectLogList()
+      await this.getTreasureDataList(this.data.titleList[0].id, this.data.pageNumber)
+    } else {
+      await this.getTreasureDataList(this.data.listId, this.data.pageNumber)
+    }
   },
   async onReachBottom() {
     if (this.data.canLoadNextPage) {
