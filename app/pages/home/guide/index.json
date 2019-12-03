@@ -2,6 +2,7 @@
   "navigationBarTitleText": "玩法指南",
   "navigationStyle": "custom",
   "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": false,
   "usingComponents": {
     "navigation-bar": "/components/NavigationBar/index",
     "van-dialog": "/vant/dialog/index"

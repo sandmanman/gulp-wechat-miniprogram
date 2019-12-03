@@ -52,6 +52,11 @@ Page({
       await this.getMomentList()
     }
   },
+  async onPullDownRefresh() {
+    await this.getMomentList(this.data.code)
+    this.getarticleDetailList(parseInt(this.data.code))
+    wx.stopPullDownRefresh()
+  },
   onShareAppMessage(): WechatMiniprogram.Page.ICustomShareContent {
     return {
       title: '进入查看更多宝物百科知识'

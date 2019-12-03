@@ -6,6 +6,7 @@
   "backgroundColorBottom": "#000000",
   "navigationBarTextStyle": "white",
   "disableScroll": true,
+  "enablePullDownRefresh": false,
   "navigationStyle": "custom",
   "usingComponents": {
     "navigation-bar": "/components/NavigationBar/index",

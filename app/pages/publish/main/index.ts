@@ -33,6 +33,9 @@ export default Page({
     }
     this.initMoment()
   },
+  async onPullDownRefresh() {
+    this.initMoment()
+  },
   onUnload() {
     this.offUploadTaskListener()
   },

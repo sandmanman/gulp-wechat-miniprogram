@@ -22,9 +22,13 @@ Page({
   onShareAppMessage(): WechatMiniprogram.Page.ICustomShareContent {
     console.log(this.data.momentInfo)
     return {
-      title: this.data.momentInfo.title || this.data.momentInfo.content,
+      title: this.data.momentInfo.title || this.data.momentInfo.content || '我在至尊宝物上发了一篇动态，快来看看吧',
       path: `/pages/home/moments/index?id=${this.data.code}`
     }
+  },
+  async onPullDownRefresh() {
+    await this.getDynamicList()
+    wx.stopPullDownRefresh()
   },
   async getDynamicList() {
     const params = getSignature({
