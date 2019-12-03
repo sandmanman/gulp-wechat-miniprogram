@@ -5,7 +5,7 @@ const app = getApp<IAppOption>()
 
 export default Page({
   data: {
-    cover: '',
+    image: '',
     name: '',
     nodeList: []
   },
@@ -35,7 +35,7 @@ export default Page({
     })
     const data = await api.getGuide(params)
     this.setData({
-      cover: data.obj.cover,
+      image: data.obj.image,
       name: data.obj.name,
       nodeList: data.obj.node
     })

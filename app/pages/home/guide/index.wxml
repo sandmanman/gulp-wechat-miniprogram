@@ -6,7 +6,7 @@
                   bind:back="navigationBackHander"
   ></navigation-bar>
   <view class="cover-image"
-        style="background-image: url({{cover}})"
+        style="background-image: url({{image}})"
   >
     <view class="mark"></view>
     <view class="title">{{name}}</view>

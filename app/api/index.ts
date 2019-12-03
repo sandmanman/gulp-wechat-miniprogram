@@ -130,6 +130,7 @@ class API {
     id: number
   }): Promise<IResponseType<{
     cover: string
+    image: string
     name: string
     node: any
   }>> => httpRequest('/wiki/guide', 'GET', params)

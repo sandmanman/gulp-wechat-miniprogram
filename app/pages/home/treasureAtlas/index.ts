@@ -5,7 +5,7 @@ const app = getApp<IAppOption>()
 
 Page({
   data: {
-    auctionLixt: []
+    auctionList: []
   },
   async onLoad(query: Record<string, string | undefined>) {
     const { id = '' } = query
@@ -21,7 +21,7 @@ Page({
       id
     })
     const data = await api.getAllAtlasList(params)
-    this.setData({ auctionLixt: data.obj })
+    this.setData({ auctionList: data.obj })
   },
   nagivateToAuctionClick({
     currentTarget: {

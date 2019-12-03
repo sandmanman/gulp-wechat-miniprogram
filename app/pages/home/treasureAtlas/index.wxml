@@ -1,15 +1,15 @@
 <view class="tearsureAtlasBox">
   <view class="auction-box">
       <view class="auctionListBox"
-            wx:for="{{auctionLixt}}"
-            wx:key="idx"
+            wx:for="{{auctionList}}"
+            wx:key="{{index}}"
             data-url="/pages/home/atlas/index?id={{item.id}}"
             bind:tap="nagivateToAuctionClick"
       >
           <image class="imgs" src="{{item.cover}}"></image>
           <view class="Txt-box">
               <view class="title">{{item.title}}</view>
-              <view class="numTxt">/{{item.Total}}图</view>
+              <view class="numTxt">/{{item.total}}图</view>
           </view>
       </view>
   </view>
