@@ -58,6 +58,14 @@ Page({
       showlabel: true
     })
   },
+  navigateToHander({
+    currentTarget: {
+      dataset = { url: '' }
+    }
+  }) {
+    const { url } = dataset
+    wx.navigateTo({ url })
+  },
   async getTreasureDataList(wiki_id: number, page = 1) {
     wx.showLoading({ title: '数据加载中', mask: true })
     const params = getSignature({
@@ -69,7 +77,7 @@ Page({
       page
     })
     try {
-      const { obj } = await api.getDynamicList(params)
+      const { obj } = await api.getDailyList(params)
       const canLoadNextPage = obj.page.page !== obj.page.last_page
       const pageNumber = obj.page.page
       const articleList = this.data.articleList.concat(obj.list)
