@@ -76,7 +76,7 @@ Page({
   async deleteConfirmActionSheetHander() {
     const params = getSignature({
       c_p: app.globalData.c_p,
-      id: this.data.momentInfo.wiki_user_id
+      id: this.data.momentInfo.id
     })
     try {
       const { msg } = await api.deleteMoment(params)

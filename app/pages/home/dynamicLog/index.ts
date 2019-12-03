@@ -92,7 +92,7 @@ Page({
   async deleteConfirmActionSheetHander() {
     const params = getSignature({
       c_p: app.globalData.c_p,
-      id: this.data.code
+      id: this.data.articleInfo.wiki_user_id
     })
     try {
       const data = await api.deleteDaily(params)
