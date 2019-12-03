@@ -48,6 +48,7 @@
       <view class="imgs"
             data-url="{{item.path}}"
             bind:tap="navigateToHander"
+            data-id="{{wikiInfo.wiki.id}}"
       >
         <image src="{{item.icomImg}}"></image>
       </view>

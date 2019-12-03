@@ -15,16 +15,24 @@
       height: 342rpx;
       border-radius: 10rpx;
     }
+    .txt-model {
+      width: 342rpx;
+      height: 342rpx;
+      border-radius: 10rpx;
+      position: absolute;
+      top:0;
+      background: rgba(0,0,0,.3);
+    }
     .txt-box {
       position: absolute;
       top: 239rpx;
       left: 20rpx;
       color: #FFFFFF;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      width: 250rpx;
-      .name {
+      .title {
+        width:250rpx;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
         font-size: 34rpx;
         font-weight: 500;
       }
