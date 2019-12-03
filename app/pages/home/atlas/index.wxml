@@ -1,13 +1,5 @@
-<view class="atlasBox">
-  <view class="photonBox"
-        wx:for="{{imgList}}"
-        wx:key="idx"
-        data-index="{{index}}"
-  >
-    <image class="img-box"
-           src="{{item.url_oss}}"
-           data-url="{{item.url_oss}}"
-           bind:tap="previewImage"
-    ></image>
+<view class="photo-box">
+  <view class="img-box" wx:for="{{imgList}}" wx:key="idx" data-index="{{index}}">
+    <image src="{{item.url_oss}}" data-url="{{item.url_oss}}" bind:tap="previewImage"></image>
   </view>
 </view>

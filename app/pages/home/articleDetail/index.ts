@@ -81,13 +81,13 @@ Page({
   },
   nagivateToAtlas({
     currentTarget: {
-      dataset = { url: '' }
+      dataset = { url: '', articleid: 0 }
     }
   }) {
-    const { url } = dataset
-    if (url === '/pages/home/atlas/index') {
+    const { url, articleid } = dataset
+    if (!articleid) {
       wx.showToast({
-        title: '功能正在开发中',
+        title: '图片待更新',
         icon: 'none'
       })
     } else {
