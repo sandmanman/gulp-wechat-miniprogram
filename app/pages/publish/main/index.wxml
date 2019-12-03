@@ -60,6 +60,7 @@
     <view class="linked-main">
       <view class="icon"></view>
       <view class="title">关联我的宝物</view>
+      <view class="hint-icon" bind:tap="showmodelbtn"></view>
     </view>
     <view class="linked-secondary"
           data-url="/pages/my/createProductPost/index"

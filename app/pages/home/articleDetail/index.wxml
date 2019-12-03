@@ -23,12 +23,16 @@
                  object-fit="cover"
                  controls
           ></video>
+          <!-- <view class="play-icon">
+            <image class="/assets/img/home/vedio@2x.png"></image>
+          </view> -->
         </view>
         <view class="pictures">
           <view class="photoBox"
                 wx:for="{{wikiInfo.media}}"
                 wx:key="{{index}}"
                 data-url="/pages/home/atlas/index?id={{item.article_id}}"
+                data-articleid ="{{item.article_id}}"
                 bind:tap="nagivateToAtlas"
           >
             <view class="pictus">

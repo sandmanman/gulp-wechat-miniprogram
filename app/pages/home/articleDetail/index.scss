@@ -66,6 +66,14 @@
           height: 296rpx;
           border-radius: 10rpx;
           overflow: hidden;
+          position: relative;
+          .play-icon {
+            position: absolute;
+            top: 120rpx;
+            left: 214rpx;
+            width: 56rpx;
+            height: 56rpx;
+          }
         }
         .pictures {
           .photoBox {
@@ -76,7 +84,7 @@
               height: 144rpx;
               border-radius: 10rpx;
               overflow: hidden;
-              margin-bottom: 7rpx;
+              margin-bottom: 10rpx;
             }
             .mask {
               width: 144rpx;
