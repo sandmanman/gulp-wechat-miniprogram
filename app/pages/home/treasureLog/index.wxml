@@ -3,6 +3,7 @@
 <view class="treasureLogBox">
   <view class="titleChoiseBox"
         style="{{showlabel && 'height:72rpx;line-height:72rpx;'}}"
+        wx:if="{{!listId}}"
   >
     <view class="scrolllabel" wx:if="{{showlabel}}">
       <scroll-view class="scrolls" scroll-x>

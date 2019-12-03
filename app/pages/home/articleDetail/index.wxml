@@ -25,6 +25,9 @@
                  object-fit="cover"
                  controls
           ></video>
+          <!-- <view class="play-icon">
+            <image class="/assets/img/home/vedio@2x.png"></image>
+          </view> -->
         </view>
         <view class="pictures">
           <view class="photoBox"

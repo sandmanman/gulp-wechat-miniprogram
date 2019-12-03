@@ -59,8 +59,8 @@
               >
                 <view class="logtitle"><text>{{item.title}}</text></view>
                 <view class="logtxt-box">
-                  <view class="detailtxt"><text>{{item.content}}</text></view>
-                  <!--                      <view class="alltxt">全部</view>-->
+                  <view class="detailtxt"><text id="title0">{{item.content}}</text></view>
+                  <!-- <view class="alltxt">全部</view> -->
                 </view>
               </view>
               <block wx:if="{{!articleInfo.video_url}}">

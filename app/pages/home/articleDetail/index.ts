@@ -71,6 +71,11 @@ Page({
         url: '/pages/home/treasureAtlas/index?id=' + id
       })
       return
+    } else if (url === '/pages/home/treasureLog/index') {
+      wx.navigateTo({
+        url: '/pages/home/treasureLog/index?id=' + id
+      })
+      return
     }
     wx.navigateTo({ url })
   },
