@@ -17,14 +17,14 @@
     "pages/home/dynamicLog/index"
   ],
   "window": {
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",
   "tabBar": {
-    "custom": false,
+    "custom": true,
     "color": "#4A4A4A",
     "selectedColor": "#FF335F",
     "backgroundColor": "#ffffff",

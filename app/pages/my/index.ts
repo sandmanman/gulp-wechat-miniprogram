@@ -49,6 +49,13 @@ export default Page({
       await this.getList(navBarList[this.data.activeIndex].type, navBarList[this.data.activeIndex].pageNumber)
     }
   },
+  onShow(): void {
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 2
+      })
+    }
+  },
   async onPullDownRefresh() {
     const navBarList = this.data.navBarList
     const currentNav = Object.assign({}, navBarList[this.data.activeIndex])

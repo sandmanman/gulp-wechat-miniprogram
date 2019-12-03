@@ -77,7 +77,7 @@ Page({
   }) {
     const self = this
     wx.previewImage({
-      urls: self.data.momentList[index].source_list.map((i: any) => i.url_oss),
+      urls: self.data.momentList[index].media_list.map((i: any) => i.url_oss),
       current
     })
   },
