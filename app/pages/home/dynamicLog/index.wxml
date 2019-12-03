@@ -101,4 +101,12 @@
                       bind:confirm="deleteConfirmActionSheetHander"
                       bind:cancel="hideConfirmActionSheetHander"
   ></delete-actionsheet>
+  <view class="sendpost-Btn"
+        bind:tap="sendBtn"
+        data-url="/pages/publish/main/index"
+  >
+    <view class="fiximg">
+      <image src="/assets/img/icon/sendpost.png"></image>
+    </view>
+  </view>
 </view>

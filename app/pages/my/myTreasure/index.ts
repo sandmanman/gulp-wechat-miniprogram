@@ -67,6 +67,7 @@ Page({
         }
       })
     }
+    wx.navigateTo({ url: '/pages/home/dynamicLog/index?code=' + item.code + '&id=' + item.id })
   },
   async deleteWikiHandle() {
     const params = getSignature({

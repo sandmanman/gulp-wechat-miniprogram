@@ -88,6 +88,14 @@ Page({
     const { url } = dataset
     wx.navigateTo({ url })
   },
+  sendBtn({
+    currentTarget: {
+      dataset = { url: '' }
+    }
+  }) {
+    const { url } = dataset
+    wx.navigateTo({ url })
+  },
   async deleteConfirmActionSheetHander() {
     const params = getSignature({
       c_p: app.globalData.c_p,
