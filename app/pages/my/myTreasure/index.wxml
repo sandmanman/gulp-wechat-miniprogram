@@ -18,7 +18,7 @@
       </view>
     </view>
   </view>
-  <template is="nonedata" wx:if="{{!treasureList.length}}"></template>
+  <template is="noData" wx:if="{{!treasureList.length}}"></template>
   <view class="btn-box">
     <image src="/assets/img/icon/tip-blue.png" wx:if="{{!treasureList.length}}"></image>
     <view class="create-treasure"

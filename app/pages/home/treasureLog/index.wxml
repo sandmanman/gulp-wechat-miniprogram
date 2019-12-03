@@ -52,7 +52,7 @@
     </view>
   </view>
   <view class="articleBox">
-    <view class="margin-box">
+    <view class="margin-box" style="{{!listId && 'margin-top: 90rpx;'}}">
       <view class="articleList"
             wx:for="{{articleList}}"
             wx:key="{{index}}"
