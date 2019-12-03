@@ -25,7 +25,8 @@ export default Page({
     initData: {},
     selectedWikiId: 0,
     scrollLeft: 0,
-    isDisabledClick: false
+    isDisabledClick: false,
+    showhint: false
   },
   async onLoad() {
     if (!app.globalData.userInfo.user_code) {
@@ -405,5 +406,11 @@ export default Page({
     detail: { scrollLeft = 0 }
   }) {
     this.setData({ scrollLeft })
+  },
+  showmodelbtn() {
+    this.setData({ showhint: true })
+  },
+  closehintbtn() {
+    this.setData({ showhint: false })
   }
 })

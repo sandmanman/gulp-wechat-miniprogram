@@ -43,8 +43,10 @@ Page({
     }
   }) {
     const { index, id } = dataset
+    const articleList = this.data.articleList
     this.setData({
-      selected: index
+      selected: index,
+      articleList: []
     })
     this.getTreasureDataList(id, 1)
   },
