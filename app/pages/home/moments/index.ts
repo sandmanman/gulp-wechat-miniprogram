@@ -72,10 +72,10 @@ Page({
   async deleteConfirmActionSheetHander() {
     const params = getSignature({
       c_p: app.globalData.c_p,
-      id: this.data.code
+      id: this.data.momentInfo.wiki_user_id
     })
     try {
-      const { msg } = await api.wikiDelete(params)
+      const { msg } = await api.deleteMoment(params)
       this.hideConfirmActionSheetHander()
       wx.showToast({ title: msg })
       setTimeout(() => wx.navigateBack, 1500)

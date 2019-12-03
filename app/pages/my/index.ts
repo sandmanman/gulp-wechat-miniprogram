@@ -38,6 +38,13 @@ export default Page({
     const currentNav = this.data.navBarList[this.data.activeIndex]
     await this.getList(currentNav.type, currentNav.pageNumber)
   },
+  onShow(): void {
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 2
+      })
+    }
+  },
   async onReady() {
     this.getRect(this.data.navBarList[this.data.activeIndex].type === 0 ? '#moment' : '#article')
   },
@@ -49,19 +56,14 @@ export default Page({
       await this.getList(navBarList[this.data.activeIndex].type, navBarList[this.data.activeIndex].pageNumber)
     }
   },
-  onShow(): void {
-    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
-      this.getTabBar().setData({
-        selected: 2
-      })
-    }
-  },
   async onPullDownRefresh() {
     const navBarList = this.data.navBarList
     const currentNav = Object.assign({}, navBarList[this.data.activeIndex])
     navBarList[this.data.activeIndex].pageNumber = 0
     this.setData({ navBarList })
     await this.getList(currentNav.type, currentNav.pageNumber)
+    this.getUserInfo()
+    wx.stopPullDownRefresh()
     this.getRect(currentNav.type === 0 ? '#moment' : '#article')
   },
   async updateUserInfo(e: { detail: WechatMiniprogram.GetUserInfoSuccessCallbackResult }) {

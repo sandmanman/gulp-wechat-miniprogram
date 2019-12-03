@@ -95,12 +95,12 @@ Page({
       id: this.data.code
     })
     try {
-      const data = await api.wikiDelete(params)
+      const data = await api.deleteDaily(params)
       this.hideConfirmActionSheetHander()
       wx.showToast({
         title: data.msg
       })
-      setTimeout(() => wx.navigateBack, 1500)
+      setTimeout(() => wx.navigateBack(), 1500)
     } catch (e) {
       console.error(e.message)
     }

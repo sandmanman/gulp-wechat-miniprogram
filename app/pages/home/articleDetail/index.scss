@@ -49,6 +49,10 @@
       .share-icon {
         width: 44rpx;
         height: 44rpx;
+        overflow: visible;
+        image {
+          display: block;
+        }
       }
     }
     .videoAndPhotoBox {

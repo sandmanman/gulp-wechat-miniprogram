@@ -7,3 +7,4 @@
     </view>
   </block>
 </view>
+<view class="reachBottom" wx:if="{{isReachBottom}}">已经到底啦～</view>

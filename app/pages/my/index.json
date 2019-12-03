@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "个人中心",
+  "enablePullDownRefresh": true,
   "usingComponents": {
     "balancelayout-list": "/components/balanceLayout/index",
     "waterfalls-flow": "/components/WaterfallsFlow/index"

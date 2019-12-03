@@ -7,7 +7,7 @@ Page({
   data: {
     code: 0,
     pageNumber: 1,
-    canLoadNextPage: true,
+    canLoadNextPage: false,
     articleList: [
       { source_url: '', source_type: 'image', title: '', play_number: '', play_count: '', nickname: '', avatar_url: '/assets/img/icon/default-head.png' },
       { source_url: '', source_type: 'image', title: '', play_number: '', play_count: '', nickname: '', avatar_url: '/assets/img/icon/default-head.png' },
@@ -50,6 +50,11 @@ Page({
     if (this.data.canLoadNextPage) {
       this.setData({ pageNumber: this.data.pageNumber + 1 })
       await this.getMomentList()
+    }
+  },
+  onShareAppMessage(): WechatMiniprogram.Page.ICustomShareContent {
+    return {
+      title: '进入查看更多宝物百科知识'
     }
   },
   async getarticleDetailList(id: number) {

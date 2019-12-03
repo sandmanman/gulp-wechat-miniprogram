@@ -236,6 +236,20 @@ class API {
     id?: number
     page: number
   }): Promise<IResponseType<any>> => httpRequest('/dynamic/daily_info_list', 'GET', params)
+
+  // 删除动态
+  deleteMoment = (params: {
+    c_p: string
+    signature: string
+    id: number
+  }): Promise<IResponseType<any>> => httpRequest('/dynamic/dynamic_delete', 'POST', params)
+
+  // 删除日志
+  deleteDaily = (params: {
+    c_p: string
+    signature: string
+    id: number
+  }): Promise<IResponseType<any>> => httpRequest('/dynamic/daily_delete', 'POST', params)
 }
 
 export default new API()

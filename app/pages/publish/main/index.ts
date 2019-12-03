@@ -304,6 +304,7 @@ export default Page({
     console.log(params)
     try {
       const { obj, msg } = await api.saveMoment(params)
+      console.log(obj)
       wx.showToast({
         title: msg,
         icon: 'none'
@@ -313,7 +314,7 @@ export default Page({
           wx.switchTab({ url: '/pages/my/index' })
         } else {
           wx.navigateTo({
-            url: `/pages/home/dynamicLog/index?code=${obj.code}&id={{obj.id}}`
+            url: `/pages/home/dynamicLog/index?code=${obj.code}&id=${obj.id}`
           })
         }
       }, 1500)

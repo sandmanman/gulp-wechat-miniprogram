@@ -47,12 +47,12 @@
   >
     <swiper-item>
       <view class="list-container" id="moment">
-        <waterfalls-flow list="{{navBarList[0].data}}"></waterfalls-flow>
+        <waterfalls-flow list="{{navBarList[0].data}}" isReachBottom="{{!navBarList[0].canLoadNextPage}}"></waterfalls-flow>
       </view>
     </swiper-item>
     <swiper-item>
       <view class="list-container" id="article">
-        <balancelayout-list list="{{navBarList[1].data}}"></balancelayout-list>
+        <balancelayout-list list="{{navBarList[1].data}}" isReachBottom="{{!navBarList[1].canLoadNextPage}}"></balancelayout-list>
       </view>
     </swiper-item>
   </swiper>

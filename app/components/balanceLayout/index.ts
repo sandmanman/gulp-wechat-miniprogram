@@ -3,6 +3,10 @@ Component({
     list: {
       type: Array,
       value: []
+    },
+    isReachBottom: {
+      type: Boolean,
+      value: false
     }
   },
   methods: {

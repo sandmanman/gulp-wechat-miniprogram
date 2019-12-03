@@ -17,10 +17,12 @@ Component({
           }
           return acc
         }, [[], []])
-        this.setData({
-          flowList
-        })
+        this.setData({ flowList })
       }
+    },
+    isReachBottom: {
+      type: Boolean,
+      value: false
     },
     width: {
       type: Number,

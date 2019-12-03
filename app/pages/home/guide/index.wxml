@@ -17,6 +17,11 @@
         <view class="first-level-node-head">
           <view class="first-level-node-index">{{index + 1}}</view>
           <view class="first-level-node-name">{{item.name}}</view>
+          <view class="desc-icon"
+                data-desc="{{item.desc}}"
+                bind:tap="showNodeDescHandle"
+                wx:if="{{item.desc}}"
+          ></view>
         </view>
         <view class="second-level-node">
           <block wx:if="{{item.children[0].children.length}}">
@@ -25,7 +30,16 @@
                    wx:for-index="secondIndex"
                    wx:key="{{secondIndex}}"
             >
-              <view class="second-level-node-head">{{secondItem.name}}</view>
+              <view class="second-level-node-head">
+                <view class="second-level-node-name">
+                  {{secondItem.name}}
+                </view>
+                <view class="desc-icon"
+                      data-desc="{{secondItem.desc}}"
+                      bind:tap="showNodeDescHandle"
+                      wx:if="{{secondItem.desc}}"
+                ></view>
+              </view>
               <view class="third-level-node">
                 <block wx:for="{{ secondItem.children }}"
                        wx:for-item="thirdItem"
@@ -58,4 +72,5 @@
       </view>
     </block>
   </view>
+  <van-dialog id="van-dialog"></van-dialog>
 </view>

@@ -11,6 +11,7 @@
           </view>
           <view class="label-txt">{{articleInfo.tag_name}}</view>
         </view>
+        <view wx:else></view>
         <view class="share-img-box">
           <button class="share-img"
                   plain

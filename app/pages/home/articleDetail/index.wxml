@@ -7,14 +7,12 @@
         </view>
         <view class="anothername">别称：{{wikiInfo.wiki.alias}}</view>
       </view>
-      <view class="share-icon"
-            data-url="/pages/home/atlas/index"
-            controls="{{false}}"
-            show-fullscreen-btn="{{false}}"
-            bind:tap="navigateToHander"
+      <button class="share-icon"
+              open-type="share"
+              plain
       >
         <image src="/assets/img/icon/share@2x.png"></image>
-      </view>
+      </button>
     </view>
     <view class="videoAndPhotoBox">
       <view class="videoBox">
@@ -62,7 +60,7 @@
   </view>
   <view class="title">全部动态</view>
   <view class="comment-list">
-    <waterfalls-flow list="{{momentList}}"></waterfalls-flow>
+    <waterfalls-flow list="{{momentList}}" isReachBottom="{{!canLoadNextPage}}"></waterfalls-flow>
   </view>
   <view class="sendpost-Btn"
         bind:tap="sendBtn"

@@ -1,5 +1,6 @@
 import api from '../../../api/index'
 import { getSignature } from '../../../utils/index'
+import Dialog from '../../../vant/dialog/dialog'
 
 const app = getApp<IAppOption>()
 
@@ -39,5 +40,16 @@ export default Page({
       name: data.obj.name,
       nodeList: data.obj.node
     })
+  },
+  showNodeDescHandle({
+    currentTarget: {
+      dataset: {
+        desc = '测试'
+      }
+    }
+  }) {
+    Dialog.alert({
+      message: desc
+    }).then(() => void 0)
   }
 })
