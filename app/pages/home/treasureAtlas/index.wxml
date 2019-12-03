@@ -3,12 +3,13 @@
       <view class="auctionListBox"
             wx:for="{{auctionLixt}}"
             wx:key="idx"
-            bind:tap="jumpAuctionClick"
+            data-url="/pages/home/atlas/index?id={{item.id}}"
+            bind:tap="nagivateToAuctionClick"
       >
-          <image class="imgs" src="https://lvcui-image.oss-cn-shanghai.aliyuncs.com/background/bg.png"></image>
+          <image class="imgs" src="{{item.cover}}"></image>
           <view class="Txt-box">
-              <view class="title">{{item.photos}}</view>
-              <view class="numTxt">/26图</view>
+              <view class="title">{{item.title}}</view>
+              <view class="numTxt">/{{item.Total}}图</view>
           </view>
       </view>
   </view>
