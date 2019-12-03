@@ -3,6 +3,7 @@
 <view class="treasureLogBox">
   <view class="titleChoiseBox"
         style="{{showlabel && 'height:72rpx;line-height:72rpx;'}}"
+        wx:if="{{!listId}}"
   >
     <view class="scrolllabel" wx:if="{{showlabel}}">
       <scroll-view class="scrolls" scroll-x>
@@ -54,11 +55,12 @@
     <view class="margin-box">
       <view class="articleList"
             wx:for="{{articleList}}"
-            wx:key="index"
-            bind:tap="jumpGoodsDetail"
+            wx:key="{{index}}"
+            data-url="/pages/home/dynamicLog/index?code={{item.code}}&id={{item.id}}"
+            bind:tap="navigateToHander"
       >
         <view class="img-box">
-          <image src="{{item.source_url}}"></image>
+          <image src="{{item.url_oss}}"></image>
         </view>
         <view class="txt-model"></view>
         <view class="userDetail">

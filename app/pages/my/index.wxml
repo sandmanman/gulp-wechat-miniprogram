@@ -48,11 +48,13 @@
     <swiper-item>
       <view class="list-container" id="moment">
         <waterfalls-flow list="{{navBarList[0].data}}"></waterfalls-flow>
+        <template is="nonedata" wx:if="{{!navBarList[0].data}}"></template>
       </view>
     </swiper-item>
     <swiper-item>
       <view class="list-container" id="article">
         <balancelayout-list list="{{navBarList[1].data}}"></balancelayout-list>
+        <template is="nonedata" wx:if="{{!navBarList[1].data}}"></template>
       </view>
     </swiper-item>
   </swiper>

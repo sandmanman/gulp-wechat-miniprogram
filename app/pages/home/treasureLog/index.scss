@@ -73,6 +73,9 @@
         flex-wrap: wrap;
         .lebellist {
           width: 220rpx;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
           height: 72rpx;
           line-height: 72rpx;
           border-radius: 10rpx;

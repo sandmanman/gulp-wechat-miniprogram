@@ -1,11 +1,14 @@
-.atlasBox {
+.photo-box {
+  width: 100%;
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
-  .photonBox {
-    .img-box {
-      width: 246rpx;
-      height: 246rpx;
+  .img-box {
+    flex: 0 1 calc(100% / 3);
+    padding: 0 3rpx 3rpx 0;
+    height: 246rpx;
+    box-sizing: border-box;
+    &:nth-of-type(3n) {
+      padding-right: 0;
     }
   }
 }
