@@ -47,7 +47,7 @@
   </view>
   <view class="text-area-input">
     <textarea class="textarea"
-              placeholder="添加正文"
+              placeholder="{{showTextarea ? '添加正文' : ''}}"
               placeholder-class="input-text-placeholder"
               maxlength="{{maxContentLength}}"
               value="{{content}}"

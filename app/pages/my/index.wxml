@@ -56,4 +56,8 @@
       </view>
     </swiper-item>
   </swiper>
+
+  <view class="no-dynamic-data-icon" wx:if="{{!navBarList[0].data}}">
+    <image src="/assets/img/icon/tip-red.png"></image>
+  </view>
 </view>

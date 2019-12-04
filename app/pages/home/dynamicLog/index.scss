@@ -121,15 +121,15 @@
             .logdetail {
               width: 614rpx;
               margin-left: 44rpx;
-              .logtitle {
+              .moment-title {
                 font-size: 32rpx;
                 font-weight: 500;
                 margin: 24rpx 0 16rpx;
               }
-              .logtxt-box {
+              .moment-box {
                 width: 614rpx;
                 position: relative;
-                .detailtxt {
+                .moment-content {
                   width: 556rpx;
                   overflow: hidden;
                   text-overflow: ellipsis;
@@ -139,7 +139,7 @@
                   font-size: 28rpx;
                   line-height: 42rpx;
                 }
-                .alltxt {
+                .show-all-text {
                   width: 60rpx;
                   height: 30rpx;
                   background: #FFFFFF;

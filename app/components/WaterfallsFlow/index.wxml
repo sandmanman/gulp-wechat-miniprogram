@@ -1,4 +1,5 @@
 <import src="/templates/waterfallsFlowTemplate.wxml"></import>
+<import src="/templates/networkErrorTemplate.wxml"></import>
 
 <view class="waterfallsFlow-component">
   <block wx:for="{{2}}" wx:key="{{item}}">
@@ -8,3 +9,5 @@
   </block>
 </view>
 <view class="reachBottom" wx:if="{{isReachBottom}}">已经到底啦～</view>
+
+<!-- <template is="noData" wx:if="{{!flowList[item]}}"></template> -->
