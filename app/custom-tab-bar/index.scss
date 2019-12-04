@@ -23,23 +23,31 @@
 
 .tab-bar-item {
   flex: 1;
-  height: 88rpx;
+  height: inherit;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  box-sizing: border-box;
+  padding-top: 10rpx;
   image {
     width: 44rpx;
     height: 44rpx;
   }
   .tabbar-name {
-    font-size: 22rpx;
+    font-size: 18rpx;
+    font-weight: normal;
+    margin-top: 4rpx;
+    &.selected-style {
+      color: #FF335F;
+      font-weight: 600;
+    }
   }
 }
 
 .tab-bar-item2 {
-
+  padding-top: 8rpx;
   image {
     width: 64rpx;
     height: 64rpx;

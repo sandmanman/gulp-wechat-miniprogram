@@ -9,8 +9,6 @@
               bind:tap="switchTab"
   >
     <image src="{{selected === index ? item.selectedIconPath : item.iconPath}}"></image>
-    <view class="tabbar-name"
-                style="color: {{selected === index ? selectedColor : color}}"
-    >{{item.text}}</view>
+    <view class="tabbar-name {{selected === index && 'selected-style'}}">{{item.text}}</view>
   </view>
 </view>
