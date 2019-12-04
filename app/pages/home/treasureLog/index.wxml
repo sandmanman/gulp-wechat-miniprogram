@@ -12,8 +12,6 @@
               style="{{selected === index ? 'color:#333333;font-weight:600;' : ''}}"
               data-index="{{index}}"
               wx:key="{{idx}}"
-              data-canLoadNextPage="{{false}}"
-              data-pageNumber="1"
               wx:for="{{titleList}}"
               data-id="{{item.id}}"
       >
@@ -39,9 +37,7 @@
             <view class="lebellist"
                   style="{{selected === index && 'color:#FFFFFF;background:#14B0EE;'}}"
                   data-index="{{index}}"
-                  wx:key="{{idx}}"
-                  data-canLoadNextPage="{{false}}"
-                  data-pageNumber="1"
+                  wx:key="{{index}}"
                   wx:for="{{titleList}}"
                   data-id="{{item.id}}"
                   bind:tap="titleClick"
@@ -77,5 +73,5 @@
     </view>
   </view>
   <view class="model-box" wx:if="{{showlabel === false}}"></view>
-  <template is="nonedata" wx:if="{{!articleList.length}}"></template>
+  <template is="noData" wx:if="{{!articleList.length}}"></template>
 </view>
