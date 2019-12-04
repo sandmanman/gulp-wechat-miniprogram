@@ -1,10 +1,12 @@
 @import "../../templates/reachBottom.scss";
+@import "../../templates/networkErrorTemplate.scss";
 
 .balance-box {
   width: 100%;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  min-height: 500rpx;
   .treasurelist-box {
     width: 342rpx;
     height: 342rpx;
