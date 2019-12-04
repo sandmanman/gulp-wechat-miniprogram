@@ -64,6 +64,20 @@ Page({
       canLoadNextPage: data.obj.page.page !== data.obj.page.last_page,
       pageNumber: data.obj.page.page,
       momentList: data.obj.page.page === 1 ? data.obj.list : this.data.momentList.concat(data.obj.list)
+    }, () => {
+      const self = this
+      const query = wx.createSelectorQuery()
+      query.selectAll('.moment-text').fields({
+        size: true
+      }, (info: WechatMiniprogram.IAnyObject[]) => {
+        const momentList = [].concat(self.data.momentList)
+        info.forEach((item: WechatMiniprogram.IAnyObject, index: number) => {
+          console.log(item.height * 2)
+          momentList[index].isTextOverout = item.height * 2 > 126
+          self.setData({ momentList })
+          console.log(self.data.momentList)
+        })
+      }).exec()
     })
   },
   previewImageHandle({

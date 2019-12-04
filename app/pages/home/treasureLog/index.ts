@@ -43,12 +43,10 @@ Page({
     }
   }) {
     const { index, id } = dataset
-    const articleList = this.data.articleList
     this.setData({
-      selected: index,
-      articleList: []
+      selected: index
     })
-    this.getTreasureDataList(id, 1)
+    this.getTreasureDataList(id, this.data.pageNumber)
   },
   openbtn() {
     this.setData({
@@ -82,7 +80,7 @@ Page({
       const { obj } = await api.getDailyList(params)
       const canLoadNextPage = obj.page.page !== obj.page.last_page
       const pageNumber = obj.page.page
-      const articleList = this.data.articleList.concat(obj.list)
+      const articleList = obj.page.page === 1 ? obj.list : this.data.articleList.concat(obj.list)
       this.setData({ articleList, canLoadNextPage, pageNumber }, wx.hideLoading())
     } catch (error) {
       console.error(error)
