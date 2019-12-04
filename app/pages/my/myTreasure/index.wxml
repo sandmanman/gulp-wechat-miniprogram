@@ -14,7 +14,7 @@
       ></view>
       <view class="usermessage">
         <view class="username-box">{{item.name}}</view>
-        <view class="time">已玩{{item.play_count}}天，{{item.play_number}}次</view>
+        <view class="time">已玩{{item.play_number}}天，{{item.play_count}}次</view>
       </view>
     </view>
   </view>

@@ -71,6 +71,13 @@ export default Page({
         showCancel: false
       })
       return
+    } else if (!this.data.coverimg.path) {
+      wx.showModal({
+        title: '温馨提示',
+        content: '宝物封面未上传哦',
+        showCancel: false
+      })
+      return
     }
     try {
       const self = this

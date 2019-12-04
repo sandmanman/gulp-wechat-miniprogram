@@ -44,7 +44,8 @@ Page({
   }) {
     const { index, id } = dataset
     this.setData({
-      selected: index
+      selected: index,
+      showlabel: true
     })
     this.getTreasureDataList(id, this.data.pageNumber)
   },

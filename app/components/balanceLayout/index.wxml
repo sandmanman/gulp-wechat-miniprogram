@@ -1,21 +1,28 @@
+<import src="/templates/networkErrorTemplate.wxml"></import>
 <view class="balance-box">
-  <view class="treasurelist-box"
-        wx:for="{{list}}"
-        wx:key="{{index}}"
-        data-url="/pages/home/dynamicLog/index?code={{item.code}}&id={{item.id}}"
-        bind:tap="navigateToHander"
-  >
-    <view class="image-box"
+  <block wx:if="{{list.length}}">
+    <view class="treasurelist-box"
+          wx:for="{{list}}"
+          wx:key="{{index}}"
           data-url="/pages/home/dynamicLog/index?code={{item.code}}&id={{item.id}}"
           bind:tap="navigateToHander"
     >
-      <image src="{{item.url_oss}}" mode="aspectFill"></image>
+      <view class="image-box"
+            data-url="/pages/home/dynamicLog/index?code={{item.code}}&id={{item.id}}"
+            bind:tap="navigateToHander"
+      >
+        <image src="{{item.url_oss}}" mode="aspectFill"></image>
+      </view>
+      <view class="txt-model"></view>
+      <view class="txt-box">
+        <view class="title">{{item.name}}</view>
+        <view class="time">已玩{{item.play_number}}天,{{item.play_count}}次</view>
+      </view>
     </view>
-    <view class="txt-model"></view>
-    <view class="txt-box">
-      <view class="title">{{item.name}}</view>
-      <view class="time">已玩{{item.play_number}}天,{{item.play_count}}次</view>
-    </view>
-  </view>
+  </block>
+  <block wx:else>
+      <template is="noData"></template>
+  </block>
+
 </view>
 <view class="reachBottom" wx:if="{{isReachBottom}}">已经到底啦～</view>
