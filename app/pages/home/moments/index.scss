@@ -124,19 +124,20 @@ page {
       height: 64rpx;
       line-height: 64rpx;
       display: flex;
+      align-items: center;
       justify-content: space-between;
       .labeltxt-box {
         padding: 0 20rpx;
         display: flex;
+        align-items: center;
         border-radius: 10rpx;
         background: #F2F8FF;
         .imgsbox {
           width: 32rpx;
           height: 28rpx;
-          margin: 3rpx 20rpx 0 0;
+          margin-right: 20rpx;
         }
         .labelname {
-          width: 200rpx;
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
