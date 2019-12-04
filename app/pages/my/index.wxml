@@ -1,43 +1,45 @@
 <import src="/templates/waterfallsFlowTemplate.wxml"></import>
 <import src="/templates/networkErrorTemplate.wxml"></import>
 <view class="my-center-box">
-  <view class="user-center-box">
-    <image class="bg"
-           src="/assets/img/home/bg-circle.png"
-           mode="widthFix"
-    ></image>
-    <view class="main-userinfo">
-      <view class="userhead-box">
-        <view class="photo-box" hover-class="none" hover-stop-propagation="false">
-          <image src="{{userInfo.avatar_url}}"></image>
+  <view class="center-page">
+    <view class="user-center-box">
+      <image class="bg"
+            src="/assets/img/home/bg-circle.png"
+            mode="widthFix"
+      ></image>
+      <view class="main-userinfo">
+        <view class="userhead-box">
+          <view class="photo-box" hover-class="none" hover-stop-propagation="false">
+            <image src="{{userInfo.avatar_url}}"></image>
+          </view>
+          <view class="username">{{userInfo.nickname}}</view>
         </view>
-        <view class="username">{{userInfo.nickname}}</view>
+        <view class="mytreasure"
+              data-url="/pages/my/myTreasure/index"
+              bind:tap="navigateToHander"
+        >
+          <text space="nbsp">我的宝物  <text class="treasure">{{userInfo.my_wiki_count}}</text></text>
+        </view>
+        <button class="authorization"
+                open-type="getUserInfo"
+                plain
+                lang="zh_CN"
+                bind:getuserinfo="updateUserInfo"
+                wx:if="{{!userInfo.is_updated}}"
+        ></button>
       </view>
-      <view class="mytreasure"
-            data-url="/pages/my/myTreasure/index"
-            bind:tap="navigateToHander"
-      >
-        <text space="nbsp">我的宝物  <text class="treasure">{{userInfo.my_wiki_count}}</text></text>
-      </view>
-      <button class="authorization"
-              open-type="getUserInfo"
-              plain
-              lang="zh_CN"
-              bind:getuserinfo="updateUserInfo"
-              wx:if="{{!userInfo.is_updated}}"
-      ></button>
     </view>
-  </view>
-  <view class="nav-bar">
-    <view class="centent-container">
-      <view class="nav-bar-item"
-            wx:for="{{navBarList}}"
-            wx:key="{{index}}"
-            data-index="{{index}}"
-            bind:tap="selectNavbar"
-      >
-        <text class="{{activeIndex === index && 'active'}}">{{item.name}}</text>
-        <view class="line" wx:if="{{activeIndex === index}}"></view>
+    <view class="nav-bar">
+      <view class="centent-container">
+        <view class="nav-bar-item"
+              wx:for="{{navBarList}}"
+              wx:key="{{index}}"
+              data-index="{{index}}"
+              bind:tap="selectNavbar"
+        >
+          <text class="{{activeIndex === index && 'active'}}">{{item.name}}</text>
+          <view class="line" wx:if="{{activeIndex === index}}"></view>
+        </view>
       </view>
     </view>
   </view>
@@ -57,7 +59,7 @@
     </swiper-item>
   </swiper>
 
-  <view class="no-dynamic-data-icon" wx:if="{{!navBarList[0].data}}">
+  <view class="no-dynamic-data-icon" wx:if="{{!navBarList[0].data && !activeIndex}}">
     <image src="/assets/img/icon/tip-red.png"></image>
   </view>
 </view>

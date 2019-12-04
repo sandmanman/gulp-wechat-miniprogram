@@ -1,4 +1,7 @@
 @import "../../../templates/networkErrorTemplate.scss";
+page {
+  background: #F5F5F5;
+}
 .treasureLogBox {
   width: 100%;
   .titleChoiseBox {
@@ -48,6 +51,7 @@
         .down-img-icon {
           width: 22rpx;
           height: 22rpx;
+          margin-top: 25rpx;
         }
       }
     }
@@ -64,6 +68,7 @@
         .close-icon {
           width: 27rpx;
           height: 27rpx;
+          margin-top: 25rpx;
         }
       }
       .selectlistbox {
@@ -109,7 +114,7 @@
           height: 342rpx;
           position: absolute;
           top: 0;
-          background: rgba(0,0,0,.3);
+          background: linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,0.3) 100%);
         }
         .userDetail {
           color: #FFFFFF;
