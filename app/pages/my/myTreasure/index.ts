@@ -24,6 +24,10 @@ Page({
     }
     await this.getMyWikiList()
   },
+  async onPullDownRefresh() {
+    await this.getMyWikiList()
+    wx.stopPullDownRefresh()
+  },
   async getMyWikiList() {
     const params = getSignature({ c_p: app.globalData.c_p })
     try {
