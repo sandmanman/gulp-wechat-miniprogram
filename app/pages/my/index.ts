@@ -5,6 +5,7 @@ const app = getApp<IAppOption>()
 
 export default Page({
   data: {
+    isNetworkError: false,
     swiperHeight: 0,
     navBarList: [
       {

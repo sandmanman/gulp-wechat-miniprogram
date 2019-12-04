@@ -7,12 +7,12 @@
           bind:tap="nagivatorHandle"
     >
       <view class="item-image"
-            style="height: {{width / ( item.file_info.width / item.file_info.height )}}rpx"
+            style="height: {{width / (item.file_info.width / item.file_info.height)}}rpx"
       >
 <!--        <view class="topping"><text>精华</text></view>-->
         <view class="isVideo" wx:if="{{item.source_type === 'video'}}"></view>
         <block wx:if="{{item.source_type === 'image'}}">
-          <image src="{{item.source_url}}" mode="aspectFill"></image>
+          <image src="{{item.source_url}}" mode="aspectFill" lazy-load></image>
         </block>
         <block wx:elif="{{item.source_type === 'video'}}">
           <video src="{{item.source_url}}"

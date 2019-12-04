@@ -1,5 +1,8 @@
 <import src="/templates/waterfallsFlowTemplate.wxml"></import>
-<view class="home-container">
+<import src="/templates/networkErrorTemplate.wxml"></import>
+
+<template is="networkError" wx:if="{{isNetworkError}}"></template>
+<view class="home-container" wx:else>
   <view class="title">推荐宝物</view>
   <view class="treasure-list">
     <view class="category"

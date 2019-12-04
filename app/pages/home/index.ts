@@ -2,7 +2,7 @@ import api from '../../api/index'
 import { getSignature } from '../../utils/index'
 const app = getApp<IAppOption>()
 
-export default Page({
+Page({
   data: {
     guideList: [
       { cover: '', name: '' },
@@ -21,7 +21,8 @@ export default Page({
     ],
     momentList: [],
     pageNumber: 0,
-    canLoadNextPage: false
+    canLoadNextPage: false,
+    isNetworkError: false
   },
   async onLoad() {
     if (!app.globalData.userInfo.user_code) {

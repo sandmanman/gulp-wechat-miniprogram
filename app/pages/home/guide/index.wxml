@@ -8,14 +8,13 @@
   <view class="cover-image"
         style="background-image: url({{image}})"
   >
-    <view class="mark"></view>
     <view class="title">{{name}}</view>
   </view>
   <view class="category">
     <block wx:for="{{ nodeList }}" wx:key="{{index}}">
       <view class="first-level-node">
         <view class="first-level-node-head">
-          <view class="first-level-node-index">{{index + 1}}</view>
+          <view class="first-level-node-index">{{index < 10 ? '0' + (index + 1) : index}}</view>
           <view class="first-level-node-name">{{item.name}}</view>
           <view class="desc-icon"
                 data-desc="{{item.desc}}"

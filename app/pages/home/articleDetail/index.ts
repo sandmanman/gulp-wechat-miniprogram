@@ -31,7 +31,17 @@ Page({
         path: '/pages/home/treasureLog/index'
       }
     ],
-    wikiInfo: {}
+    wikiInfo: {
+      wiki: {
+        name: '--',
+        foreign_name: '--',
+        alias: '  '
+      },
+      media: [
+        { url_oss: '', article_id: 0 },
+        { url_oss: '', article_id: 0 }
+      ]
+    }
   },
   async onLoad(query: Record<string, string | undefined>) {
     const { id = '' } = query
@@ -49,7 +59,7 @@ Page({
   async onReachBottom() {
     if (this.data.canLoadNextPage) {
       this.setData({ pageNumber: this.data.pageNumber + 1 })
-      await this.getMomentList()
+      await this.getMomentList(this.data.code)
     }
   },
   async onPullDownRefresh() {

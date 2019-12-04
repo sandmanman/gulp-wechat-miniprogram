@@ -2,10 +2,13 @@
   <view class="auctionInformation">
     <view class="productMessage">
       <view class="productTxtBox">
-        <view class="productTitle">{{wikiInfo.wiki.name}}
+        <view class="productTitle">
+          <text>{{wikiInfo.wiki.name}}</text>
           <text class="txt" space="nbsp">  /{{wikiInfo.wiki.foreign_name}}</text>
         </view>
-        <view class="anothername">别称：{{wikiInfo.wiki.alias}}</view>
+        <view class="anothername">
+          <text>别称：{{wikiInfo.wiki.alias}}</text>
+        </view>
       </view>
       <button class="share-icon"
               open-type="share"
@@ -17,15 +20,12 @@
     <view class="videoAndPhotoBox">
       <view class="videoBox">
         <view class="videoplaybox">
-          <video id="myVideo"
-                 src="{{wikiInfo.wiki.video}}"
+          <video src="{{wikiInfo.wiki.video}}"
                  poster="{{wikiInfo.wiki.cover}}"
                  object-fit="cover"
+                 show-play-btn="{{false}}"
                  controls
           ></video>
-          <!-- <view class="play-icon">
-            <image class="/assets/img/home/vedio@2x.png"></image>
-          </view> -->
         </view>
         <view class="pictures">
           <view class="photoBox"
@@ -42,7 +42,9 @@
         </view>
       </view>
     </view>
-    <view class="productExplain">{{wikiInfo.wiki.desc}}</view>
+    <view class="productExplain">
+      <text>{{wikiInfo.wiki.desc}}</text>
+    </view>
   </view>
   <view class="image-Icon-Box">
     <view class="icon-Message"

@@ -22,7 +22,7 @@
     </view>
     <view class="refresh-txt">当前网络不可用</view>
     <view class="refresh-txt">请检查您的网络设置</view>
-    <view class="refresh-btn-box">重新加载</view>
+    <view class="refresh-btn-box" bind:tap="onLoad">重新加载</view>
   </view>
 </template>
 <template name="notFound">

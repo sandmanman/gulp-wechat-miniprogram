@@ -89,9 +89,10 @@ export default Page({
         wiki_id: this.data.wikiInfo.id,
         name: this.data.name
       })
-      const data = await api.saveWiki(params)
+      const { obj, msg } = await api.saveWiki(params)
+      console.log(obj)
       this.setData({ isDisabledClick: false })
-      wx.showToast({ title: data.msg })
+      wx.showToast({ title: msg })
       setTimeout(function() {
         wx.navigateBack({
           success() {

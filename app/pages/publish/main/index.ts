@@ -318,7 +318,7 @@ export default Page({
         if (obj.type === 1) {
           wx.switchTab({ url: '/pages/my/index' })
         } else {
-          wx.navigateTo({
+          wx.redirectTo({
             url: `/pages/home/dynamicLog/index?code=${obj.code}&id=${obj.id}`
           })
         }

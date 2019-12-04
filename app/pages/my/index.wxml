@@ -1,6 +1,7 @@
 <import src="/templates/waterfallsFlowTemplate.wxml"></import>
 <import src="/templates/networkErrorTemplate.wxml"></import>
-<view class="my-center-box">
+<template is="networkError" wx:if="{{isNetworkError}}"></template>
+<view class="my-center-box" wx:else>
   <view class="user-center-box">
     <image class="bg"
            src="/assets/img/home/bg-circle.png"

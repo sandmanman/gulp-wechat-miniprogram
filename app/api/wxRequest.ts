@@ -23,6 +23,7 @@ export default (url: string, method: IWechatRequestMethods, data: string | Wecha
         }
       },
       fail(error: WechatMiniprogram.GeneralCallbackResult) {
+
         reject(error.errMsg)
       }
     })
