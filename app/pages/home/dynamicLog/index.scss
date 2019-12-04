@@ -25,7 +25,7 @@
           .label-txt {
             font-size: 24rpx;
             color: #FFFFFF;
-            margin: 6rpx 0 0 16rpx;
+            margin-left: 16rpx;
           }
         }
         .share-img-box {
@@ -33,13 +33,13 @@
           .share-img {
             width: 44rpx;
             height: 44rpx;
-            margin-right: 28rpx;
             overflow: visible;
             image {
               display: block;
             }
           }
           .more-img {
+            margin-left: 28rpx;
             width: 44rpx;
             height: 44rpx;
           }

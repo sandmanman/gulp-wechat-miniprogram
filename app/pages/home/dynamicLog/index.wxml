@@ -1,3 +1,5 @@
+<wxs src="../../../modules/ReverseIndex.wxs" module="tools"></wxs>
+
 <view class="dynamiclog-box">
   <view class="banner-box">
     <view class="banner-photo-box">
@@ -48,7 +50,7 @@
         >
           <view class="time-record-box">
             <view class="timelist">
-              <view class="upstairs">{{totalLength - index < 10 ? '0' + (totalLength - index) : (totalLength - index)}}</view>
+              <view class="upstairs">{{tools.reverseIndex(index, totalLength)}}</view>
               <view class="upstairs-time">{{item.create_time}}</view>
             </view>
             <view class="day-time">第{{item.day}}天</view>

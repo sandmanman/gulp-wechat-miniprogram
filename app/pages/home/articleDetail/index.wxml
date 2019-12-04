@@ -66,12 +66,12 @@
   <view class="comment-list">
     <waterfalls-flow list="{{momentList}}" isReachBottom="{{!canLoadNextPage}}"></waterfalls-flow>
   </view>
-  <view class="sendpost-Btn"
-        bind:tap="sendBtn"
-        data-url="/pages/publish/main/index"
-  >
-    <view class="fiximg">
-      <image src="/assets/img/icon/sendpost.png"></image>
-    </view>
-  </view>
+<!--  <view class="sendpost-Btn"-->
+<!--        bind:tap="sendBtn"-->
+<!--        data-url="/pages/publish/main/index"-->
+<!--  >-->
+<!--    <view class="fiximg">-->
+<!--      <image src="/assets/img/icon/sendpost.png"></image>-->
+<!--    </view>-->
+<!--  </view>-->
 </view>

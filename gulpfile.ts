@@ -19,7 +19,7 @@ import colors = require('colors')
 import yargs = require('yargs')
 
 const appPath = 'app/**'
-const whitelist: string[] = [`!${appPath}/_template/**/*`, `!${appPath}/_component/**/*`, `!${appPath}/services/**/*`]
+const whitelist: string[] = [`!${appPath}/_template/**/*`, `!${appPath}/_component/**/*`, `!${appPath}/modules/**/*`, `!${appPath}/services/**/*`]
 const distPath = 'dist'
 const wxssFiles = [`${appPath}/*.wxss`, ...whitelist.map(s => `${s}.wxss`)]
 const jsFiles = [`${appPath}/*.js`, `${appPath}/*.wxs`]
@@ -28,6 +28,7 @@ const sassFiles = [`${appPath}/*.+(sass|scss)`, ...whitelist.map(s => `${s}.+(sa
 const jsonFiles = [`${appPath}/*.json`, ...whitelist.map(s => `${s}.json`)]
 const tsFiles = [`${appPath}/*.ts`, ...whitelist.map(s => `${s}.ts`), `!${appPath}/*.d.ts`]
 const imgFiles = [`${appPath}/assets/img/**/*.{png, jpg, gif, ico}`]
+const wxsFiles = [`${appPath}/modules/*.ts`]
 const tsProject = ts.createProject('tsconfig.json')
 const root = path.join(__dirname, 'app/pages')
 const componentPath = path.join(__dirname, 'app/components')
@@ -68,6 +69,16 @@ const typescript = () => {
 }
 gulp.task(typescript)
 
+const wxs = () => {
+  return gulp.src(wxsFiles, { since: gulp.lastRun(wxs) })
+    .pipe(ts()).js
+    .pipe(rename({
+      extname: '.wxs'
+    }))
+    .pipe(gulp.dest(distPath))
+}
+gulp.task(wxs)
+
 const json = () => {
   return gulp.src(jsonFiles, { since: gulp.lastRun(json) })
     .pipe(gulp.dest(distPath))
@@ -100,7 +111,7 @@ const images = () => {
 gulp.task(images)
 
 // parallel
-gulp.task('build', gulp.series('clean', gulp.parallel('images', 'wxss', 'js', 'wxml', 'typescript', 'json', 'sass')))
+gulp.task('build', gulp.series('clean', gulp.parallel('images', 'wxss', 'js', 'wxml', 'wxs', 'typescript', 'json', 'sass')))
 
 // watch
 gulp.task('watch', () => {
@@ -108,6 +119,7 @@ gulp.task('watch', () => {
   gulp.watch(wxssFiles, wxss)
   gulp.watch(jsFiles, js)
   gulp.watch(sassFiles, sass)
+  gulp.watch(wxsFiles, wxs)
   gulp.watch(tsFiles, typescript)
   gulp.watch(jsonFiles, json)
   gulp.watch(wxmlFiles, wxml)
