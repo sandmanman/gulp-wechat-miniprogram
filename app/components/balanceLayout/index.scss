@@ -1,5 +1,5 @@
-@import "../../templates/reachBottom.scss";
-@import "../../templates/networkErrorTemplate.scss";
+@import "../../templates/reachBottom";
+@import "../../templates/networkErrorTemplate";
 
 .balance-box {
   width: 100%;
@@ -7,6 +7,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
   min-height: 500rpx;
+  position: relative;
   .treasurelist-box {
     width: 342rpx;
     height: 342rpx;

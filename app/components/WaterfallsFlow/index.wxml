@@ -11,4 +11,4 @@
   </block>
   <template is="noData" wx:else></template>
 </view>
-<view class="reachBottom" wx:if="{{isReachBottom}}">已经到底啦～</view>
+<view class="reachBottom" wx:if="{{flowList.length && isReachBottom}}">已经到底啦～</view>

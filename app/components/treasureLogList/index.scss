@@ -1,3 +1,5 @@
+@import "../../templates/networkErrorTemplate";
+
 .GoodsLogsBox {
   .logsTitle {
     display: flex;
@@ -25,6 +27,8 @@
   }
   .playGoodsBox {
     width: 100%;
+    position: relative;
+    min-height: 350rpx;
     .scrolls {
       height: 100%;
       .auction-list {
@@ -78,6 +82,7 @@
             padding-top: 14rpx;
             display: flex;
             align-items: center;
+            height: 34rpx;
             image {
               width: 34rpx;
               height: 34rpx;

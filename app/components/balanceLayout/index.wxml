@@ -16,13 +16,13 @@
       <view class="txt-model"></view>
       <view class="txt-box">
         <view class="title">{{item.name}}</view>
-        <view class="time">已玩{{item.play_number}}天,{{item.play_count}}次</view>
+        <view class="time">已玩{{item.play_number}}天, {{item.play_count}}次</view>
       </view>
     </view>
+    <view class="reachBottom" wx:if="{{isReachBottom}}">已经到底啦～</view>
   </block>
   <block wx:else>
       <template is="noData"></template>
   </block>
-
 </view>
-<view class="reachBottom" wx:if="{{isReachBottom}}">已经到底啦～</view>
+

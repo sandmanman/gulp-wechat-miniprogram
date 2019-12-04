@@ -1,38 +1,43 @@
+<import src="/templates/networkErrorTemplate.wxml"></import>
+
 <view class="GoodsLogsBox">
-    <view class="logsTitle">
-        <view class="logsTxt">玩物日志</view>
-        <view class="moretxt"
-              data-url="/pages/home/treasureLog/index?id={{wikiInfolist}}"
+  <view class="logsTitle">
+    <view class="logsTxt">玩物日志</view>
+    <view class="moretxt"
+          data-url="/pages/home/treasureLog/index?id={{wikiInfolist}}"
+          bind:tap="navigateToHander"
+    >
+      <text space="nbsp">更多</text>
+      <view class="more-icon"></view>
+    </view>
+  </view>
+  <view class="playGoodsBox">
+    <scroll-view class="scrolls" scroll-x wx:if="{{list.length}}">
+      <view class="auction-list">
+        <view class="auction_box"
+              wx:for="{{list}}"
+              wx:key="{{item.id}}"
+              data-url="/pages/home/dynamicLog/index?code={{item.code}}&id={{item.id}}"
               bind:tap="navigateToHander"
         >
-          <text space="nbsp">更多 </text>
-          <view class="more-icon"></view>
-        </view>
-    </view>
-    <view class="playGoodsBox">
-        <scroll-view class="scrolls" scroll-x>
-          <view class="auction-list">
-            <view class="auction_box"
-                  wx:for="{{list}}"
-                  wx:key="{{item.id}}"
-                  data-url="/pages/home/dynamicLog/index?code={{item.code}}&id={{item.id}}"
-                  bind:tap="navigateToHander"
-            >
-              <view class="img-box">
-                <image src="{{item.url_oss}}" mode="aspectFill"></image>
-                <view class="txt-model">
-                  <view class="txt-box">
-                    <view class="title">{{item.name}}</view>
-                    <view class="time">已玩{{item.play_number}}天,{{item.play_count}}次</view>
-                  </view>
-                </view>
-              </view>
-              <view class="userbox">
-                <image src="{{item.avatar_url}}"></image>
-                <view>{{item.nickname}}</view>
+          <view class="img-box">
+            <image src="{{item.url_oss}}" mode="aspectFill"></image>
+            <view class="txt-model">
+              <view class="txt-box">
+                <view class="title">{{item.name}}</view>
+                <view class="time">已玩{{item.play_number}}天,{{item.play_count}}次</view>
               </view>
             </view>
           </view>
-        </scroll-view>
-    </view>
+          <view class="userbox"
+                style="background: {{!item.nickname && '#F5F5F5'}};"
+          >
+            <image src="{{item.avatar_url}}"></image>
+            <view>{{item.nickname}}</view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+    <template is="noData" wx:else></template>
+  </view>
 </view>
