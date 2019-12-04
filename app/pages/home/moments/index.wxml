@@ -42,6 +42,12 @@
                controls
                object-fit="cover"
         ></video>
+        <view class="label-box" wx:if="{{momentInfo.images_list[0].tag_name}}">
+          <view class="label-img">
+            <image src="/assets/img/publish/tag_white@2x.png"></image>
+          </view>
+          <view class="laber-txt">{{momentInfo.images_list[0].tag_name}}</view>
+        </view>
       </view>
     </block>
   </view>
