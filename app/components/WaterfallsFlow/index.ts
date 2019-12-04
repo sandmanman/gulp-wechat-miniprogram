@@ -4,6 +4,7 @@ Component({
       type: Array,
       value: [],
       observer(list: any[]) {
+        if (!list.length) return
         let leftHeight = 0
         let rightHeight = 0
         const flowList = list.reduce((acc, item) => {
@@ -30,7 +31,7 @@ Component({
     }
   },
   data: {
-    flowList: [[], []]
+    flowList: []
   },
   methods: {
     nagivatorHandle({
