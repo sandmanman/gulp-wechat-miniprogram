@@ -62,7 +62,7 @@
     </view>
   </view>
   <view class="treasureLog-List" wx:if="{{articleList.length}}">
-    <treasureLog-List list="{{articleList}}"></treasureLog-List>
+    <treasureLog-List list="{{articleList}}" wikiInfolist="{{wikiInfo.wiki.id}}"></treasureLog-List>
   </view>
   <view class="title">全部动态</view>
   <view class="comment-list">

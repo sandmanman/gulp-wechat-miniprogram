@@ -42,7 +42,7 @@ page {
             .label-img {
               width: 22rpx;
               height: 22rpx;
-              margin-right: 8rpx;
+              margin: 11rpx 8rpx 0 0;
             }
             .laber-txt {
               font-size: 22rpx;
@@ -67,6 +67,27 @@ page {
     }
     .video-box {
       width: 100%;
+      .label-box {
+        height: 44rpx;
+        line-height: 44rpx;
+        border-radius: 22rpx;
+        padding: 0 20rpx;
+        position: absolute;
+        bottom: 24rpx;
+        left: 32rpx;
+        color: #FFFFFF;
+        border: 1rpx solid #FFFFFF;
+        display: flex;
+        z-index: 10;
+        .label-img {
+          width: 22rpx;
+          height: 22rpx;
+          margin: 11rpx 8rpx 0 0;
+        }
+        .laber-txt {
+          font-size: 22rpx;
+        }
+      }
     }
   }
   .detail-box {

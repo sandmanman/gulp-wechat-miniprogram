@@ -31,6 +31,10 @@
         top: 238rpx;
         left: 20rpx;
         .username-box {
+          width: 200rpx;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
           font-size: 34rpx;
           font-weight: 500;
         }
@@ -61,6 +65,7 @@
     image {
       width: 360rpx;
       height: 114rpx;
+      margin: 0 auto;
       margin-bottom: 20rpx;
     }
     .create-treasure {

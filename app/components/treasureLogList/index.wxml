@@ -2,7 +2,7 @@
     <view class="logsTitle">
         <view class="logsTxt">玩物日志</view>
         <view class="moretxt"
-              data-url="/pages/home/treasureLog/index"
+              data-url="/pages/home/treasureLog/index?id={{wikiInfolist}}"
               bind:tap="navigateToHander"
         >
           <text space="nbsp">更多 </text>
