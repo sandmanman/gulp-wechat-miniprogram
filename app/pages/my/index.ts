@@ -133,6 +133,12 @@ export default Page({
       self.setData({ swiperHeight: rect.height })
     }).exec()
   },
+  clickWikiHandle({
+    detail = { id: 0, code: 0 }
+  }) {
+    console.log()
+    wx.navigateTo({ url: '/pages/home/dynamicLog/index?code=' + detail.code + '&id=' + detail.id })
+  },
   async getList(type: 0 | 1, page = 1) {
     wx.showLoading({ title: '拼命加载中', mask: true })
     const params = getSignature({

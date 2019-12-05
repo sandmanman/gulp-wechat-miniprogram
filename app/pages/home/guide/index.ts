@@ -49,7 +49,8 @@ export default Page({
     }
   }) {
     Dialog.alert({
-      message: desc
+      message: desc,
+      messageAlign: 'left'
     }).then(() => void 0)
   }
 })

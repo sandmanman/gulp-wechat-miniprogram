@@ -162,7 +162,9 @@ export default Page({
             const c_p = Object.assign(config.cp, {
               user_code: app.globalData.userInfo.user_code
             })
+            const uploadedSourceCount: number = this.data.selectedSourceList.findIndex((i: ISelectedSourceItem) => !i.uploadProgess)
             const sourceLangth = this.data.selectedSourceList.length
+            this.setData({ uploadedSourceCount })
             const Iterator = async () => {
               const { selectedSourceList } = this.data as { selectedSourceList: ISelectedSourceList }
               const currentSource = selectedSourceList[this.data.uploadedSourceCount]
