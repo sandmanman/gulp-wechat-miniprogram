@@ -16,7 +16,6 @@ Page({
     eventChannel.on('EventSetMode', (data: {
       mode: 'view' | 'select'
     }) => {
-      console.log(data)
       this.setData({ mode: data.mode })
     })
     if (!app.globalData.userInfo.user_code) {
@@ -54,23 +53,17 @@ Page({
     })
   },
   clickWikiHandle({
-    currentTarget: {
-      dataset: {
-        item = {
-          id: 0,
-          code: 0
-        }
-      }
-    }
+    detail = { id: 0, code: 0 }
   }) {
     if (this.data.mode === 'select') {
       wx.navigateBack({
         success() {
-          eventChannel.emit('addWikiItem', item)
+          eventChannel.emit('addWikiItem', detail)
         }
       })
+    } else {
+      wx.navigateTo({ url: '/pages/home/dynamicLog/index?code=' + detail.code + '&id=' + detail.id })
     }
-    wx.navigateTo({ url: '/pages/home/dynamicLog/index?code=' + item.code + '&id=' + item.id })
   },
   async deleteWikiHandle() {
     const params = getSignature({

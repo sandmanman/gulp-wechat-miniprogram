@@ -55,7 +55,10 @@
     </swiper-item>
     <swiper-item>
       <view class="list-container" id="article">
-        <balancelayout-list list="{{navBarList[1].data}}" isReachBottom="{{!navBarList[1].canLoadNextPage}}"></balancelayout-list>
+        <balancelayout-list list="{{navBarList[1].data}}"
+                            isReachBottom="{{!navBarList[1].canLoadNextPage}}"
+                            bind:clickitem="clickWikiHandle"
+        ></balancelayout-list>
       </view>
     </swiper-item>
   </swiper>

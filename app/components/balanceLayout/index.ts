@@ -2,7 +2,6 @@ import { getSignature } from '../../utils/index'
 import api from '../../api/index'
 
 const app = getApp<IAppOption>()
-let eventChannel: WechatMiniprogram.EventChannel | null
 
 Component({
   properties: {
@@ -14,50 +13,26 @@ Component({
       type: Boolean,
       value: false
     },
-    deleteicon: {
-      type: String,
-      value: ''
-    },
-    mode: {
-      type: String,
-      value: ''
+    isShowDelete: {
+      type: Boolean,
+      value: false
     }
   },
   data: {
-    mode: 'view', // view-查看详情模式 | select-选择关联宝物模式
     willDeleteId: 0,
+    willDeleteIndex: 0,
     showConfirmActionSheet: false
   },
   methods: {
-    navigateToHander({
-      currentTarget: {
-        dataset = {
-          url: '',
-          item: {
-            id: 0
-          }
-        }
-      }
-    }) {
-      const { url, item } = dataset
-      if (this.data.mode === 'select') {
-        wx.navigateBack({
-          success() {
-            eventChannel.emit('addWikiItem', item)
-          }
-        })
-      }
-      wx.navigateTo({ url })
-    },
     showConfirmActionSheetHander({
       currentTarget: {
-        dataset: {
-          id = 0
-        }
+        dataset = { id: 0, index: 0 }
       }
     }) {
+      const { id, index } = dataset
       this.setData({
         willDeleteId: id,
+        willDeleteIndex: index,
         showConfirmActionSheet: true
       })
     },
@@ -73,19 +48,21 @@ Component({
         const { msg } = await api.wikiDelete(params)
         this.hideConfirmActionSheetHander()
         wx.showToast({ title: msg })
-        await this.getMyWikiList()
+        const list = this.data.list
+        list.splice(this.data.willDeleteIndex, 1)
+        this.setData({ list })
       } catch (e) {
         console.error(e.message)
       }
     },
-    async getMyWikiList() {
-      const params = getSignature({ c_p: app.globalData.c_p })
-      try {
-        const data = await api.getMyWikiList(params)
-        this.setData({ list: data.obj })
-      } catch (error) {
-        console.error(error)
+    clickWikiHandle({
+      currentTarget: {
+        dataset: {
+          item = { id: 0, code: 0 }
+        }
       }
+    }) {
+      this.triggerEvent('clickitem', item)
     }
   }
 })
