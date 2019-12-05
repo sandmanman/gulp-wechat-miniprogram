@@ -245,30 +245,30 @@
         height: 246rpx;
       }
       .model-btn {
-        padding:50rpx 44rpx;
+        padding: 50rpx 44rpx;
         display: flex;
         justify-content: space-between;
         .confirm-btn {
           width: 274rpx;
           height: 84rpx;
           line-height: 84rpx;
-          color:#FF6E6D;
+          color: #FF6E6D;
           font-size: 28rpx;
           text-align: center;
-          border:1rpx solid #FF6F6F;
-          font-weight:500;
-          border-radius:50rpx;
+          border: 1rpx solid #FF6F6F;
+          font-weight: 500;
+          border-radius: 50rpx;
         }
-        .upload-btn{
+        .upload-btn {
           width: 274rpx;
           height: 84rpx;
           line-height: 84rpx;
-          color:#fff;
+          color: #FFFFFF;
           font-size: 28rpx;
           text-align: center;
-          font-weight:500;
-          background:linear-gradient(90deg,rgba(255,123,152,1) 0%,rgba(255,110,109,1) 100%);
-          border-radius:50rpx;
+          font-weight: 500;
+          background: linear-gradient(90deg,rgba(255,123,152,1) 0%,rgba(255,110,109,1) 100%);
+          border-radius: 50rpx;
         }
       }
     }
