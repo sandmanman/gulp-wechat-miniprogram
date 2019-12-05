@@ -8,7 +8,10 @@ Page({
     imgList: []
   },
   async onLoad(query: Record<string, string | undefined>) {
-    const { id = '' } = query
+    const { id = '', name = '' } = query
+    wx.setNavigationBarTitle({
+      title: name
+    })
     this.setData({ id: parseInt(id) })
     if (!app.globalData.userInfo.user_code) {
       await app.userLogin()

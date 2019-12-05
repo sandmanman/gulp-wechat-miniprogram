@@ -1,5 +1,8 @@
 @import "../../../templates/networkErrorTemplate.scss";
 .my-all-treasure-box {
+  .balance-components-box{
+    padding: 0 24rpx;
+  }
   .treasure-detail {
     display: flex;
     padding: 0 24rpx;

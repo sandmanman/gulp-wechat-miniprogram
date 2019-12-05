@@ -92,13 +92,19 @@
     </view>
   </scroll-view>
   <view class="model-box" wx:if="{{showhint}}">
-      <view class="close-btn" bind:tap="closehintbtn"></view>
       <view class="hint-content-box">
           <view class="hint-txt">
             将你所拥有的宝物上传到平台，发布与它相关的动态，就能生成专属于你的玩物日志，记录你和宝物的美好时光～
           </view>
           <view class="hint-img">
               <image src="/assets/img/publish/popup@2x.png"></image>
+          </view>
+          <view class="model-btn">
+              <view class="confirm-btn" bind:tap="closehintbtn">我知道了</view>
+              <view class="upload-btn"
+                    data-url="/pages/my/createProductPost/index"
+                    bind:tap="navigateToHander"
+              >立即上传</view>
           </view>
       </view>
   </view>
