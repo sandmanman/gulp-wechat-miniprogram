@@ -19,12 +19,14 @@
     </view>
     <view class="videoAndPhotoBox">
       <view class="videoBox">
-        <view class="videoplaybox">
-          <video src="{{wikiInfo.wiki.video}}"
+        <view class="videoplaybox" catch:tap="playInFullScreenHandle">
+          <video id="videoNode"
+                 src="{{wikiInfo.wiki.video}}"
                  poster="{{wikiInfo.wiki.cover}}"
                  object-fit="cover"
-                 show-play-btn="{{false}}"
                  controls
+                 show-mute-btn
+                 bind:ended="stopVideoHandle"
           ></video>
         </view>
         <view class="pictures">
@@ -62,7 +64,7 @@
     </view>
   </view>
   <view class="treasureLog-List" wx:if="{{articleList.length}}">
-    <treasureLog-List list="{{articleList}}" wikiInfolist="{{wikiInfo.wiki.id}}"></treasureLog-List>
+    <treasureLog-List list="{{articleList}}" id="{{wikiInfo.wiki.id}}"></treasureLog-List>
   </view>
   <view class="title">全部动态</view>
   <view class="comment-list">

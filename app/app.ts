@@ -18,7 +18,7 @@ App<IAppOption>({
     // 获取设备信息
     this.getSystemInfoHander()
     // 检查登陆态
-    this.WXCheckSession()
+    // this.WXCheckSession()
   },
   async userLogin() {
     const self = this
@@ -28,9 +28,9 @@ App<IAppOption>({
     })
     try {
       const data = await api.userLogin(params)
-      wx.setStorageSync('userInfo', JSON.stringify(data.obj))
       this.globalData.userInfo = data.obj
       this.globalData.c_p.user_code = data.obj.user_code
+      // wx.setStorageSync('userInfo', JSON.stringify(data.obj))
     } catch (error) {
       console.error(error)
     }

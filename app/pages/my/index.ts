@@ -68,16 +68,17 @@ export default Page({
     this.getRect(currentNav.type === 0 ? '#moment' : '#article')
   },
   async updateUserInfo(e: { detail: WechatMiniprogram.GetUserInfoSuccessCallbackResult }) {
-    const params = getSignature({
-      c_p: app.globalData.c_p,
-      encryptedData: e.detail.encryptedData,
-      iv: e.detail.iv
-    })
+    if (e.detail.errMsg !== 'getUserInfo:ok') return
     try {
+      const params = getSignature({
+        c_p: app.globalData.c_p,
+        encryptedData: e.detail.encryptedData,
+        iv: e.detail.iv
+      })
       const data = await api.userUpdate(params)
       this.setData({ userInfo: data.obj }, () => {
         app.globalData.userInfo = this.data.userInfo
-        wx.setStorageSync('userInfo', JSON.stringify(this.data.userInfo))
+        app.globalData.c_p.user_code = this.data.userInfo.user_code
       })
     } catch (error) {
       console.error(error)
@@ -91,7 +92,7 @@ export default Page({
       const data = await api.initUser(params)
       this.setData({ userInfo: data.obj }, () => {
         app.globalData.userInfo = this.data.userInfo
-        wx.setStorageSync('userInfo', JSON.stringify(this.data.userInfo))
+        app.globalData.c_p.user_code = this.data.userInfo.user_code
       })
     } catch (error) {
       console.error(error)

@@ -32,6 +32,8 @@
           <video class="source-preview-entity"
                  src="{{item.tempFilePath}}"
                  show-fullscreen-btn="{{false}}"
+                 controls
+                 show-center-play-btn
                  play-btn-position="center"
                  style="height: {{750 * item.height / item.width}}rpx;"
           ></video>

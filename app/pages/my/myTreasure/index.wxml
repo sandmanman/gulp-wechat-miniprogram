@@ -24,8 +24,7 @@
     <view class="create-treasure"
           data-url="/pages/my/createProductPost/index"
           bind:tap="navigateToHander"
-    >创建宝物
-    </view>
+    >创建宝物</view>
   </view>
   <!--  删除确认弹窗  -->
   <delete-actionsheet show="{{showConfirmActionSheet}}"

@@ -55,15 +55,14 @@ Page({
   },
   clickWikiHandle({
     currentTarget: {
-      dataset = {
-        item: {
+      dataset: {
+        item = {
           id: 0,
-          name: ''
+          code: 0
         }
       }
     }
   }) {
-    const { item } = dataset
     if (this.data.mode === 'select') {
       wx.navigateBack({
         success() {

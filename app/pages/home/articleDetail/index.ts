@@ -3,6 +3,8 @@ import { getSignature } from '../../../utils/index'
 
 const app = getApp<IAppOption>()
 
+let videoContext: WechatMiniprogram.VideoContext | null = null
+
 Page({
   data: {
     code: 0,
@@ -55,6 +57,9 @@ Page({
     await this.getArticleList(this.data.code)
     await this.getMomentList(this.data.code)
     await this.getarticleDetailList(parseInt(id))
+  },
+  onReady(): void {
+    videoContext = wx.createVideoContext('videoNode')
   },
   async onReachBottom() {
     if (this.data.canLoadNextPage) {
@@ -160,5 +165,13 @@ Page({
     } catch (e) {
       console.error(e.message)
     }
+  },
+  playInFullScreenHandle() {
+    videoContext.requestFullScreen({})
+    videoContext.play()
+  },
+  stopVideoHandle() {
+    videoContext.stop()
+    videoContext.exitFullScreen()
   }
 })

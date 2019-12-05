@@ -158,7 +158,46 @@ export default Page({
       events: {
         getSelectedSourceListFromEdit(selectedSourceList: ISelectedSourceList) {
           console.log('getSelectedSourceListFromEdit: ', selectedSourceList)
-          self.setData({ selectedSourceList })
+          self.setData({ selectedSourceList }, async function() {
+            const c_p = Object.assign(config.cp, {
+              user_code: app.globalData.userInfo.user_code
+            })
+            const sourceLangth = this.data.selectedSourceList.length
+            const Iterator = async () => {
+              const { selectedSourceList } = this.data as { selectedSourceList: ISelectedSourceList }
+              const currentSource = selectedSourceList[this.data.uploadedSourceCount]
+              const filePath = currentSource.fileType === 'video' ? currentSource.tempFilePath : currentSource.path
+              const fileBaseInfo = {
+                width: currentSource.width,
+                height: currentSource.height
+              }
+              const imageFileInfo = Object.assign(fileBaseInfo, {
+                orientation: currentSource.orientation
+              })
+              const videoFileInfo = Object.assign(fileBaseInfo, {
+                duration: currentSource.duration,
+                size: currentSource.size
+              })
+              const params = getSignature({
+                c_p,
+                tag_id: currentSource.tag_id,
+                file_info: JSON.stringify(currentSource.fileType === 'image' ? imageFileInfo : videoFileInfo)
+              })
+              try {
+                const uploadResult = await this.upLoadFile(filePath, params)
+                selectedSourceList[this.data.uploadedSourceCount].url = uploadResult.url_oss
+                selectedSourceList[this.data.uploadedSourceCount].id = uploadResult.id
+                this.setData({ selectedSourceList })
+                this.setData({ uploadedSourceCount: this.data.uploadedSourceCount + 1 })
+                if (this.data.uploadedSourceCount < sourceLangth) {
+                  await Iterator()
+                }
+              } catch (error) {
+                console.error(error)
+              }
+            }
+            await Iterator()
+          })
         }
       },
       success(res) {
@@ -245,46 +284,14 @@ export default Page({
       })
       return
     }
-    const c_p = Object.assign(config.cp, {
-      user_code: app.globalData.userInfo.user_code
-    })
-    this.setData({ isDisabledClick: true })
     const { selectedSourceList } = this.data as { selectedSourceList: ISelectedSourceList }
-    if (selectedSourceList.every(i => i.uploadProgess === 100)) {
+    if (selectedSourceList.some(i => i.uploadProgess !== 100)) {
+      wx.showToast({
+        title: '请等待上传完成哦',
+        icon: 'loading'
+      })
+    } else {
       await this.submit()
-      return
-    }
-    const currentSource = selectedSourceList[this.data.uploadedSourceCount]
-    const sourceLangth = this.data.selectedSourceList.length
-    const filePath = currentSource.fileType === 'video' ? currentSource.tempFilePath : currentSource.path
-    const fileBaseInfo = {
-      width: currentSource.width,
-      height: currentSource.height
-    }
-    const imageFileInfo = Object.assign(fileBaseInfo, {
-      orientation: currentSource.orientation
-    })
-    const videoFileInfo = Object.assign(fileBaseInfo, {
-      duration: currentSource.duration,
-      size: currentSource.size
-    })
-    const params = getSignature({
-      c_p,
-      tag_id: currentSource.tag_id,
-      file_info: JSON.stringify(currentSource.fileType === 'image' ? imageFileInfo : videoFileInfo)
-    })
-    try {
-      const uploadResult = await this.upLoadFile(filePath, params)
-      selectedSourceList[this.data.uploadedSourceCount].url = uploadResult.url_oss
-      selectedSourceList[this.data.uploadedSourceCount].id = uploadResult.id
-      this.setData({ selectedSourceList })
-      this.setData({ uploadedSourceCount: this.data.uploadedSourceCount + 1 })
-      if (this.data.uploadedSourceCount < sourceLangth) {
-        await this.save()
-      }
-      await this.submit()
-    } catch (error) {
-      console.error(error)
     }
   },
   offUploadTaskListener() {
@@ -306,8 +313,8 @@ export default Page({
       user_wiki_id: this.data.selectedWikiId,
       media_ids: media_ids.toString()
     })
-    console.log(params)
     try {
+      this.setData({ isDisabledClick: true })
       const { obj, msg } = await api.saveMoment(params)
       console.log(obj)
       wx.showToast({
@@ -322,6 +329,7 @@ export default Page({
             url: `/pages/home/dynamicLog/index?code=${obj.code}&id=${obj.id}`
           })
         }
+        this.setData({ isDisabledClick: false })
       }, 1500)
     } catch (error) {
       wx.showToast({
@@ -329,7 +337,6 @@ export default Page({
         icon: 'none'
       })
     }
-    this.setData({ isDisabledClick: false })
   },
   async initMoment() {
     const params = getSignature({
@@ -355,9 +362,7 @@ export default Page({
       url: string
       events?: WechatMiniprogram.IAnyObject
       success?: WechatMiniprogram.NavigateToSuccessCallback
-    } = {
-      url
-    }
+    } = { url }
     if (['/pages/my/createProductPost/index'].includes(url)) {
       navigateToOptionsMixin = {
         ...navigateToOptionsMixin,
@@ -365,6 +370,7 @@ export default Page({
           async isUpdateList(flag: boolean) {
             if (flag) {
               await self.initMoment()
+              self.setData({ selectedWikiId: self.data.initData.my_wiki_list[0].id })
             }
           }
         }
@@ -378,12 +384,13 @@ export default Page({
             my_wiki_list = my_wiki_list.filter((i: any) => i.id !== wikiItem.id)
             my_wiki_list.unshift(wikiItem)
             self.setData({
+              selectedWikiId: wikiItem.id,
               initData: {
-                ...self.data.initData,
+                tag_list: self.data.initData.tag_list,
                 my_wiki_list
               },
               scrollLeft: 0
-            }, () => self.setData({ selectedWikiId: wikiItem.id }))
+            })
           }
         },
         success(res: WechatMiniprogram.NavigateToSuccessCallbackResult) {

@@ -36,6 +36,7 @@ class API {
     avatar_url: string
     is_updated: boolean
     my_wiki_count: number
+    user_code: string
   }>> => httpRequest('/usercenter/init', 'GET', params)
 
   uploadFile = (filePath: string, formData: {
@@ -83,9 +84,7 @@ class API {
     image_id: number
     name: string
     wiki_id?: string
-  }): Promise<IResponseType<{
-    name: string
-  }>> => httpRequest('/wikiuser/save', 'POST', params)
+  }): Promise<IResponseType<any>> => httpRequest('/wikiuser/save', 'POST', params)
 
   // 动态详情页
   getDynamicDetail = (params: {

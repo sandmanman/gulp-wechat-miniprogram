@@ -29,6 +29,7 @@ page {
         align-items: center;
         position: absolute;
         bottom: 140rpx;
+        bottom: calc(env(safe-area-inset-bottom) + 70px);
         left: 32rpx;
         z-index: 20;
 
@@ -54,6 +55,7 @@ page {
         left: 0;
         right: 0;
         bottom: 40rpx;
+        bottom: calc(env(safe-area-inset-bottom) + 20px);
         z-index: 20;
         padding: 0 32rpx;
         display: flex;

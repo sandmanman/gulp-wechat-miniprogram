@@ -4,7 +4,7 @@ Component({
       type: Array,
       value: []
     },
-    wikiInfolist: {
+    id: {
       type: Number,
       value: 0
     }

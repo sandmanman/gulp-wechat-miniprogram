@@ -64,17 +64,10 @@ export default Page({
     })
   },
   async saveWiki() {
-    if (!this.data.name) {
+    if (!this.data.coverimg.path || !this.data.name) {
       wx.showModal({
         title: '温馨提示',
-        content: '宝物名称未填写哦',
-        showCancel: false
-      })
-      return
-    } else if (!this.data.coverimg.path) {
-      wx.showModal({
-        title: '温馨提示',
-        content: '宝物封面未上传哦',
+        content: (!this.data.coverimg.path && '宝物封面未上传哦') || (!this.data.name && '宝物名称未填写哦'),
         showCancel: false
       })
       return
@@ -98,11 +91,11 @@ export default Page({
       })
       const { obj, msg } = await api.saveWiki(params)
       console.log(obj)
-      this.setData({ isDisabledClick: false })
       wx.showToast({ title: msg })
       setTimeout(function() {
         wx.navigateBack({
           success() {
+            self.setData({ isDisabledClick: false })
             const eventChannel = self.getOpenerEventChannel()
             eventChannel.emit('isUpdateList', true)
           }

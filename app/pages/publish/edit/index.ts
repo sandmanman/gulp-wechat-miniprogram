@@ -19,7 +19,6 @@ Page({
           tagList: data.tagList,
           swiperCurrentIndex: data.swiperCurrentIndex
         })
-        console.log('data: ', data)
       }
     )
   },
