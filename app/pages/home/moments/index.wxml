@@ -24,7 +24,11 @@
                       mode="aspectFill"
                ></image>
             </view>
-            <view class="label-box" wx:if="{{item.tag_name}}">
+            <view class="label-box"
+                  wx:if="{{item.tag_name}}"
+                  data-url="/pages/home/articleDetail/index?id={{item.wiki_id}}"
+                  catch:tap="navigateToHander"
+                  >
               <view class="label-img">
                 <image src="/assets/img/publish/tag_white@2x.png"></image>
               </view>
@@ -42,7 +46,11 @@
                controls
                object-fit="cover"
         ></video>
-        <view class="label-box" wx:if="{{momentInfo.images_list[0].tag_name}}">
+        <view class="label-box"
+              wx:if="{{momentInfo.images_list[0].tag_name}}"
+              data-url="/pages/home/articleDetail/index?id={{momentInfo.images_list[0].wiki_id}}"
+              catch:tap="navigateToHander"
+        >
           <view class="label-img">
             <image src="/assets/img/publish/tag_white@2x.png"></image>
           </view>
