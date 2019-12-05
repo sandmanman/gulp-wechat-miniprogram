@@ -7,6 +7,11 @@
           data-url="/pages/home/dynamicLog/index?code={{item.code}}&id={{item.id}}"
           bind:tap="navigateToHander"
     >
+      <view class="delete-btn"
+            data-id="{{item.id}}"
+            wx:if="{{deleteicon}}"
+            catch:tap="showConfirmActionSheetHander"
+      ></view>
       <view class="image-box"
             data-url="/pages/home/dynamicLog/index?code={{item.code}}&id={{item.id}}"
             bind:tap="navigateToHander"
@@ -24,5 +29,10 @@
   <block wx:else>
       <template is="noData"></template>
   </block>
+    <!--  删除确认弹窗  -->
+  <delete-actionsheet show="{{showConfirmActionSheet}}"
+                      bind:confirm="deleteWikiHandle"
+                      bind:cancel="hideConfirmActionSheetHander"
+  ></delete-actionsheet>
 </view>
 

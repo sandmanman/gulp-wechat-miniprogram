@@ -33,7 +33,7 @@
           <view class="photoBox"
                 wx:for="{{wikiInfo.media}}"
                 wx:key="{{index}}"
-                data-url="/pages/home/atlas/index?id={{item.article_id}}"
+                data-url="/pages/home/atlas/index?id={{item.article_id}}&name={{wikiInfo.wiki.name}}"
                 data-articleid ="{{item.article_id}}"
                 bind:tap="nagivateToAtlas"
           >

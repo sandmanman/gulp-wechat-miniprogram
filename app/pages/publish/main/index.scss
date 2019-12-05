@@ -229,18 +229,10 @@
     top: 0;left: 0;right: 0;bottom: 0;
     background: rgba(0, 0, 0, 0.3);
     z-index: 11;
-    .close-btn {
-      margin: 262rpx 0 20rpx 651rpx;
-      width: 56rpx;
-      height: 57rpx;
-      background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHAAAAByCAMAAAC89qVyAAAAM1BMVEUAAADj4+NAQEDr6+sAAADy8vIlJSVHcEwAAAAAAADa2tr39/dSUlLOzs5kZGSIiIj///+kI50bAAAAEHRSTlMzrz/AC9I5ACYYn+FEjklYL6v84QAAAvBJREFUaN7N29t2gyAQBdATQy0Y0+X/f22Jl7QagTNcJuGpL81e3GEY8S0qxjhnrcVc/B/OGSP7BQgwt0LHYp2pDgYxMUqBKW0z64CG0lbTFIMSjiJRlSNIVOaSZAR0yC4uA8ytXqqSqF+9eCUDoEVxsQLQoEoxLFjJOxfRoPuiHYmW3pmIpt6JiLbeq4jG3ouINuMzPFbR3DuIqLy+JNcctPf2IpoOmJOBg9YdeOxGtG/QfaNCoUF3jfoE0bgcQdcadHswMGK6YeiEPzwO9z42bhAdMddpuo0i7+c2TZfYuEF0Svj/lokPb/qKTQ1Ep8R9evz/KPOme2xqID7nh1nsanhrFZEYohIx4S0DFak5yItjwlvmIpKrKCumvblNkVxFe04kvHnYgFjVLoTIeHObglnVFrFPegOxvoHal1Ii6T3aFNw+ERfHL857tCnInT4mdrTnxynYjSksCjzfiaCPFrN47Ys834mgt/r+XBR5vhMhOFuciULPc4LT4UkdpZ7nJIeZ/noQF+8iOdpAdnrai73Y85zw/PtfzPA8Jz1w/4k5Xga49mOmlwE+R06Wh5wbzCLesry8soh63lO8QhnUrmCmaHUHTf606HKnhRjclhqtiV+8tLlcL08s2566nO1JEg962fLFG77nJPGSCkeMNxyi+JDX+VFYJlr+5B08eo8S0dF3i0pHfcPenqKXGUEd2fth6rpGXg/X+6Er9XyrkqLj7vhEIIO74oOKYnCBE0rcohiu3ONEx0SiagaGmFibIPSVCrX9i7UZneCeScdLq4YvLRERrhqgNUTMu2YI2jJRfXGQvQ8H2fdR/UAVM54RfgLPCPbdLzP6b0/qr2v674fqL6T6b8DtRurnvOOrZyro52LoZ5vo59PoZwzp50RVFN2n5rWVJiau65n56NzE4mYVZ1/q55e+IYOWzrc+cK4oC9rpZkG/Ic+bypvf2pLJnv/MXP31y4eg6QSfIwg+f1hq+ve5xfbBRbPvLeqUX5iscyISmPIuAAAAAElFTkSuQmCC");
-      background-size: 100%;
-    }
     .hint-content-box {
       width: 664rpx;
-      height: 520rpx;
       border-radius: 15rpx;
-      margin: 0 43rpx;
+      margin: 227rpx 43rpx 0;
       background: #FFFFFF;
       .hint-txt {
         width: 576rpx;
@@ -251,6 +243,33 @@
         margin-left: 18rpx;
         width: 629rpx;
         height: 246rpx;
+      }
+      .model-btn {
+        padding: 50rpx 44rpx;
+        display: flex;
+        justify-content: space-between;
+        .confirm-btn {
+          width: 274rpx;
+          height: 84rpx;
+          line-height: 84rpx;
+          color: #FF6E6D;
+          font-size: 28rpx;
+          text-align: center;
+          border: 1rpx solid #FF6F6F;
+          font-weight: 500;
+          border-radius: 50rpx;
+        }
+        .upload-btn {
+          width: 274rpx;
+          height: 84rpx;
+          line-height: 84rpx;
+          color: #FFFFFF;
+          font-size: 28rpx;
+          text-align: center;
+          font-weight: 500;
+          background: linear-gradient(90deg,rgba(255,123,152,1) 0%,rgba(255,110,109,1) 100%);
+          border-radius: 50rpx;
+        }
       }
     }
   }

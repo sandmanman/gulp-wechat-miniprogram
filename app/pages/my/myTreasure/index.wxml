@@ -1,6 +1,9 @@
 <import src="/templates/networkErrorTemplate.wxml"></import>
 <view class="my-all-treasure-box">
-  <view class="treasure-detail">
+  <view class="balance-components-box">
+    <balancelayout-list list="{{treasureList}}" deleteicon="deletes" mode="{{mode}}"></balancelayout-list>
+  </view>
+  <!-- <view class="treasure-detail">
     <view class="treasure-list-box"
           wx:for="{{treasureList}}"
           wx:key="{{index}}"
@@ -17,8 +20,8 @@
         <view class="time">已玩{{item.play_number}}天，{{item.play_count}}次</view>
       </view>
     </view>
-  </view>
-  <template is="noData" wx:if="{{!treasureList.length}}"></template>
+  </view> -->
+  <!-- <template is="noData" wx:if="{{!treasureList.length}}"></template> -->
   <view class="btn-box">
     <image src="/assets/img/icon/tip-blue.png" wx:if="{{!treasureList.length}}"></image>
     <view class="create-treasure"
