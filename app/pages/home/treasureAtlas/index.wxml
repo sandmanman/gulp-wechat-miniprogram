@@ -3,7 +3,7 @@
       <view class="auctionListBox"
             wx:for="{{auctionList}}"
             wx:key="{{index}}"
-            data-url="/pages/home/atlas/index?id={{item.id}}"
+            data-url="/pages/home/atlas/index?id={{item.id}}&name={{item.title}}"
             bind:tap="nagivateToAuctionClick"
       >
           <image class="imgs" src="{{item.cover}}"></image>

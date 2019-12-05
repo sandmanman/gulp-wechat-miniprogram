@@ -399,6 +399,7 @@ export default Page({
       }
     }
     wx.navigateTo(navigateToOptionsMixin)
+    this.setData({ showhint: false })
   },
   setSelectedGuideID({
     currentTarget: {
